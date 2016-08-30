@@ -10,30 +10,13 @@ namespace AliseeksFE.Controllers
 {
     public class HomeController : Controller
     {
-        ISearchService search;
-
-        public HomeController(ISearchService search)
+        public HomeController()
         {
-            this.search = search;
+
         }
 
         public IActionResult Index()
         {
-            search.Search(new Models.Search.SearchCriteria() { SearchText = "40mm 12" });
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
             return View();
         }
 

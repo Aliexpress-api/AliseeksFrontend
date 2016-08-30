@@ -8,5 +8,6 @@ namespace AliseeksFE.Services
     public class ApiEndpoints
     {
         public const string Search = "api/search";
+        public const string SearchCache = "api/search/cache";
     }
 }

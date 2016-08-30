@@ -4,11 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using AliseeksFE.Models.Api;
 using AliseeksFE.Models.Search;
+using Microsoft.AspNetCore.Http;
+using System.Net.Http;
 
 namespace AliseeksFE.Services.Search
 {
     public interface ISearchService
     {
         Task<IEnumerable<Item>> Search(SearchCriteria criteria);
+        Task<HttpResponseMessage> SearchCache(SearchCriteria criteria);
     }
 }

@@ -7,6 +7,7 @@ using AliseeksFE.Models.Search;
 using AliseeksFE.Services.Api;
 using AliseeksFE.Utility;
 using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace AliseeksFE.Services.Search
 {
@@ -29,6 +30,16 @@ namespace AliseeksFE.Services.Search
             var items = JsonConvert.DeserializeObject<Item[]>(await response.Content.ReadAsStringAsync());
 
             return items;
+        }
+
+        public async Task<HttpResponseMessage> SearchCache(SearchCriteria criteria)
+        {
+            string qs = new QueryStringEncoder().Encode(criteria);
+            string endpoint = ApiEndpoints.SearchCache + $"?{qs}";
+
+            var response = await api.Get(endpoint);
+
+            return response;
         }
     }
 }
