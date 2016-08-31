@@ -1,0 +1,13 @@
+﻿@import "_base.scss";
+
+//@import "../vendor/bootstrap/_bootstrap.scss";
+
+.logo-image {
+    @include img-responsive(inline);
+}
+
+.logo-image-wrapper {
+    @include center-col();
+    margin-top: $home-vertical-space;
+    margin-bottom: line-height(2);
+}

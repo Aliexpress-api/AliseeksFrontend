@@ -1,0 +1,16 @@
+﻿@import "_base.scss";
+
+//Base styles
+html {
+    min-height: 100%;
+    position:relative;
+}
+
+body {
+    background: $background-color;
+    height: 100%;
+}
+
+.body-content {
+    margin-bottom: $footer-height;
+}

@@ -1,0 +1,17 @@
+﻿@mixin center-col() {
+    margin:0 auto;
+    text-align:center;
+    float: none;
+}
+
+@mixin center-row() {
+    display:inline-block;
+    float: none;
+    text-align: left;
+    //Fix block formatting
+    margin-right: -4px;
+}
+
+@mixin center-text() {
+    text-align: center;
+}

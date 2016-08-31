@@ -1,0 +1,21 @@
+﻿$type-scale: (
+  -1: 0.75rem,
+  0: 1rem,
+  1: 1.333rem,
+  2: 1.777rem
+);
+
+$line-heights: (
+    -1: $base-line-height,
+    0: $base-line-height,
+    1: $base-line-height * 2,
+    2: $base-line-height * 2
+    );
+
+@function type-scale($level) {
+    @return map-get($type-scale, $level);
+}
+
+@function line-height($level) {
+    @return map-get($line-heights, $level);
+}

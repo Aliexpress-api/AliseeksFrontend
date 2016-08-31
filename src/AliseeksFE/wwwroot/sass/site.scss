@@ -1,30 +1,9 @@
-﻿@import "_variables.scss";
-@import "grid/_grid.scss";
-@import "pages/_home.scss";
-@import "spacing/_spacing.scss";
+﻿
+@import "vendor/bootstrap/_bootstrap.scss";
 
-html {
-    min-height: 100%;
-    position:relative;
-}
-
-body {
-    background: $background-color;
-    height: 100%;
-}
-
-.body-content {
-    margin-bottom: $footer-height;
-}
-
-footer {
-    background-color: $shadow-color;
-    height:$footer-height;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    padding-left:20vw;
-    padding-right:15vw;
-    vertical-align:middle;
-}
+@import "partials/_base.scss";
+@import "partials/_elements.scss";
+@import "partials/_header.scss";
+@import "partials/_footer.scss";
+@import "partials/_searchbar.scss";
+@import "partials/_home.scss";

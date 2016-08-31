@@ -1,0 +1,11 @@
+﻿@import "_base.scss";
+
+footer {
+    background-color: $shadow-color;
+    height: $footer-height;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    vertical-align:middle;
+}

@@ -1,0 +1,65 @@
+﻿@import "_base.scss";
+
+//@import "../vendor/bootstrap/_bootstrap.scss";
+
+.searchbar {
+    @extend .col-xs-12;
+    @extend .col-sm-10;
+    @extend .col-md-10;
+    text-align: center;
+
+    &.center {
+        @include center-col();
+    }
+}
+
+.advanced-link {
+    @extend .col-xs-12;
+    @extend .col-sm-10;
+    @extend .col-md-10;
+    text-align: left;
+    cursor: pointer;
+
+    &.center {
+        @include center-col();
+        text-align: left;
+    }
+}
+
+.advanced-tools {
+    @extend .col-xs-12;
+    @extend .col-sm-10;
+    @extend .col-md-10;
+    @extend .collapse;
+    @extend .form-horizontal;
+    
+    &.center {
+        @include center-col();
+    }
+
+    @media (max-width: $screen-sm-max) {
+        font-size: type-scale(0);
+    }
+}
+
+.input-price-control {
+    @extend .input-group;
+    @extend .col-xs-8;
+    @extend .col-md-4;
+    @extend .row;
+    @extend .form-group;
+    float:none;
+}
+
+.input-price-addon {
+    @extend .input-group-addon;
+    font-size: 1em;
+}
+
+.input-control-label {
+    @extend .control-label;
+    &.left {
+        text-align: left;
+        float: left;
+    }
+}
