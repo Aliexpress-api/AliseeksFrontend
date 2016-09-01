@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Aliseeks</title>
+    <link rel="stylesheet" href="~/lib/bootstrap-select/css/bootstrap-select.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
     <environment names="Development">
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
@@ -13,7 +15,6 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
 </head>
 <body>
     <header>
@@ -52,6 +53,7 @@
         <script src="~/lib/google/google-analytics.js"></script>
     </environment>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

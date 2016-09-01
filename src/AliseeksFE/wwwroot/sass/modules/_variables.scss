@@ -2,8 +2,13 @@
 $base-line-height: $base-font-size * 1.25;
 
 $background-color: #F7F9F9;
-$shadow-color: darken($background-color, 5%);
+$shadow-color: darken($background-color, 2%);
+$text-light-color: lighten(#000000, 40%);
 
 $footer-height: 60px;
 
 $home-vertical-space: 10vh;
+
+$searchbar-price-max-width: 300px;
+$searchbar-ship-max-width: 400px;
+$searchbar-bar-height: 4rem;

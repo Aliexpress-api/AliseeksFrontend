@@ -26,3 +26,20 @@ function premptiveSearchDoneTyping() {
         }
     });
 }
+
+//Filter bar toggle
+$(function () {
+    $('#filter-bar-toggle').on('click', function () {
+        var content = $("#filter-bar");
+        content.slideToggle(300, function () {
+
+        });
+    });
+});
+
+//Prior to Form Submit
+(function() {
+    $('#searchForm').on('submit', function () {
+        var selectedVals = $("#searchForm > [data-id='multiselect']").attr('title');
+    });
+});

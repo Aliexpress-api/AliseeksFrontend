@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using AliseeksFE.Services.Api;
 using AliseeksFE.Services.Search;
+using AliseeksFE.Models.Binders;
 
 namespace AliseeksFE
 {
@@ -30,7 +31,10 @@ namespace AliseeksFE
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc(config =>
+            {
+                config.ModelBinderProviders.Insert(0, new MultiselectModelBinderProvider());
+            });
 
             configureDependencyInjection(services);
         }

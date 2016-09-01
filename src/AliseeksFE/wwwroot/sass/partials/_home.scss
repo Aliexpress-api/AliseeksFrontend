@@ -8,6 +8,8 @@
 
 .logo-image-wrapper {
     @include center-col();
+    @extend .col-sm-6;
+    @extend .col-xs-8;
     margin-top: $home-vertical-space;
     margin-bottom: line-height(2);
 }
