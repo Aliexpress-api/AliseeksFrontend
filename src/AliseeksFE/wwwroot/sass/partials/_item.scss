@@ -1,0 +1,47 @@
+﻿@import "_base.scss";
+
+.item {
+    margin-bottom:1rem;
+    padding-left:2rem;
+    padding-bottom:2rem;
+    padding-top:2rem;
+    border-bottom-color: darken($shadow-color, 25%);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+
+    &:hover {
+        box-shadow: 2px 2px 2px darken($shadow-color, 50%);
+        border-color: darken($shadow-color, 50%);
+        border-style: solid;
+        border-width: 1px;
+    }
+
+    &:after {
+        content: "";
+        clear:both;
+        display:table;
+    }
+}
+.item-info {
+
+}
+
+.item-link {
+
+}
+
+.item-image {
+    display:block;
+    width:150px;
+    height:150px;
+    margin-right:1rem;
+    float:left;
+}
+
+.item-price {
+
+}
+
+.item-unit {
+
+}

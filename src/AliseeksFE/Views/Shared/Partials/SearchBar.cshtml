@@ -1,20 +1,21 @@
 ﻿@model  SearchCriteria
-<form id="searchForm" asp-controller="Search" asp-action="Search" method="get">
-    <div class="row">
-        <div class="searchbar center">
-            <div class="input-group">
-                <input id="search-text" name="SearchText" value="@Model.SearchText" type="text" class="form-control" placeholder="What are you looking for today?" />
-                <div class="input-group-btn">
-                    <button class="btn btn-primary" type="submit" value="Search">
-                        <span class="glyphicon glyphicon-search"></span>
-                        Search
-                    </button>
+
+<div class="visible-md visible-lg">
+    <form id="searchForm" asp-controller="Search" asp-action="Search" method="get">
+        <div class="row">
+            <div class="searchbar center">
+                <div class="input-group">
+                    <input id="search-text" name="SearchText" value="@Model.SearchText" type="text" class="form-control" placeholder="What are you looking for today?" />
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" type="submit" value="Search">
+                            <span class="glyphicon glyphicon-search"></span>
+                            Search
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="visible-md visible-lg">
         <div id="filter-bar" class="row" style="display:none;">
             <div class="advanced-tools-bar-wrapper">
                 <div class="advanced-tools-bar center">
@@ -284,13 +285,14 @@
                             <option value="ZW">Zimbabwe]</option>
                         </select>
                     </div>
-                    <div class="input-multi-select-bar">
-                        <select id="multiselect" class="selectpicker" multiple>
-                            <option name="FreeShipping">Free Shipping</option>
-                            <option name="SaleItems">Sale Items</option>
-                            <option name="PieceOnly">Piece Only</option>
-                            <option name="AppOnly">App Only</option>
-                        </select>
+                    <div class="dropdown-container">
+                        <span class="dropdown-btn">More Options</span>
+                        <div class="dropdown-content">
+                            <p class="dropdown-item"><input type="checkbox" asp-for"FreeShipping" />Shipping</p>
+                            <p class="dropdown-item"><input type="checkbox" asp-for"SaleItems" />Sale Items</p>
+                            <p class="dropdown-item"><input type="checkbox" asp-for"PieceOnly" />One Piece Only</p>
+                            <p class="dropdown-item"><input type="checkbox" asp-for"AppOnly" />Mobile Deals Only</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -301,9 +303,26 @@
                 <a>Advanced <span class="caret"></span></a>
             </div>
         </div>
-    </div>
 
-    <div class="visible-sm visible-xs">
+    </form>
+</div>
+
+<div class="visible-xs visible-sm">
+    <form id="searchForm" asp-controller="Search" asp-action="Search" method="get">
+        <div class="row">
+            <div class="searchbar center">
+                <div class="input-group">
+                    <input id="search-text" name="SearchText" value="@Model.SearchText" type="text" class="form-control" placeholder="What are you looking for today?" />
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary" type="submit" value="Search">
+                            <span class="glyphicon glyphicon-search"></span>
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="advanced-link center">
                 <a data-toggle="collapse" data-target="#filters">Advanced <span class="caret"></span></a>
@@ -584,33 +603,34 @@
                         </select>
                     </div>
                 </div>
-            </div>
-            <div class="row upper-margin">
-                <div class="col-sm-6 col-md-2 checkbox standard-text" style="margin-top:-5px;">
-                    <label>
-                        @Html.CheckBoxFor(x => x.FreeShipping)
-                        Free Shipping
-                    </label>
-                </div>
-                <div class="col-sm-6 col-md-2 checkbox standard-text">
-                    <label>
-                        @Html.CheckBoxFor(x => x.SaleItems)
-                        Sale Items
-                    </label>
-                </div>
-                <div class="col-sm-6 col-md-2 checkbox standard-text">
-                    <label>
-                        @Html.CheckBoxFor(x => x.PieceOnly)
-                        1 Piece Only
-                    </label>
-                </div>
-                <div class="col-sm-6 col-md-2 checkbox standard-text">
-                    <label>
-                        @Html.CheckBoxFor(x => x.AppOnly)
-                        App Only Deals
-                    </label>
+                <div class="row" style="text-align:left;">
+                    <div class="col-sm-6 col-md-2 checkbox standard-text">
+                        <label>
+                            @Html.CheckBoxFor(x => x.FreeShipping)
+                            Free Shipping
+                        </label>
+                    </div>
+                    <div class="col-sm-6 col-md-2 checkbox standard-text">
+                        <label>
+                            @Html.CheckBoxFor(x => x.SaleItems)
+                            Sale Items
+                        </label>
+                    </div>
+                    <div class="col-sm-6 col-md-2 checkbox standard-text">
+                        <label>
+                            @Html.CheckBoxFor(x => x.PieceOnly)
+                            1 Piece Only
+                        </label>
+                    </div>
+                    <div class="col-sm-6 col-md-2 checkbox standard-text">
+                        <label>
+                            @Html.CheckBoxFor(x => x.AppOnly)
+                            App Only Deals
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+
+    </form>
+</div>

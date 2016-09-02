@@ -43,3 +43,23 @@ $(function () {
         var selectedVals = $("#searchForm > [data-id='multiselect']").attr('title');
     });
 });
+
+//Dropdown box
+$(function () {
+    $('.dropdown-container').on('click', function (event) {
+        $('.dropdown-content', event.currentTarget).show();
+        $(event.currentTarget).addClass('clicked');
+    });
+
+    $('.downdown-item').on('click', function (event) {
+        $('.glyphicon-check', event.currentTarget).show();
+    });
+
+    $(window).on('click', function (event) {
+        if($(event.target).parents('.dropdown-container').length == 0)
+        {
+            $('.dropdown-container').removeClass('clicked');
+            $('.dropdown-content').hide();
+        }
+    });
+});

@@ -3,6 +3,7 @@ $base-line-height: $base-font-size * 1.25;
 
 $background-color: #F7F9F9;
 $shadow-color: darken($background-color, 2%);
+$color-third: darken($background-color, 5%);
 $text-light-color: lighten(#000000, 40%);
 
 $footer-height: 60px;

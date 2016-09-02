@@ -3,26 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-
 using AliseeksFE.Models.Login;
 
 namespace AliseeksFE.Controllers
 {
-    public class HomeController : Controller
+    public class LoginController : Controller
     {
-        public HomeController()
+        public LoginController()
         {
-            
+
         }
 
-        public IActionResult Index()
+        public IActionResult Login()
         {
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View();
+            return View(new LoginUserModel());
         }
     }
 }
