@@ -10,6 +10,12 @@ using Microsoft.Extensions.Logging;
 using AliseeksFE.Services.Api;
 using AliseeksFE.Services.Search;
 using AliseeksFE.Models.Binders;
+using AliseeksFE.Services.User;
+using AliseeksFE.Authentication;
+using Microsoft.AspNetCore.Http;    
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Cryptography;
 
 namespace AliseeksFE
 {
@@ -55,6 +61,17 @@ namespace AliseeksFE
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseCookieAuthentication(new CookieAuthenticationOptions()
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                AuthenticationScheme = "AliseeksCookie",
+                CookieName = "access_token",
+                TicketDataFormat = new AliseeksJwtCookieAuthentication(
+                    AliseeksJwtAuthentication.TokenValidationParameters("thisismykeyanditslongandsecurehopefullywhoknows")
+                    )
+            });
+
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
@@ -69,6 +86,8 @@ namespace AliseeksFE
         {
             services.AddTransient<IApiService, ApiService>();
             services.AddTransient<ISearchService, SearchService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
     }
 }

@@ -27,18 +27,6 @@ namespace AliseeksFE.Models.Search
 
         public int Page { get; set; }
 
-        public int[] GetPageNumbers()
-        {
-            int[] pageNumbers = new int[5];
-
-            for(int i = (Page / 5) * 5 + 1, ii = 0; ii != 5; i++, ii++)
-            {
-                pageNumbers[ii] = i;
-            }
-
-            return pageNumbers;
-        }
-
         //Not implemented
         public bool UnitPrice { get; set; }
         public bool NeedQuery { get; set; }

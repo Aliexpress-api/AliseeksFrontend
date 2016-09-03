@@ -18,21 +18,21 @@
         <div class="row row-centered">
             <div class="item">
                 <img class="item-image" src="@item.ImageURL" alt="@item.Name" />
-                <div class="col-md-6 item-info">
+                <div class="col-xs-6 col-md-6 item-info">
                     <h4 class="item-link">
                         <a class="item-link" href="@item.Link">
                             @item.Name
                         </a>
                     </h4>
-                    <p class="mobile-gone standard-text">
+                    <p class="mobile-gone standard-text hidden-xs">
                         <strong>@item.StoreName</strong>
                     </p>
-                    <p class="mobile-gone">
-                        <span class="small-text">@item.Feedback</span> |
-                        <span class="small-text">@item.Orders</span>
+                    <p class="mobile-gone hidden-xs">
+                        <span class="small-text">Feedback(@item.Feedback)</span> |
+                        <span class="small-text">Orders(@item.Orders)</span>
                     </p>
                 </div>
-                <div class="col-md-3 item-info-more">
+                <div class="col-xs-4 col-md-3 item-info-more">
                     <p>
                         <span class="item-price">@item.Price</span>
                         <span class="item-unit"> / @item.Unit</span>
@@ -56,10 +56,10 @@
     <div class="col-xs-12">
         <div class="btn-group">
             <ul class="pagination">
-                @foreach (int pageNum in Model.Criteria.GetPageNumbers())
-            {
-                if (pageNum == Model.Criteria.Page)
+                @foreach (int pageNum in new int[] { 1, 2, 3, 4, 5 })
                 {
+                    if (pageNum == Model.Criteria.Page)
+                    {
                         <li class="active">
                             <a href=@Url.Action("SearchResults", new { page = pageNum })>@pageNum</a>
                         </li>

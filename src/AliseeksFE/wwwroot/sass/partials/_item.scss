@@ -1,4 +1,5 @@
 ﻿@import "_base.scss";
+//@import "../vendor/bootstrap/_bootstrap.scss";
 
 .item {
     margin-bottom:1rem;
@@ -21,13 +22,17 @@
         clear:both;
         display:table;
     }
+
+    @media (max-width: $screen-sm-max) {
+          font-size:.75rem;
+    }
 }
 .item-info {
 
 }
 
 .item-link {
-
+    font-size:1.25em;
 }
 
 .item-image {
@@ -39,7 +44,7 @@
 }
 
 .item-price {
-
+    font-size: type-scale(2);
 }
 
 .item-unit {

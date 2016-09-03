@@ -5,7 +5,7 @@
 .searchbar {
     @extend .col-xs-12;
     @extend .col-sm-10;
-    @extend .col-md-10;
+    @extend .col-md-8;
     text-align: center;
 
     &.center {
@@ -16,7 +16,7 @@
 .advanced-link {
     @extend .col-xs-12;
     @extend .col-sm-10;
-    @extend .col-md-10;
+    @extend .col-md-8;
     text-align: left;
     cursor: pointer;
     margin-top: line-height(1);
@@ -33,7 +33,7 @@
 .advanced-tools {
     @extend .col-xs-12;
     @extend .col-sm-10;
-    @extend .col-md-10;
+    @extend .col-md-8;
     @extend .collapse;
     @extend .form-horizontal;
     
@@ -47,7 +47,7 @@
 }
 
 .advanced-tools-bar {
-    @extend .col-md-11;
+    @extend .col-md-12;
     height: $searchbar-bar-height;
     display:flex;
     flex-direction: row;
@@ -64,7 +64,7 @@
 }
 
 .advanced-tools-bar-wrapper {
-    @extend .col-md-10;
+    @extend .col-md-8;
     @include center-col();
 }
 
@@ -103,7 +103,7 @@
 
 .input-ship-control-bar {
     display:inline;
-    width:20%;
+    width:25%;
     select {
         @extend .form-control;
         display:inline;

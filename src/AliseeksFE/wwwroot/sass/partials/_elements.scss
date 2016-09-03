@@ -14,3 +14,8 @@ body {
 .body-content {
     margin-bottom: $footer-height;
 }
+
+.col-center {
+    @include center-col();
+    text-align:left;
+}
