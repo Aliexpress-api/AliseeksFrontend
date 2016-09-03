@@ -42,6 +42,8 @@ namespace AliseeksFE
                 config.ModelBinderProviders.Insert(0, new MultiselectModelBinderProvider());
             });
 
+            services.AddOptions();
+
             configureDependencyInjection(services);
         }
 
