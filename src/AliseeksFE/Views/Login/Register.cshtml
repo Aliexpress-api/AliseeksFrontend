@@ -1,13 +1,20 @@
 ﻿@model NewUserModel
 
+<div class="row">
+    <div class="col-sm-6 col-md-3 col-center">
+        <h3>Register</h3>
+    </div>
+</div>
 <div class="col-sm-6 col-md-2 col-center">
-    <form asp-controller="Login" asp-action="Login" method="post" class="form-horizontal">
+    <form asp-controller="Login" asp-action="Register" method="post" class="form-horizontal">
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group">
             <label class="control-label">Username</label>
             <input type="text" asp-for="Username" class="form-control" />
         </div>
         <div class="form-group">
-            <label class="control-label">Email</label>
+            <label class="control-label">Email <a class="btn-link" data-target="#whyemail" data-toggle="collapse">Why?</a></label>
+            <p id="whyemail" class="small collapse">This will only be used to reset your password and confirm you're not a robot. We <b>will not</b> email you with an advertising or spam mail.</p>
             <input type="email" asp-for="Email" class="form-control" />
         </div>
         <div class="form-group">
@@ -17,6 +24,16 @@
         <div class="form-group">
             <label class="control-label">Confirm Password</label>
             <input type="password" asp-for="ConfirmPassword" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">What do you use us for? <a class="btn-link" data-target="#whyuse" data-toggle="collapse">Why?</a></label>
+            <p id="whyuse" class="small collapse">This helps us figure out what we need to focus on to better help you!</p>
+            <select asp-for="PrimaryUse" class="form-control">
+                <option>Reselling</option>
+                <option>Dropshipping</option>
+                <option>Personal Shopping</option>
+                <option>Other</option>
+            </select>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Register</button>

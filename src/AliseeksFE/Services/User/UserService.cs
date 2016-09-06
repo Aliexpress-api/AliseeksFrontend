@@ -9,6 +9,8 @@ using System.Security.Claims;
 using System.Security.Authentication;
 using Microsoft.AspNetCore.Http;
 using AliseeksFE.Authentication;
+using Microsoft.Extensions.Options;
+using AliseeksFE.Configuration.Options;
 
 namespace AliseeksFE.Services.User
 {
@@ -16,12 +18,27 @@ namespace AliseeksFE.Services.User
     {
         IApiService api;
         HttpContext context;
+        AliseeksJwtAuthentication auth;
 
         public UserService(IApiService api,
-            IHttpContextAccessor accessor)
+            IHttpContextAccessor accessor, AliseeksJwtAuthentication auth)
         {
+            this.auth = auth;
             this.api = api;
             context = accessor.HttpContext;
+        }
+
+        public void Logout()
+        {
+            if (!context.Request.Cookies.ContainsKey("access_token"))
+                return;
+
+            context.Response.Cookies.Delete("access_token", new CookieOptions
+            {
+                Path = "/",
+                Domain = "",
+                Expires = DateTimeOffset.Now.AddDays(-1)
+            });
         }
 
         public async Task<HttpResponseMessage> Login(LoginUserModel model)
@@ -33,7 +50,7 @@ namespace AliseeksFE.Services.User
                 new Claim(ClaimTypes.Name, model.Username)
             };
 
-            var token = new AliseeksJwtAuthentication().GenerateToken(claims);
+            var token = auth.GenerateToken(claims);
             context.Response.Cookies.Append("access_token", token,
                 new CookieOptions()
                 {

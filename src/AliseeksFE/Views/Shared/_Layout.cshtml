@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Aliseeks</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap-select/css/bootstrap-select.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
     <environment names="Development">
@@ -19,21 +19,41 @@
 <body>
     <header>
         <nav class="navbar navbar-default">
-            <div class="navbar-brand"><p>Aliseeks.com</p></div>
+            <div class="navbar-brand"><a href="/">Aliseeks.com</a></div>
             <div class="collapse navbar-collapse pull-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="login">Login</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                <strong>@User.FindFirst(ClaimTypes.Name).Value</strong>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href="login">Login</a></li>
+                    }
                 </ul>
+
             </div>
         </nav>
     </header>
     <div class="container-fluid body-content">
+        @if(ViewData.ContainsKey("message"))
+        {
+            <div class="alert alert-success">@ViewData["message"]</div>
+        }
         @RenderBody()
     </div>
 
     <footer>
-            <p>Testing this foot</p>
-        <!--TODO: Add footer-->
+        <div class="pull-right">
+            <span><strong>Powered by:</strong></span>
+        </div>
     </footer>
 
     <environment names="Development">

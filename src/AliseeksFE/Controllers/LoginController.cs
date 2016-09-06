@@ -28,14 +28,29 @@ namespace AliseeksFE.Controllers
         [Route("/login")]
         public IActionResult Login(LoginUserModel model)
         {
-            user.Login(model);
+            if(ModelState.IsValid)
+            {
+                user.Login(model);
+                return LocalRedirect("/");
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+
+        [HttpGet]
+        [Route("/logout")]
+        public IActionResult Logout()
+        {
+            user.Logout();
             return LocalRedirect("/");
         }
 
         [HttpGet]
         [Route("/register")]
         public IActionResult Register()
-        {
+        {         
             return View(new NewUserModel());
         }
 
@@ -43,7 +58,42 @@ namespace AliseeksFE.Controllers
         [Route("/register")]
         public IActionResult Register(NewUserModel model)
         {
-            return View();
+            if(model.Password != model.ConfirmPassword)
+                ModelState.AddModelError("Password", "Password and confirm password must match");
+
+            if(ModelState.IsValid)
+            {
+                user.Register(model);
+                return LocalRedirect("/login");
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+
+        [HttpGet]
+        [Route("/passwordreset")]
+        public IActionResult PasswordReset()
+        {
+            return View(new ResetUserModel());
+        }
+
+        [HttpPost]
+        [Route("/passwordreset")]
+        public IActionResult PasswordReset(ResetUserModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                user.Reset(model);
+
+                ViewData["message"] = "New password has been sent to your mailbox";
+                return LocalRedirect("/");
+            }
+            else
+            {
+                return View(model);
+            }
         }
     }
 }

@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Cryptography;
+using AliseeksFE.Configuration.Options;
+using Microsoft.Extensions.Options;
 
 namespace AliseeksFE
 {
@@ -27,6 +29,7 @@ namespace AliseeksFE
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("appsecrets.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -41,8 +44,10 @@ namespace AliseeksFE
             {
                 config.ModelBinderProviders.Insert(0, new MultiselectModelBinderProvider());
             });
-
+            
             services.AddOptions();
+
+            services.Configure<JwtOptions>(Configuration.GetSection("JwtOptions"));
 
             configureDependencyInjection(services);
         }
@@ -63,15 +68,14 @@ namespace AliseeksFE
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            var options = app.ApplicationServices.GetService<IOptions<JwtOptions>>().Value;
             app.UseCookieAuthentication(new CookieAuthenticationOptions()
             {
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true,
                 AuthenticationScheme = "AliseeksCookie",
                 CookieName = "access_token",
-                TicketDataFormat = new AliseeksJwtCookieAuthentication(
-                    AliseeksJwtAuthentication.TokenValidationParameters("thisismykeyanditslongandsecurehopefullywhoknows")
-                    )
+                TicketDataFormat = new AliseeksJwtCookieAuthentication(AliseeksJwtAuthentication.TokenValidationParameters(options.SecretKey))
             });
 
             app.UseStaticFiles();
@@ -90,6 +94,7 @@ namespace AliseeksFE
             services.AddTransient<ISearchService, SearchService>();
             services.AddTransient<IUserService, UserService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<AliseeksJwtAuthentication, AliseeksJwtAuthentication>();
         }
     }
 }

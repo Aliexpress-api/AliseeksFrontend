@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.Extensions.Options;
+using AliseeksFE.Configuration.Options;
 
 namespace AliseeksFE.Authentication
 {
@@ -35,14 +37,16 @@ namespace AliseeksFE.Authentication
         const string issuer = "AliseeksIssuer";
         const string audience = "AliseeksUser";
 
-        public AliseeksJwtAuthentication()
-        {
+        private readonly JwtOptions jwtOptions;
 
+        public AliseeksJwtAuthentication(IOptions<JwtOptions> jwtOptions)
+        {
+            this.jwtOptions = jwtOptions.Value;
         }
 
         public string GenerateToken(Claim[] claims)
         {
-            var securityKey = System.Text.Encoding.ASCII.GetBytes("thisismykeyanditslongandsecurehopefullywhoknows");
+            var securityKey = System.Text.Encoding.ASCII.GetBytes(jwtOptions.SecretKey);
 
             var handler = new JwtSecurityTokenHandler();
             var now = DateTime.UtcNow;
