@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using AliseeksFE.Services.Api;
+using AliseeksFE.Services.Feedback;
 using AliseeksFE.Services.Search;
 using AliseeksFE.Models.Binders;
 using AliseeksFE.Services.User;
@@ -94,6 +95,7 @@ namespace AliseeksFE
             services.AddTransient<ISearchService, SearchService>();
             services.AddTransient<IUserService, UserService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<IFeedbackService, FeedbackService>();
             services.AddTransient<AliseeksJwtAuthentication, AliseeksJwtAuthentication>();
         }
     }

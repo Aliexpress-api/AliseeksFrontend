@@ -33,6 +33,7 @@ h6 {
 .lead {
     font-size: 18px;
     font-weight: 400;
+    line-height:1.75em;
 }
 
 .intro-header {
@@ -121,17 +122,24 @@ h6 {
 .feature-list {
     font-size:16px;
     font-weight:400;
+    list-style:none;
 }
 
 .feature-list > li {
     margin-top:1rem;
     line-height:3rem;
+    padding-left:2rem;
+    text-indent:-2rem;
+}
+
+.timeline-align {
+    margin-top:60px;
 }
 
 .banner {
     padding: 100px 0;
     color: #f8f8f8;
-    background: url(../img/banner-bg.jpg) no-repeat center center;
+    background: url(../../images/about/banner-bg.jpg) no-repeat center center;
     background-size: cover;
 }
 

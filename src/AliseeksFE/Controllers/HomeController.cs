@@ -20,12 +20,20 @@ namespace AliseeksFE.Controllers
             return View();
         }
 
+        [Route("/error")]
         public IActionResult Error()
         {
             return View();
         }
 
+        [Route("/about")]
         public IActionResult About()
+        {
+            return View();
+        }
+
+        [Route("/feedback")]
+        public IActionResult Feedback()
         {
             return View();
         }

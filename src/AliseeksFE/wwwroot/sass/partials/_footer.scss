@@ -9,3 +9,15 @@ footer {
     left: 0;
     vertical-align:middle;
 }
+
+.footer-right {
+    height:$footer-height;
+    line-height:$footer-height;
+    margin-right:2rem;
+}
+
+.footer-right-image {
+    margin-left:1rem;
+    height:$footer-height * .5;
+    width:auto;
+}

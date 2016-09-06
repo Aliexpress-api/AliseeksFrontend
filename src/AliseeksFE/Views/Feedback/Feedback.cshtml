@@ -1,0 +1,22 @@
+﻿@model FeedbackModel
+
+<div class="col-sm-6 col-md-2 col-center">
+    <form asp-controller="Home" asp-action="Feedback" method="post" class="form-horizontal">
+        <div class="form-group">
+            <h3>Give us some feedback!</h3>
+            <p>Feature requests, negative comments, good comments, all are welcomed and appreciated!</p>
+        </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label class="control-label">Email<span class="small"> (Optional)</span>:</label>
+            <input type="email" asp-for="Email" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Feedback:</label>
+            <textarea type="text" asp-for="Message" rows="5" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>

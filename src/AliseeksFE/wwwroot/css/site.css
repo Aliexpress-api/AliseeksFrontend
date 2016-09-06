@@ -5958,6 +5958,10 @@ body {
 .dropdown-show {
   display: block; }
 
+.image-brand {
+  height: 25px;
+  width: 25px; }
+
 footer {
   background-color: #f1f5f5;
   height: 60px;
@@ -5966,6 +5970,16 @@ footer {
   right: 0;
   left: 0;
   vertical-align: middle; }
+
+.footer-right {
+  height: 60px;
+  line-height: 60px;
+  margin-right: 2rem; }
+
+.footer-right-image {
+  margin-left: 1rem;
+  height: 30px;
+  width: auto; }
 
 .searchbar {
   text-align: center; }

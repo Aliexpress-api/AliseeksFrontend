@@ -29,6 +29,7 @@ namespace AliseeksFE.Services.Api
 
             using (HttpClient client = new HttpClient())
             {
+                client.BaseAddress = new Uri(apiAddress);
                 response = await client.PostAsync(endpoint, data);
             }
 

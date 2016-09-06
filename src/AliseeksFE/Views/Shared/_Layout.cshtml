@@ -19,26 +19,34 @@
 <body>
     <header>
         <nav class="navbar navbar-default">
-            <div class="navbar-brand"><a href="/">Aliseeks.com</a></div>
-            <div class="collapse navbar-collapse pull-right">
-                <ul class="nav navbar-nav">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                                <strong>@User.FindFirst(ClaimTypes.Name).Value</strong>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/logout">Logout</a></li>
-                            </ul>
-                        </li>
-                    }
-                    else
-                    {
-                        <li><a href="login">Login</a></li>
-                    }
-                </ul>
-
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/"><img class="image-brand" src="~/images/brand.png" /></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/feedback">Feedback</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                    <strong>@User.FindFirst(ClaimTypes.Name).Value</strong>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/logout">Logout</a></li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li><a href="login">Login</a></li>
+                        }
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
@@ -51,8 +59,8 @@
     </div>
 
     <footer>
-        <div class="pull-right">
-            <span><strong>Powered by:</strong></span>
+        <div class="footer-right pull-right">
+            <img class="footer-right-image" src="~/images/dotnetcore.png" />
         </div>
     </footer>
 
