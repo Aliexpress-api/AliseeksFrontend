@@ -51,9 +51,9 @@
         </nav>
     </header>
     <div class="container-fluid body-content">
-        @if(ViewData.ContainsKey("message"))
+        @if(TempData != null && TempData.ContainsKey("message"))
         {
-            <div class="alert alert-success">@ViewData["message"]</div>
+            <div class="alert alert-success">@TempData["message"]</div>
         }
         @RenderBody()
     </div>

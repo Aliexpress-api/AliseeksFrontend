@@ -25,7 +25,7 @@ namespace AliseeksFE.Controllers
         {
             var response = await feedback.Submit(model);
 
-            ViewData["message"] = "Feedback has been sent! Thank you for your feedback!";
+            TempData["message"] = "Feedback has been sent! Thank you for your feedback!";
             return LocalRedirect("/");
         }
 

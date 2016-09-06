@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Cryptography;
 using AliseeksFE.Configuration.Options;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Session;
 
 namespace AliseeksFE
 {
@@ -43,10 +44,12 @@ namespace AliseeksFE
             // Add framework services.
             services.AddMvc(config =>
             {
-                config.ModelBinderProviders.Insert(0, new MultiselectModelBinderProvider());
+                
             });
-            
+
             services.AddOptions();
+
+            services.AddSession();
 
             services.Configure<JwtOptions>(Configuration.GetSection("JwtOptions"));
 
@@ -80,6 +83,11 @@ namespace AliseeksFE
             });
 
             app.UseStaticFiles();
+
+            app.UseSession(new SessionOptions()
+            {
+                
+            });
 
             app.UseMvc(routes =>
             {

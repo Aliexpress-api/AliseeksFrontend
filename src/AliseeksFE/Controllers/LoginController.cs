@@ -87,7 +87,7 @@ namespace AliseeksFE.Controllers
             {
                 user.Reset(model);
 
-                ViewData["message"] = "New password has been sent to your mailbox";
+                TempData["message"] = "New password has been sent to your mailbox";
                 return LocalRedirect("/");
             }
             else
