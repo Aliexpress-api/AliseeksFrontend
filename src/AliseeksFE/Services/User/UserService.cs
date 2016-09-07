@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using AliseeksFE.Authentication;
 using Microsoft.Extensions.Options;
 using AliseeksFE.Configuration.Options;
+using Newtonsoft.Json;
 
 namespace AliseeksFE.Services.User
 {
@@ -43,15 +44,13 @@ namespace AliseeksFE.Services.User
 
         public async Task<HttpResponseMessage> Login(LoginUserModel model)
         {
-            HttpResponseMessage mess = new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+            var content = new StringContent(JsonConvert.SerializeObject(model));
+            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await api.Post(ApiEndpoints.UserLogin, content);
 
-            var claims = new Claim[]
-            {
-                new Claim(ClaimTypes.Name, model.Username)
-            };
+            var token = JsonConvert.DeserializeObject<ResponseLoginUserModel>(await response.Content.ReadAsStringAsync());
 
-            var token = auth.GenerateToken(claims);
-            context.Response.Cookies.Append("access_token", token,
+            context.Response.Cookies.Append("access_token", token.Token,
                 new CookieOptions()
                 {
                     Path = "/",
@@ -61,7 +60,7 @@ namespace AliseeksFE.Services.User
                     Expires = DateTimeOffset.Now.AddDays(14)
                 });
 
-            return mess;
+            return response;
         }
 
         public async Task<HttpResponseMessage> Register(NewUserModel model)

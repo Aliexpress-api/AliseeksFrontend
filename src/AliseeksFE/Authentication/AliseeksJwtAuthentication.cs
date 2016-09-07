@@ -123,6 +123,10 @@ namespace AliseeksFE.Authentication
                     throw new ArgumentException($"Algorithm must be {algorithm}");
                 }
 
+                //Append token value to identity
+                var tokenClaim = new Claim[] { new Claim("Token", protectedText) };
+                principal.AddIdentity(new ClaimsIdentity(tokenClaim));
+
                 return new AuthenticationTicket(principal, new Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties()
                 {
                     
