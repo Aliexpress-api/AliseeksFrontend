@@ -100,11 +100,11 @@ namespace AliseeksFE.Controllers
 
         [HttpPost]
         [Route("/passwordreset")]
-        public IActionResult PasswordReset(ResetUserModel model)
+        public async Task<IActionResult> PasswordReset(ResetUserModel model)
         {
             if(ModelState.IsValid)
             {
-                user.Reset(model);
+                await user.Reset(model);
 
                 TempData["message"] = "New password has been sent to your mailbox";
                 return LocalRedirect("/");
