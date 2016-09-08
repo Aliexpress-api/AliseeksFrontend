@@ -13,5 +13,7 @@ namespace AliseeksFE.Services
         public const string Feedback = "api/feedback";
 
         public const string UserLogin = "api/user/login";
+        public const string UserRegister = "api/user/register";
+
     }
 }

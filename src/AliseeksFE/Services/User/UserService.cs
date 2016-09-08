@@ -47,6 +47,10 @@ namespace AliseeksFE.Services.User
             var content = new StringContent(JsonConvert.SerializeObject(model));
             content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await api.Post(ApiEndpoints.UserLogin, content);
+            
+            //If login is unsuccessful do not set cookie
+            if (!response.IsSuccessStatusCode)
+                return response;            
 
             var token = JsonConvert.DeserializeObject<ResponseLoginUserModel>(await response.Content.ReadAsStringAsync());
 
@@ -65,7 +69,11 @@ namespace AliseeksFE.Services.User
 
         public async Task<HttpResponseMessage> Register(NewUserModel model)
         {
-            return null;
+            var content = new StringContent(JsonConvert.SerializeObject(model));
+            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await api.Post(ApiEndpoints.UserRegister, content);
+
+            return response;
         }
 
         public async Task<HttpResponseMessage> Reset(ResetUserModel model)

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AliseeksFE.Models.Login;
 using AliseeksFE.Services.User;
+using System.Net;
 
 namespace AliseeksFE.Controllers
 {
@@ -26,12 +27,21 @@ namespace AliseeksFE.Controllers
 
         [HttpPost]
         [Route("/login")]
-        public IActionResult Login(LoginUserModel model)
+        public async Task<IActionResult> Login(LoginUserModel model)
         {
             if(ModelState.IsValid)
             {
-                user.Login(model);
-                return LocalRedirect("/");
+                var response = await user.Login(model);
+                switch(response.StatusCode)
+                {
+                    case HttpStatusCode.NotFound:
+                        ModelState.AddModelError("All", "Username and password did not match");
+                        return View(model);
+
+                    case HttpStatusCode.OK:
+                    default:
+                        return LocalRedirect("/");
+                }
             }
             else
             {
@@ -56,15 +66,24 @@ namespace AliseeksFE.Controllers
 
         [HttpPost]
         [Route("/register")]
-        public IActionResult Register(NewUserModel model)
+        public async Task<IActionResult> Register(NewUserModel model)
         {
             if(model.Password != model.ConfirmPassword)
                 ModelState.AddModelError("Password", "Password and confirm password must match");
 
             if(ModelState.IsValid)
             {
-                user.Register(model);
-                return LocalRedirect("/login");
+                var response = await user.Register(model);
+                switch(response.StatusCode)
+                {
+                    case HttpStatusCode.Conflict:
+                        ModelState.AddModelError("All", await response.Content.ReadAsStringAsync());
+                        return View(model);
+
+                    case HttpStatusCode.OK:
+                    default:
+                        return LocalRedirect("/login");
+                }
             }
             else
             {
