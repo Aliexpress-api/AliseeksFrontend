@@ -13,6 +13,7 @@ using AliseeksFE.Configuration.Options;
 
 namespace AliseeksFE.Authentication
 {
+    //On FE this class is only used for TokenValidationParameters
     public class AliseeksJwtAuthentication
     {
         public static TokenValidationParameters TokenValidationParameters(string securityKey)
@@ -44,6 +45,7 @@ namespace AliseeksFE.Authentication
             this.jwtOptions = jwtOptions.Value;
         }
 
+        //Should not be used on the FE, this is for backend JWT generation
         public string GenerateToken(Claim[] claims)
         {
             var securityKey = System.Text.Encoding.ASCII.GetBytes(jwtOptions.SecretKey);
@@ -71,9 +73,8 @@ namespace AliseeksFE.Authentication
             }
             catch(Exception e)
             {
-
+                throw e;
             }
-            return "";
         }
     }
 

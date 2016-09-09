@@ -10,7 +10,6 @@ using Microsoft.Extensions.Logging;
 using AliseeksFE.Services.Api;
 using AliseeksFE.Services.Feedback;
 using AliseeksFE.Services.Search;
-using AliseeksFE.Models.Binders;
 using AliseeksFE.Services.User;
 using AliseeksFE.Authentication;
 using Microsoft.AspNetCore.Http;    
@@ -20,6 +19,7 @@ using System.Security.Cryptography;
 using AliseeksFE.Configuration.Options;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Session;
+using AliseeksFE.Services.Logging;
 
 namespace AliseeksFE
 {
@@ -62,14 +62,14 @@ namespace AliseeksFE
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
+            if (!env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
             }
 
             var options = app.ApplicationServices.GetService<IOptions<JwtOptions>>().Value;
@@ -104,6 +104,7 @@ namespace AliseeksFE
             services.AddTransient<IUserService, UserService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IFeedbackService, FeedbackService>();
+            services.AddTransient<ILoggingService, LoggingService>();
             services.AddTransient<AliseeksJwtAuthentication, AliseeksJwtAuthentication>();
         }
     }

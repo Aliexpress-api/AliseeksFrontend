@@ -19,6 +19,7 @@ namespace AliseeksFE.Models.Login
 
         [Required(ErrorMessage = "Please enter a password")]
         [StringLength(50, MinimumLength = 4, ErrorMessage = "Password must be between 4 and 50 characters")]
+        [Compare("ConfirmPassword", ErrorMessage = "Passwords entered do not match")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Please confirm your password")]

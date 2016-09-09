@@ -68,9 +68,6 @@ namespace AliseeksFE.Controllers
         [Route("/register")]
         public async Task<IActionResult> Register(NewUserModel model)
         {
-            if(model.Password != model.ConfirmPassword)
-                ModelState.AddModelError("Password", "Password and confirm password must match");
-
             if(ModelState.IsValid)
             {
                 var response = await user.Register(model);

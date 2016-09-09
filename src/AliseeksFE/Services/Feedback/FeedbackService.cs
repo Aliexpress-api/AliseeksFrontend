@@ -19,11 +19,11 @@ namespace AliseeksFE.Services.Feedback
             this.api = api;
         }
 
-        public Task<HttpResponseMessage> Submit(FeedbackModel model)
+        public async Task<HttpResponseMessage> Submit(FeedbackModel model)
         {
             var content = new StringContent(JsonConvert.SerializeObject(model));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            return api.Post(ApiEndpoints.Feedback, content);
+            return await api.Post(ApiEndpoints.Feedback, content);
         }
     }
 }

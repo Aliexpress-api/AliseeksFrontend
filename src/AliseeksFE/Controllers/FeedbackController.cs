@@ -23,10 +23,17 @@ namespace AliseeksFE.Controllers
         [Route("/feedback")]
         public async Task<IActionResult> Feedback(FeedbackModel model)
         {
-            var response = await feedback.Submit(model);
+            if(ModelState.IsValid)
+            {
+                var response = await feedback.Submit(model);
 
-            TempData["message"] = "Feedback has been sent! Thank you for your feedback!";
-            return LocalRedirect("/");
+                TempData["message"] = "Feedback has been sent! Thank you for your feedback!";
+                return LocalRedirect("/");
+            }
+            else
+            {
+                return View(model);
+            }
         }
 
         [HttpGet]
