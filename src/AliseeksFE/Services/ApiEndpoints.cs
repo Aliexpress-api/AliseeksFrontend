@@ -15,6 +15,6 @@ namespace AliseeksFE.Services
         public const string UserLogin = "api/user/login";
         public const string UserRegister = "api/user/register";
         public const string UserReset = "api/user/reset";
-
+        public const string UserResetValid = "api/user/resetvalid";
     }
 }

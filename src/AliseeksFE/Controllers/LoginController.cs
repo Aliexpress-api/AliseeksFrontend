@@ -114,5 +114,39 @@ namespace AliseeksFE.Controllers
                 return View(model);
             }
         }
+
+        [HttpGet]
+        [Route("/user/reset")]
+        public IActionResult PasswordResetValid(string token)
+        {
+            return View(new ResetValidModel() { Token = token });
+        }
+
+        [HttpPost]
+        [Route("/user/reset")]
+        public async Task<IActionResult> PasswordResetValid(ResetValidModel model)
+        {
+            if (model.NewPassword != model.ConfirmNewPassword)
+                ModelState.AddModelError("Password", "Password and confirm password must match");
+
+            if (ModelState.IsValid)
+            {
+                var response = await user.ResetValid(model);
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.Conflict:
+                        ModelState.AddModelError("All", await response.Content.ReadAsStringAsync());
+                        return View(model);
+
+                    case HttpStatusCode.OK:
+                    default:
+                        return LocalRedirect("/login");
+                }
+            }
+            else
+            {
+                return View(model);
+            }
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace AliseeksFE.Services.User
         Task<HttpResponseMessage> Login(LoginUserModel model);
         Task<HttpResponseMessage> Register(NewUserModel model);
         Task<HttpResponseMessage> Reset(ResetUserModel model);
+        Task<HttpResponseMessage> ResetValid(ResetValidModel model);
     }
 }

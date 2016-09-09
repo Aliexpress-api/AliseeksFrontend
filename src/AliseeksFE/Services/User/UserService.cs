@@ -83,5 +83,13 @@ namespace AliseeksFE.Services.User
             var response = await api.Post(ApiEndpoints.UserReset, content);
             return response;
         }
+
+        public async Task<HttpResponseMessage> ResetValid(ResetValidModel model)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(model));
+            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var response = await api.Post(ApiEndpoints.UserResetValid, content);
+            return response;
+        }
     }
 }
