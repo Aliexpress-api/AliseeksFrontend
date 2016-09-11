@@ -1,7 +1,7 @@
 ﻿@import "_base.scss";
 
 .dropdown-container {
-    position: relative;
+    position:relative;
     display:inline-block;
 }
 
@@ -16,33 +16,49 @@
 
 .dropdown-content {
     display:none;
-    background-color: $color-third;
-    min-width: 160px;
-    position: absolute;
-    text-align: left;
-    z-index: 500;
+
+    background-color: $shadow-color;
+
+    //Flexbox properties
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    border: 1px solid $color-third;
     border-bottom-left-radius:4px;
     border-bottom-right-radius:4px;
-    padding-top:2rem;
+
+
+    position: absolute;
+    margin-top:4px;
+    padding-top:1rem;
+
+    min-width:160px;
+
+    z-index: 500;
 
     .dropdown-item {
         margin-left:1rem;
         margin-right:1rem;
         font-size:type-scale(0);
+
+        display:flex;
+        flex-direction:row;
+        flex-wrap:nowrap;
+        justify-content:flex-start;
+        align-items:center;
     }
 
     .dropdown-item input {
-        margin-right: 1rem;
+        margin: 0 1rem 0 0;
         cursor:pointer;
     }
 
     .dropdown-item input[type=checkbox] {
         vertical-align:middle;
-        position:relative;
-        bottom: 1px;
     }
 }
 
 .dropdown-show {
-    display:block;
+    display:flex;
 }

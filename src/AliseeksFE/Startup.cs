@@ -20,6 +20,8 @@ using AliseeksFE.Configuration.Options;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Session;
 using AliseeksFE.Services.Logging;
+using AliseeksFE.Injectables.Search;
+using AliseeksFE.Middleware;
 
 namespace AliseeksFE
 {
@@ -89,6 +91,8 @@ namespace AliseeksFE
                 
             });
 
+            app.UseMiddleware<Logger>();
+    
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -106,6 +110,9 @@ namespace AliseeksFE
             services.AddTransient<IFeedbackService, FeedbackService>();
             services.AddTransient<ILoggingService, LoggingService>();
             services.AddTransient<AliseeksJwtAuthentication, AliseeksJwtAuthentication>();
+
+            //Injectable Services
+            services.AddTransient<SearchCriteriaInject>();
         }
     }
 }

@@ -10,5 +10,6 @@ namespace AliseeksFE.Services.Logging
     public interface ILoggingService
     {
         Task<HttpResponseMessage> LogException(LoggingExceptionModel model);
+        Task<HttpResponseMessage> LogActivity(LoggingActivityModel model);
     }
 }

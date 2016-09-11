@@ -25,6 +25,7 @@
 
     @media (max-width: $screen-sm-max) {
           font-size:.75rem;
+          padding-left:0;
     }
 }
 .item-info {
@@ -41,12 +42,24 @@
     height:150px;
     margin-right:1rem;
     float:left;
+
+    @media (max-width: $screen-xs-max) {
+        float:none;
+        display:block;
+        margin:auto;
+    }
 }
 
 .item-price {
-    font-size: type-scale(2);
+    font-size: 1.5em;
+    font-weight:500;
+    color: $item-price-color;
+
+    @media (max-width: $screen-sm-max) {
+        font-size:2em;
+    }
 }
 
 .item-unit {
-
+    @extend .text-muted;
 }

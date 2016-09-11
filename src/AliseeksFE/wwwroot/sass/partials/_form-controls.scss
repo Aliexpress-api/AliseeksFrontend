@@ -1,0 +1,19 @@
+﻿.ascheckbox {
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    align-items:center;
+    justify-content:flex-start;
+    margin:0 5px 0 5px;
+
+    input[type=checkbox] {
+        margin: 0 5px 0 0;
+    }
+}
+
+.ascheckbox-inline-flex {
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:flex-start;
+}

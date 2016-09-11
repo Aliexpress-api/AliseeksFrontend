@@ -24,5 +24,12 @@ namespace AliseeksFE.Services.Logging
             content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             return await api.Post(ApiEndpoints.LoggingException, content);
         }
+
+        public async Task<HttpResponseMessage> LogActivity(LoggingActivityModel model)
+        {
+            StringContent content = new StringContent(JsonConvert.SerializeObject(model));
+            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            return await api.AnonymousPost(ApiEndpoints.LoggingActivity, content);
+        }
     }
 }

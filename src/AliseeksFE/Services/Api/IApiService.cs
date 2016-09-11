@@ -10,5 +10,6 @@ namespace AliseeksFE.Services.Api
     {
         Task<HttpResponseMessage> Get(string endpoint);
         Task<HttpResponseMessage> Post(string endpoint, StringContent data);
+        Task<HttpResponseMessage> AnonymousPost(string endpoint, StringContent data);
     }
 }

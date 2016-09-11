@@ -1255,7 +1255,7 @@ mark,
 .text-capitalize {
   text-transform: capitalize; }
 
-.text-muted {
+.text-muted, .item-unit {
   color: #777777; }
 
 .text-primary {
@@ -1538,13 +1538,13 @@ pre {
   .row:after, .input-price-control:after {
     clear: both; }
 
-.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .input-price-control, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .logo-image-wrapper, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .input-price-control, .logo-image-wrapper, .col-sm-8, .col-md-8, .searchbar, .advanced-link, .advanced-tools, .advanced-tools-bar-wrapper, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .searchbar, .advanced-link, .advanced-tools, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .searchbar, .advanced-link, .advanced-tools, .col-sm-12, .col-md-12, .advanced-tools-bar, .col-lg-12 {
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .input-price-control, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .logo-image-wrapper, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .input-price-control, .logo-image-wrapper, .col-sm-8, .col-md-8, .searchbar, .advanced-link, .advanced-tools-bar-wrapper, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .searchbar, .advanced-link, .col-sm-12, .searchbar, .advanced-link, .col-md-12, .advanced-tools-bar, .col-lg-12 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px; }
 
-.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .input-price-control, .logo-image-wrapper, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .searchbar, .advanced-link, .advanced-tools {
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .input-price-control, .logo-image-wrapper, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .searchbar, .advanced-link {
   float: left; }
 
 .col-xs-1 {
@@ -1580,7 +1580,7 @@ pre {
 .col-xs-11 {
   width: 91.66667%; }
 
-.col-xs-12, .searchbar, .advanced-link, .advanced-tools {
+.col-xs-12, .searchbar, .advanced-link {
   width: 100%; }
 
 .col-xs-pull-0 {
@@ -1701,7 +1701,7 @@ pre {
   margin-left: 100%; }
 
 @media (min-width: 768px) {
-  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .logo-image-wrapper, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .searchbar, .advanced-link, .advanced-tools, .col-sm-11, .col-sm-12 {
+  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .logo-image-wrapper, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .searchbar, .advanced-link {
     float: left; }
   .col-sm-1 {
     width: 8.33333%; }
@@ -1721,11 +1721,11 @@ pre {
     width: 66.66667%; }
   .col-sm-9 {
     width: 75%; }
-  .col-sm-10, .searchbar, .advanced-link, .advanced-tools {
+  .col-sm-10 {
     width: 83.33333%; }
   .col-sm-11 {
     width: 91.66667%; }
-  .col-sm-12 {
+  .col-sm-12, .searchbar, .advanced-link {
     width: 100%; }
   .col-sm-pull-0 {
     right: auto; }
@@ -1807,7 +1807,7 @@ pre {
     margin-left: 100%; } }
 
 @media (min-width: 992px) {
-  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .input-price-control, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .searchbar, .advanced-link, .advanced-tools, .advanced-tools-bar-wrapper, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .advanced-tools-bar {
+  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .input-price-control, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .searchbar, .advanced-link, .advanced-tools-bar-wrapper, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .advanced-tools-bar {
     float: left; }
   .col-md-1 {
     width: 8.33333%; }
@@ -1823,7 +1823,7 @@ pre {
     width: 50%; }
   .col-md-7 {
     width: 58.33333%; }
-  .col-md-8, .searchbar, .advanced-link, .advanced-tools, .advanced-tools-bar-wrapper {
+  .col-md-8, .searchbar, .advanced-link, .advanced-tools-bar-wrapper {
     width: 66.66667%; }
   .col-md-9 {
     width: 75%; }
@@ -5904,13 +5904,20 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+/*
+    Item Colors
+*/
+/*
+    Item Colors
+*/
 html {
   min-height: 100%;
   position: relative; }
 
 body {
   background: #F7F9F9;
-  height: 100%; }
+  height: 100%;
+  min-width: 320px; }
 
 .body-content {
   margin-bottom: 60px; }
@@ -5921,6 +5928,9 @@ body {
   float: none;
   text-align: left; }
 
+/*
+    Item Colors
+*/
 .dropdown-container {
   position: relative;
   display: inline-block; }
@@ -5935,35 +5945,45 @@ body {
 
 .dropdown-content {
   display: none;
-  background-color: #e8eeee;
-  min-width: 160px;
-  position: absolute;
-  text-align: left;
-  z-index: 500;
+  background-color: #f8f8f8;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  border: 1px solid #e8eeee;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
-  padding-top: 2rem; }
+  position: absolute;
+  margin-top: 4px;
+  padding-top: 1rem;
+  min-width: 160px;
+  z-index: 500; }
   .dropdown-content .dropdown-item {
     margin-left: 1rem;
     margin-right: 1rem;
-    font-size: 1rem; }
+    font-size: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center; }
   .dropdown-content .dropdown-item input {
-    margin-right: 1rem;
+    margin: 0 1rem 0 0;
     cursor: pointer; }
   .dropdown-content .dropdown-item input[type=checkbox] {
-    vertical-align: middle;
-    position: relative;
-    bottom: 1px; }
+    vertical-align: middle; }
 
 .dropdown-show {
-  display: block; }
+  display: flex; }
 
 .image-brand {
   height: 25px;
   width: 25px; }
 
+/*
+    Item Colors
+*/
 footer {
-  background-color: #f1f5f5;
+  background-color: #f8f8f8;
   height: 60px;
   position: absolute;
   bottom: 0;
@@ -5981,8 +6001,12 @@ footer {
   height: 30px;
   width: auto; }
 
+/*
+    Item Colors
+*/
 .searchbar {
-  text-align: center; }
+  text-align: center;
+  max-width: 800px; }
   .searchbar.center {
     margin: 0 auto;
     text-align: center;
@@ -5992,7 +6016,8 @@ footer {
   text-align: left;
   cursor: pointer;
   margin-top: 2.5rem;
-  margin-bottom: 2.5rem; }
+  margin-bottom: 2.5rem;
+  max-width: 800px; }
   .advanced-link.center {
     margin: 0 auto;
     text-align: center;
@@ -6001,23 +6026,36 @@ footer {
     margin-top: 1.25rem;
     margin-bottom: 1.25rem; }
 
-.advanced-tools.center {
+.advanced-tools {
+  max-width: 500px;
+  margin-bottom: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #f3f3f3;
+  padding: 10px 10px 10px 10px;
+  border-radius: 6px; }
+  .advanced-tools.center {
+    margin: 0 auto;
+    text-align: center;
+    float: none;
+    text-align: left; }
+  @media (max-width: 991px) {
+    .advanced-tools {
+      font-size: 1rem; } }
+
+.advanced-tools-bar-wrapper {
   margin: 0 auto;
   text-align: center;
-  float: none; }
-
-@media (max-width: 991px) {
-  .advanced-tools {
-    font-size: 1rem; } }
+  float: none;
+  max-width: 800px; }
 
 .advanced-tools-bar {
   height: 4rem;
   display: flex;
   flex-direction: row;
-  flex-flow: row;
-  align-items: center;
+  flex-wrap: nowrap;
   justify-content: flex-start;
-  background-color: #f1f5f5;
+  align-items: center;
+  background-color: #f8f8f8;
   border-color: #e7e7e7;
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
@@ -6025,25 +6063,21 @@ footer {
   color: #666666;
   font-size: 1rem; }
 
-.advanced-tools-bar-wrapper {
-  margin: 0 auto;
-  text-align: center;
-  float: none; }
-
 .input-multi-select-bar {
-  width: 20%;
-  height: 2.5rem; }
+  width: 20%; }
 
 .bootstrap-select > .btn {
   padding: 2px 12px; }
 
 .input-price-control {
   float: none;
-  max-width: 300px; }
+  max-width: 300px;
+  min-width: 300px; }
 
 .input-price-control-bar {
-  display: inline;
-  width: 20%; }
+  flex-basis: 18%;
+  margin-left: 1rem;
+  margin-right: 1rem; }
   .input-price-control-bar input {
     display: inline;
     border-radius: 3px 3px;
@@ -6052,10 +6086,11 @@ footer {
 
 .input-ship-control-bar {
   display: inline;
-  width: 25%; }
+  margin-left: 1rem;
+  margin-right: 1rem; }
   .input-ship-control-bar select {
     display: inline;
-    width: 60%;
+    width: 130px;
     height: 2.5rem;
     padding: 2px 2px; }
 
@@ -6069,6 +6104,9 @@ footer {
 .input-ship-control {
   max-width: 400px; }
 
+/*
+    Item Colors
+*/
 .logo-image {
   display: inline;
   max-width: 100%;
@@ -6081,17 +6119,20 @@ footer {
   margin-top: 10vh;
   margin-bottom: 2.5rem; }
 
+/*
+    Item Colors
+*/
 .item {
   margin-bottom: 1rem;
   padding-left: 2rem;
   padding-bottom: 2rem;
   padding-top: 2rem;
-  border-bottom-color: #a8bebe;
+  border-bottom-color: #b8b8b8;
   border-bottom-style: solid;
   border-bottom-width: 1px; }
   .item:hover {
-    box-shadow: 2px 2px 2px #638484;
-    border-color: #638484;
+    box-shadow: 2px 2px 2px #797979;
+    border-color: #797979;
     border-style: solid;
     border-width: 1px; }
   .item:after {
@@ -6100,7 +6141,8 @@ footer {
     display: table; }
   @media (max-width: 991px) {
     .item {
-      font-size: .75rem; } }
+      font-size: .75rem;
+      padding-left: 0; } }
 
 .item-link {
   font-size: 1.25em; }
@@ -6111,12 +6153,19 @@ footer {
   height: 150px;
   margin-right: 1rem;
   float: left; }
+  @media (max-width: 767px) {
+    .item-image {
+      float: none;
+      display: block;
+      margin: auto; } }
 
 .item-price {
-  font-size: 1.777rem; }
-
-.side-bar {
-  background-color: yellow; }
+  font-size: 1.5em;
+  font-weight: 500;
+  color: #e06500; }
+  @media (max-width: 991px) {
+    .item-price {
+      font-size: 2em; } }
 
 .account-form {
   background-color: rgba(255, 255, 255, 0.8);
@@ -6125,3 +6174,19 @@ footer {
   border-radius: 10px 10px;
   padding-left: 25px;
   padding-right: 25px; }
+
+.ascheckbox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 5px 0 5px; }
+  .ascheckbox input[type=checkbox] {
+    margin: 0 5px 0 0; }
+
+.ascheckbox-inline-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start; }

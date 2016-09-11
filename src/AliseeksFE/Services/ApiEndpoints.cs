@@ -18,5 +18,6 @@ namespace AliseeksFE.Services
         public const string UserResetValid = "api/user/resetvalid";
 
         public const string LoggingException = "api/logging/exception";
+        public const string LoggingActivity = "api/logging/activity";
     }
 }

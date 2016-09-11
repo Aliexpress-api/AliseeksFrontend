@@ -4,9 +4,10 @@
 
 .searchbar {
     @extend .col-xs-12;
-    @extend .col-sm-10;
+    @extend .col-sm-12;
     @extend .col-md-8;
     text-align: center;
+    max-width: $searchbar-max-width;
 
     &.center {
         @include center-col();
@@ -15,12 +16,13 @@
 
 .advanced-link {
     @extend .col-xs-12;
-    @extend .col-sm-10;
+    @extend .col-sm-12;
     @extend .col-md-8;
     text-align: left;
     cursor: pointer;
     margin-top: line-height(1);
     margin-bottom: line-height(1);
+    max-width:$searchbar-max-width;
 
     &.center {
         @include center-col();
@@ -31,14 +33,18 @@
 }
 
 .advanced-tools {
-    @extend .col-xs-12;
-    @extend .col-sm-10;
-    @extend .col-md-8;
     @extend .collapse;
     @extend .form-horizontal;
-    
+    max-width:$advanced-tools-mobile-max-width;
+    margin-bottom:20px;
+    background-color:$shadow-color;
+    border: 1px solid darken($shadow-color, 2%);
+    padding:10px 10px 10px 10px;
+    border-radius:6px;
+
     &.center {
         @include center-col();
+        text-align:left;
     }
 
     @media (max-width: $screen-sm-max) {
@@ -46,14 +52,22 @@
     }
 }
 
+.advanced-tools-bar-wrapper {
+    @extend .col-md-8;
+    @include center-col();
+    max-width:$searchbar-max-width;
+}
+
 .advanced-tools-bar {
     @extend .col-md-12;
     height: $searchbar-bar-height;
+
     display:flex;
     flex-direction: row;
-    flex-flow: row;
-    align-items:center;
+    flex-wrap: nowrap;
     justify-content: flex-start;
+    align-items:center;
+
     background-color: $shadow-color;
     border-color: $navbar-default-border;
     border-bottom-right-radius: 4px;
@@ -63,14 +77,8 @@
     font-size: type-scale(0);
 }
 
-.advanced-tools-bar-wrapper {
-    @extend .col-md-8;
-    @include center-col();
-}
-
 .input-multi-select-bar {
     width: 20%;
-    height: line-height(2);
 }
 
 .bootstrap-select {
@@ -87,12 +95,15 @@
     @extend .form-group;
     float:none;
     max-width: $searchbar-price-max-width;
+    min-width: 300px;
 }
 
 .input-price-control-bar {
-    display:inline;
-    width:20%;
+    flex-basis: 18%;
+    margin-left:1rem;
+    margin-right:1rem;
     input {
+        //Use bootstrap form control and display inline
         @extend .form-control;
         display:inline;
         border-radius: 3px 3px;
@@ -103,11 +114,12 @@
 
 .input-ship-control-bar {
     display:inline;
-    width:25%;
+    margin-left:1rem;
+    margin-right:1rem;
     select {
         @extend .form-control;
         display:inline;
-        width:60%;
+        width:130px;
         height: line-height(2);
         padding: 2px 2px;
     }

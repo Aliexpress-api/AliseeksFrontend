@@ -18,7 +18,7 @@
         <div class="row row-centered">
             <div class="item">
                 <img class="item-image" src="@item.ImageURL" alt="@item.Name" />
-                <div class="col-xs-6 col-md-6 item-info">
+                <div class="col-xs-12 col-sm-5 col-md-6 item-info">
                     <h4 class="item-link">
                         <a class="item-link" href="@item.Link">
                             @item.Name
@@ -32,16 +32,17 @@
                         <span class="small-text">Orders(@item.Orders)</span>
                     </p>
                 </div>
-                <div class="col-xs-4 col-md-3 item-info-more">
+                <div class="col-xs-12 col-sm-4 col-md-3 item-info-more">
                     <p>
-                        <span class="item-price">@item.Price</span>
-                        <span class="item-unit"> / @item.Unit</span>
+                        <span class="item-price">@item.Currency @String.Join("-", item.Price)</span>
+                        <span class="item-unit"> / @item.Unit</span><br/>
+                        <span class="text-muted">@item.Currency @item.LotPrice per @item.Quantity</span>
                     </p>
-                    @if (@item.FreeShipping)
+                @if (@item.FreeShipping)
                 {
                 <p class="label label-success">Free Shipping!</p>
                 }
-                    @if (@item.MobileOnly != "")
+                @if (@item.MobileOnly != "")
                 {
                 <p class="label label-danger">@item.MobileOnly</p>
                 }
@@ -53,24 +54,34 @@
 </div>
 
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 text-center">
         <div class="btn-group">
             <ul class="pagination">
-                @foreach (int pageNum in new int[] { 1, 2, 3, 4, 5 })
-                {
-                    if (pageNum == Model.Criteria.Page)
+                @{
+                    var dictionaryQs = new Dictionary<string, string>();
+                    foreach (string key in Context.Request.Query.Keys)
                     {
+                        dictionaryQs.Add(key, Context.Request.Query[key]);
+                    }
+
+                    foreach (int pageNum in new int[] { 1, 2, 3, 4, 5 })
+                    {
+                        dictionaryQs["page"] = pageNum.ToString();
+                        if (pageNum == Model.Criteria.Page)
+                        {
+
                         <li class="active">
-                            <a href=@Url.Action("SearchResults", new { page = pageNum })>@pageNum</a>
+                         <a asp-controller="Search" asp-action="Search" asp-all-route-data="@dictionaryQs">@pageNum</a>
                         </li>
-                    }
-                    else
-                    {
+                        }
+                        else
+                        {
                         <li>
-                            <a href=@Url.Action("SearchResults", new { page = pageNum })>@pageNum</a>
+                            <a asp-controller="Search" asp-action="Search" asp-all-route-data="@dictionaryQs">@pageNum</a>
                         </li>
+                            }
+                        }
                     }
-                }
             </ul>
         </div>
     </div>
