@@ -63,3 +63,16 @@
 .item-unit {
     @extend .text-muted;
 }
+
+.item-logo {
+    display:inline;
+    width:15px;
+    height:15px;
+    margin-bottom:4px;
+}
+
+.item-logo-xs {
+    float:right;
+    width:15px;
+    height:15px;
+}

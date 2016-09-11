@@ -24,9 +24,13 @@
                             @item.Name
                         </a>
                     </h4>
-                    <p class="mobile-gone standard-text hidden-xs">
-                        <strong>@item.StoreName</strong>
-                    </p>
+                    <span class="mobile-gone standard-text hidden-xs">
+                        @if (@item.Source == "Aliexpress")
+                        {
+                            <img class="item-logo" src="~/images/logos/ae.png" alt="Aliexpress" />
+                        }
+                        <strong>&nbsp;@item.StoreName</strong>
+                    </span>
                     <p class="mobile-gone hidden-xs">
                         <span class="small-text">Feedback(@item.Feedback)</span> |
                         <span class="small-text">Orders(@item.Orders)</span>
@@ -40,11 +44,15 @@
                     </p>
                 @if (@item.FreeShipping)
                 {
-                <p class="label label-success">Free Shipping!</p>
+                    <p class="label label-success">Free Shipping!</p>
                 }
                 @if (@item.MobileOnly != "")
                 {
-                <p class="label label-danger">@item.MobileOnly</p>
+                    <p class="label label-danger">@item.MobileOnly</p>
+                }
+                @if (@item.Source == "Aliexpress")
+                {
+                        <img class="visible-xs item-logo-xs" src="~/images/logos/ae.png" alt="Aliexpress" />
                 }
                 </div>
             </div>
