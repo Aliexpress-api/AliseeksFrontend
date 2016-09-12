@@ -10,6 +10,7 @@ namespace AliseeksFE.Models.Api
         public string Name { get; set; }
         public string Link { get; set; }
         public decimal[] Price { get; set; }
+        public decimal ShippingPrice { get; set; }
         public string Unit { get; set; }
         public bool FreeShipping { get; set; }
         public string ImageURL { get; set; }

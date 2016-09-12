@@ -20,7 +20,7 @@
                 <img class="item-image" src="@item.ImageURL" alt="@item.Name" />
                 <div class="col-xs-12 col-sm-5 col-md-6 item-info">
                     <h4 class="item-link">
-                        <a class="item-link" href="@item.Link">
+                        <a class="item-link" rel="nofollow" href="@item.Link">
                             @item.Name
                         </a>
                     </h4>
@@ -40,7 +40,11 @@
                     <p>
                         <span class="item-price">@item.Currency @String.Join("-", item.Price)</span>
                         <span class="item-unit"> / @item.Unit</span><br/>
-                        <span class="text-muted">@item.Currency @item.LotPrice per @item.Quantity</span>
+                        <span class="text-muted">@item.Currency @item.LotPrice per @item.Quantity</span><br/>
+                        @if (!item.FreeShipping)
+                        {
+                            <span class="text-muted">@item.ShippingPrice per unit</span>
+                        }
                     </p>
                 @if (@item.FreeShipping)
                 {

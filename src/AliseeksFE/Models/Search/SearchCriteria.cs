@@ -37,6 +37,7 @@ namespace AliseeksFE.Models.Search
             UnitPrice = true;
             NeedQuery = true;
             Grid = true;
+            Page = 1;
         }
     }
 }

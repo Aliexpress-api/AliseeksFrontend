@@ -29,7 +29,7 @@ namespace AliseeksFE.Services.Logging
         {
             StringContent content = new StringContent(JsonConvert.SerializeObject(model));
             content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-            return await api.AnonymousPost(ApiEndpoints.LoggingActivity, content);
+            return await api.Post(ApiEndpoints.LoggingActivity, content);
         }
     }
 }

@@ -72,37 +72,11 @@ namespace AliseeksFE.Services.Api
             return response;
         }
 
-        public async Task<HttpResponseMessage> AnonymousPost(string endpoint, StringContent data)
-        {
-            HttpResponseMessage response = new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError);
-
-            using (HttpClient client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(apiAddress);
-                appendAuthorization(client.DefaultRequestHeaders);
-
-                try
-                {
-                    response = await client.PostAsync(endpoint, data);
-                }
-                catch (HttpRequestException e)
-                {
-                    logger.LogCritical(new EventId(502), e, $"Aliseeks API Service is unavailable at {apiAddress + endpoint}");
-                }
-                catch (Exception e)
-                {
-                    logger.LogError(new EventId(503), e, $"Unknown Aliseeks API Service error when requesting {apiAddress + endpoint}");
-                }
-            }
-
-            return response;
-        }
-
         void appendAuthorization(HttpRequestHeaders headers)
         {
             try
             {
-                if (!context.User.Identity.IsAuthenticated) { return; }
+                if (context == null || !context.User.Identity.IsAuthenticated) { return; }
                 var claim = context.User.FindFirst("Token");
                 if (claim != null)
                 {
