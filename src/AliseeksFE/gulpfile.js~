@@ -63,7 +63,7 @@ gulp.task("min:js", function (cb) {
         gulp.src(paths.concatJsDest),
         uglify(),
 	concat('site.min.js'),
-        gulp.dest(paths.concatJsDestMin)
+        gulp.dest(paths.concatJsDest)
     ],
     cb
   );

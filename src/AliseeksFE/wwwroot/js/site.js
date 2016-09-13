@@ -16,8 +16,8 @@ function premptiveSearchCache() {
 
 function premptiveSearchDoneTyping() {
     console.log("Triggered done typing event");
-    let form = $('#searchForm');
-    let endpoint = ajaxCache + '?' + form.serialize();
+    var form = $('#searchForm');
+    var endpoint = ajaxCache + '?' + form.serialize();
     console.log("Sending ajax to: " + endpoint);
     $.ajax(endpoint, {
         method: "get",

@@ -69,7 +69,7 @@
   "runtimes": {
      "ubuntu.14.04-x64": { },
      "ubuntu.15.10-x64": { }
-   },
+}
 
   "scripts": {
     "prepublish": [ "bower install", "dotnet bundle" ],

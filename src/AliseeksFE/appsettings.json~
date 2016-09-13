@@ -11,6 +11,6 @@
     "SecretKey": "thisisadefaultnotsosecretkey"
   },
     "ApiOptions": {
-    "ApiAddress":  "localhost:1460/"
+    "ApiAddress":  "http://127.0.0.1:1460/"
   }
 }
