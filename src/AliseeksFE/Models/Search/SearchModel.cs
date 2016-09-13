@@ -8,6 +8,6 @@ namespace AliseeksFE.Models.Search
     public class SearchModel
     {
         public SearchCriteria Criteria { get; set; }
-        public IEnumerable<Item> Items { get; set; }
+        public SearchResultsModel Results { get; set; }
     }
 }

@@ -25,9 +25,9 @@ namespace AliseeksFE.Controllers
         [Route("/search")]
         public async Task<IActionResult> Search(SearchCriteria criteria)
         {
-            var items = await search.Search(criteria);
+            var results = await search.Search(criteria);
 
-            var model = new SearchModel() { Criteria = criteria, Items = items };
+            var model = new SearchModel() { Criteria = criteria, Results = results };
 
             return View(model);
         }

@@ -13,3 +13,27 @@
     margin-top: $home-vertical-space;
     margin-bottom: line-height(2);
 }
+
+.annoucements-wrapper {
+    @extend .hidden-sm;
+    @extend .hidden-xs;
+    text-align:center;
+    margin-top: $anncoucement-vertical-space;
+}
+
+.annoucements-wrapper-mobile {
+    @extend .hidden-md;
+    @extend .hidden-lg;
+    font-size:.75em;
+    color:$text-muted;
+    margin-bottom:1rem;
+}
+
+.annoucements {
+    text-align: center;
+    font-weight: 400;
+}
+
+.searchbar-wrapper {
+    height:150px;
+}

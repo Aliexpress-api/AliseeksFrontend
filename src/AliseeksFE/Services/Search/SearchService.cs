@@ -20,16 +20,19 @@ namespace AliseeksFE.Services.Search
             this.api = api;
         }
 
-        public async Task<IEnumerable<Item>> Search(SearchCriteria criteria)
+        public async Task<SearchResultsModel> Search(SearchCriteria criteria)
         {
             string qs = new QueryStringEncoder().Encode(criteria);
             string endpoint = ApiEndpoints.Search + $"?{qs}";
 
             var response = await api.Get(endpoint);
 
-            var items = JsonConvert.DeserializeObject<Item[]>(await response.Content.ReadAsStringAsync());
+            var model = new SearchResultsModel();
 
-            return items;
+            model.SearchCount = response.Headers.Contains("X-TOTAL-COUNT") ? int.Parse(response.Headers.First(x => x.Key == "X-TOTAL-COUNT").Value.First()) : 0;
+            model.Items = JsonConvert.DeserializeObject<Item[]>(await response.Content.ReadAsStringAsync());
+
+            return model;
         }
 
         public async Task<HttpResponseMessage> SearchCache(SearchCriteria criteria)

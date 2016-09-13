@@ -1,0 +1,30 @@
+﻿                            
+/* TEAM */
+
+                            
+Your title: Alex Bello
+
+                            
+Site: www.aliseeks.com
+
+                            
+Location: Houston, TX
+		
+
+							
+/* THANKS */
+
+No contributors yet :c
+                            
+/* SITE */
+
+                            
+Last update: 2016/09/16 
+
+                            
+Standards: HTML5, CSS3
+
+                            
+Components: .Net Core, Bootstrap, Redis, PostgresSql
+
+                            

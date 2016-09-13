@@ -11,7 +11,7 @@ namespace AliseeksFE.Services.Search
 {
     public interface ISearchService
     {
-        Task<IEnumerable<Item>> Search(SearchCriteria criteria);
+        Task<SearchResultsModel> Search(SearchCriteria criteria);
         Task<HttpResponseMessage> SearchCache(SearchCriteria criteria);
     }
 }

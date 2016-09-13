@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Session;
 using AliseeksFE.Services.Logging;
 using AliseeksFE.Injectables.Search;
 using AliseeksFE.Middleware;
+using Microsoft.Net.Http.Headers;
 
 namespace AliseeksFE
 {
@@ -54,6 +55,7 @@ namespace AliseeksFE
             services.AddSession();
 
             services.Configure<JwtOptions>(Configuration.GetSection("JwtOptions"));
+            services.Configure<ApiOptions>(Configuration.GetSection("ApiOptions"));
 
             configureDependencyInjection(services);
         }
@@ -84,7 +86,19 @@ namespace AliseeksFE
                 TicketDataFormat = new AliseeksJwtCookieAuthentication(AliseeksJwtAuthentication.TokenValidationParameters(options.SecretKey))
             });
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                OnPrepareResponse = (context) =>
+                {
+                    //Setup caching of static files
+                    var headers = context.Context.Response.GetTypedHeaders();
+                    headers.CacheControl = new CacheControlHeaderValue()
+                    {
+                        MaxAge = TimeSpan.FromDays(7)
+                    };
+
+                }
+            });
 
             app.UseSession(new SessionOptions()
             {
@@ -113,6 +127,7 @@ namespace AliseeksFE
 
             //Injectable Services
             services.AddTransient<SearchCriteriaInject>();
+            services.AddTransient<SearchPaginationInject>();
         }
     }
 }

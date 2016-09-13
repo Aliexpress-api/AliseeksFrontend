@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
@@ -11,7 +11,8 @@ html {
   -webkit-text-size-adjust: 100%; }
 
 body {
-  margin: 0; }
+  margin: 0;
+}
 
 article,
 aside,
@@ -5853,19 +5854,19 @@ button.close {
     display: inline-block !important; } }
 
 @media (max-width: 767px) {
-  .hidden-xs {
+  .hidden-xs, .annoucements-wrapper {
     display: none !important; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .hidden-sm {
+  .hidden-sm, .annoucements-wrapper {
     display: none !important; } }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-  .hidden-md {
+  .hidden-md, .annoucements-wrapper-mobile {
     display: none !important; } }
 
 @media (min-width: 1200px) {
-  .hidden-lg {
+  .hidden-lg, .annoucements-wrapper-mobile {
     display: none !important; } }
 
 .visible-print {
@@ -6119,6 +6120,22 @@ footer {
   margin-top: 10vh;
   margin-bottom: 2.5rem; }
 
+.annoucements-wrapper {
+  text-align: center;
+  margin-top: 50px; }
+
+.annoucements-wrapper-mobile {
+  font-size: .75em;
+  color: #777777;
+  margin-bottom: 1rem; }
+
+.annoucements {
+  text-align: center;
+  font-weight: 400; }
+
+.searchbar-wrapper {
+  height: 150px; }
+
 /*
     Item Colors
 */
@@ -6201,3 +6218,62 @@ footer {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start; }
+
+.search-no-results-img {
+  max-width: 300px;
+  height: auto; }
+
+/*
+    Item Colors
+*/
+.quick-scroll {
+  opacity: 0;
+  position: fixed;
+  top: 100px;
+  right: 50px;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  width: 15px;
+  height: 15px;
+  transition: all .2s ease-in-out;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  z-index: 500; }
+  .quick-scroll > div {
+    opacity: 0; }
+  .quick-scroll:hover {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    right: 33px;
+    top: 83px;
+    border-style: none; }
+    .quick-scroll:hover > div {
+      transition-delay: .2s;
+      opacity: 1;
+      display: block;
+      text-align: center;
+      line-height: 50px; }
+
+.quick-scroll-mobile {
+  opacity: 0;
+  z-index: 500;
+  position: fixed;
+  top: 100px;
+  right: 50px;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  right: 25px;
+  top: 83px;
+  border-style: none; }
+  .quick-scroll-mobile > div {
+    transition-delay: .2s;
+    opacity: 1;
+    display: block;
+    text-align: center;
+    line-height: 40px; }
+  .quick-scroll-mobile:hover {
+    background-color: rgba(0, 0, 0, 0.08); }

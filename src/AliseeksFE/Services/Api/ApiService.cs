@@ -6,6 +6,8 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using AliseeksFE.Configuration.Options;
 
 namespace AliseeksFE.Services.Api
 {
@@ -15,9 +17,11 @@ namespace AliseeksFE.Services.Api
         HttpContext context;
         ILogger<ApiService> logger;
 
-        public ApiService(IHttpContextAccessor accessor, ILogger<ApiService> logger)
+        public ApiService(IHttpContextAccessor accessor, ILogger<ApiService> logger, IOptions<ApiOptions> config)
         {
             context = accessor.HttpContext;
+            this.logger = logger;
+            apiAddress = config.Value.ApiAddress;
         }
 
         public async Task<HttpResponseMessage> Get(string endpoint)
@@ -74,18 +78,11 @@ namespace AliseeksFE.Services.Api
 
         void appendAuthorization(HttpRequestHeaders headers)
         {
-            try
+            if (context == null || !context.User.Identity.IsAuthenticated) { return; }
+            var claim = context.User.FindFirst("Token");
+            if (claim != null)
             {
-                if (context == null || !context.User.Identity.IsAuthenticated) { return; }
-                var claim = context.User.FindFirst("Token");
-                if (claim != null)
-                {
-                    headers.Authorization = new AuthenticationHeaderValue("Bearer", claim.Value);
-                }
-            }
-            catch(Exception e)
-            {
-
+                headers.Authorization = new AuthenticationHeaderValue("Bearer", claim.Value);
             }
         }
     }

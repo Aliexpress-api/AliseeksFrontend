@@ -1,4 +1,5 @@
 ﻿@model SearchModel
+@inject SearchPaginationInject pagination
 
 @{
     ViewBag.Title = "Search Results";
@@ -7,18 +8,27 @@
 @Html.Partial("Partials/SearchBar", Model.Criteria)
 <br />
 
-<div class="col-md-2 side-bar">
+<div class="col-md-12 col-lg-8 col-center">
+    <div class="row">
+        <p class="pull-right text-muted">Total Results: <strong>@Model.Results.SearchCount</strong></p>
+    </div>
 
-</div>
+    @if(Model.Results.Items.Count() == 0)
+    {
+        <div class="row">
+            <div class="col-xs-12 col-center" style="text-align:center;">
+                <h4>There doesn't seem to be anything here <i class="fa fa-fire" aria-hidden="true"></i></h4><br/>
+                <img class="search-no-results-img" src="~/images/noresults.png" alt="No results" />
+            </div>
+        </div>
+    }
 
-<div class="col-md-8">
-
-    @foreach (Item item in Model.Items)
+    @foreach (Item item in Model.Results.Items)
     {
         <div class="row row-centered">
             <div class="item">
                 <img class="item-image" src="@item.ImageURL" alt="@item.Name" />
-                <div class="col-xs-12 col-sm-5 col-md-6 item-info">
+                <div class="col-xs-12 col-sm-5 col-md-6 col-lg-6 item-info">
                     <h4 class="item-link">
                         <a class="item-link" rel="nofollow" href="@item.Link">
                             @item.Name
@@ -36,15 +46,15 @@
                         <span class="small-text">Orders(@item.Orders)</span>
                     </p>
                 </div>
-                <div class="col-xs-12 col-sm-4 col-md-3 item-info-more">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 item-info-more">
                     <p>
                         <span class="item-price">@item.Currency @String.Join("-", item.Price)</span>
                         <span class="item-unit"> / @item.Unit</span><br/>
-                        <span class="text-muted">@item.Currency @item.LotPrice per @item.Quantity</span><br/>
                         @if (!item.FreeShipping)
                         {
-                            <span class="text-muted">@item.ShippingPrice per unit</span>
+                            <span class="text-muted">@item.Currency @item.ShippingPrice <span class="small">per unit</span></span><br/>
                         }
+                        <span class="text-muted">Lot Price: @item.Currency @item.LotPrice <span class="small">(@item.Quantity)</span></span><br/>
                     </p>
                 @if (@item.FreeShipping)
                 {
@@ -76,7 +86,7 @@
                         dictionaryQs.Add(key, Context.Request.Query[key]);
                     }
 
-                    foreach (int pageNum in new int[] { 1, 2, 3, 4, 5 })
+                    foreach (int pageNum in pagination.GetPages(Model))
                     {
                         dictionaryQs["page"] = pageNum.ToString();
                         if (pageNum == Model.Criteria.Page)
@@ -99,28 +109,10 @@
     </div>
 </div>
 
-<div id="back-to-btm" class="btn-back-to-top row-centered">
+<div class="quick-scroll hidden-xs">
     <div class="glyphicon glyphicon-chevron-down btn-back-to-top-arrow"></div>
 </div>
 
-<script>
-    $(document).ready(function () {
-        $("#searchform .row-centered").addClass("col-md-offset-1");
-        $("#searchform .row-centered").removeClass("row-centered");
-
-        $("#back-to-btm").click(function () {
-            $("html,body").animate({
-                scrollTop: document.body.scrollHeight
-            }, 1000);
-        });
-
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > document.body.scrollHeight - screen.height * 1.5) {
-                $("#back-to-btm").fadeOut();
-            }
-            else {
-                $("#back-to-btm").fadeIn();
-            }
-        });
-    });
-</script>
+<div class="quick-scroll-mobile visible-xs">
+    <div class="glyphicon glyphicon-chevron-down btn-back-to-top-arrow"></div>
+</div>

@@ -37,43 +37,45 @@
                     </div>
                     <div class="input-ship-control-bar">
                         <label>Ship From:</label>
-                        <select name="ShipFrom">
+                        <select name="ShipFrom" class="form-control">
                             @{
-                            foreach (var key in countries.Keys)
-                            {
-                                if (key == selected)
+                                foreach (var key in countries.Keys)
                                 {
+                                    if (key == selected)
+                                    {
                                         <option selected="selected" value="@countries[key]">@key</option>
-                                }
-                                else
-                                {
+                                    }
+                                    else
+                                    {
                                         <option value="@countries[key]">@key</option>
+                                    }
                                 }
-                            }
                             }
                         </select>
                     </div>
                     <div class="input-ship-control-bar">
                         <label>Ship To:</label>
-                        <select name="ShipTo">
+                        <select name="ShipTo" class="form-control">
                             @{
-                            foreach (var key in countriesShipTo.Keys)
-                            {
-                                if (key == selectedShipTo)
+                                foreach (var key in countriesShipTo.Keys)
                                 {
+                                    if (key == selectedShipTo)
+                                    {
                                         <option selected="selected" value="@countriesShipTo[key]">@key</option>
-                                }
-                                else
-                                {
+                                    }
+                                    else
+                                    {
                                         <option value="@countriesShipTo[key]">@key</option>
+                                    }
                                 }
-                            }
                             }
                         </select>
                     </div>
                     <div class="dropdown-container">
                         <span class="dropdown-btn">More Options</span>
                         <div class="dropdown-content">
+                            <div class="dropdown-item">
+                            </div>
                             <p class="dropdown-item"><input type="checkbox" asp-for="FreeShipping" /><span>Free Shipping</span></p>
                             <p class="dropdown-item"><input type="checkbox" asp-for="SaleItems" /><span>Sale Items</span></p>
                             <p class="dropdown-item"><input type="checkbox" asp-for="PieceOnly" /><span>One Piece Only</span></p>

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap-select/css/bootstrap-select.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
     <environment names="Development">
-        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -21,18 +21,33 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <a class="navbar-brand" href="/"><img class="image-brand" src="~/images/brand.png" /></a>
+                    <ul class="nav navbar-nav navbar-right visible-xs">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a><strong>@User.FindFirst(ClaimTypes.Name).Value</strong></a></li>
+                        }
+                    </ul>
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
+                <div id="navbar-collapse" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="/">Home</a></li>
                         <li><a href="/about">About</a></li>
-                        <li><a href="/feedback">Feedback</a></li>
+                        <li><a href="/feedback" data-toggle="tooltip" data-placement="bottom" title="Give us some feedback!">Feedback</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        @if (User.Identity.IsAuthenticated)
+                        @if (!User.Identity.IsAuthenticated)
                         {
-                            <li class="dropdown">
+                            <li><a href="login">Login</a></li>
+                        }
+                        else
+                        {
+                            <li class="dropdown hidden-xs">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                                     <strong>@User.FindFirst(ClaimTypes.Name).Value</strong>
                                 </a>
@@ -40,10 +55,7 @@
                                     <li><a href="/logout">Logout</a></li>
                                 </ul>
                             </li>
-                        }
-                        else
-                        {
-                            <li><a href="login">Login</a></li>
+                            <li class="visible-xs"><a href="/logout">Logout</a></li>
                         }
                     </ul>
                 </div>
@@ -79,7 +91,7 @@
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
-        <script src="~/lib/google/google-analytics.js"></script>
+        <script src="~/lib/google/google-analytics.js" asp-append-version="true"></script>
     </environment>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js"></script>

@@ -91,3 +91,42 @@ $(function () {
         }
     });
 });
+
+//Init All Tooltips
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
+//Quickscroll
+$(".quick-scroll").click(function () {
+    $("html,body").animate({
+        scrollTop: document.body.scrollHeight
+    }, 1000);
+});
+
+$(".quick-scroll-mobile").click(function () {
+    $("html,body").animate({
+        scrollTop: document.body.scrollHeight
+    }, 1000);
+});
+
+$(window).scroll(function () {
+
+    if ($(this).scrollTop() >= 150) {
+        var quickScroll = $('.quick-scroll');
+        var quickScrollMobile = $('.quick-scroll-mobile');
+        if ($(quickScroll).css('display') != 'none' && $(quickScroll).css('opacity') != '1')
+        {
+            $(quickScroll).css('opacity', '1');
+        }
+        if ($(quickScrollMobile).css('display') != 'none' && $(quickScrollMobile).css('opacity') != '1') {
+            $(quickScrollMobile).css('opacity', '1');
+        }
+    }
+    else {
+        var quickScroll = $('.quick-scroll');
+        var quickScrollMobile = $('.quick-scroll-mobile');
+        $(quickScroll).css('opacity', '0');
+        $(quickScrollMobile).css('opacity', '0');
+    }
+});
