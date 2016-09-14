@@ -58,7 +58,7 @@ namespace AliseeksFE.Services.User
                 new CookieOptions()
                 {
                     Path = "/",
-                    Domain = "",
+                    Domain = context.Request.Host.Host,
                     HttpOnly = false,
                     Secure = false,
                     Expires = DateTimeOffset.Now.AddDays(14)
