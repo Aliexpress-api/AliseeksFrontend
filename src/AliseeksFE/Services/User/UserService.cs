@@ -37,7 +37,7 @@ namespace AliseeksFE.Services.User
             context.Response.Cookies.Delete("access_token", new CookieOptions
             {
                 Path = "/",
-                Domain = "",
+                Domain = context.Request.Host.Host,
                 Expires = DateTimeOffset.Now.AddDays(-1)
             });
         }
