@@ -6134,6 +6134,9 @@ footer {
 
 .searchbar-wrapper {
   height: 150px; }
+  @media (max-width: 991px) {
+    .searchbar-wrapper {
+      height: auto; } }
 
 /*
     Item Colors

@@ -36,4 +36,8 @@
 
 .searchbar-wrapper {
     height:150px;
+
+    @media (max-width: $screen-sm-max) {
+        height:auto;
+    }
 }
