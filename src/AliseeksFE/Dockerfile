@@ -8,6 +8,4 @@ WORKDIR /app
 
 # RUN ["dotnet", "build"]
 
-EXPOSE 1460/tcp
-
-ENTRYPOINT ["dotnet", "AliseeksFE.dll", "--server.urls", "http://*:1470"]
+ENTRYPOINT ["dotnet", "AliseeksFE.dll"]

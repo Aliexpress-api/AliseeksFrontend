@@ -2,9 +2,11 @@ version: '2'
 services:
 
   frontend:
+    env_file:
+      - vars.env
     container_name: as_frontend
     build: ./src/AliseeksFE/bin/Release/netcoreapp1.0/publish
     ports:
-      - "1470:1470"
+      - "${ALISEEKSFE_PORTMAP}:${ALISEEKSFE_PORT}"
     external_links:
       - as_api
