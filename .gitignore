@@ -73,7 +73,12 @@ _[Ss]cripts
 *.dll
 *.nupkg
 *.ncrunchsolution
-*.dot[Cc]over
-
-#Application Secrects
+*.dot[Cc]overs
+###########
+# Secrets #
+###########
 appsecrets.json
+
+
+*.lock.*
+*~
