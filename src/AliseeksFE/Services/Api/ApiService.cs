@@ -13,7 +13,15 @@ namespace AliseeksFE.Services.Api
 {
     public class ApiService : IApiService
     {
-        string apiAddress = "http://localhost:1450/";
+        string apiAddress
+        {
+            get
+            {
+                return $"http://{address}:{port}/";
+            }
+        }
+        string address = "localhost";
+        string port = "1460";
         HttpContext context;
         ILogger<ApiService> logger;
 
@@ -21,7 +29,8 @@ namespace AliseeksFE.Services.Api
         {
             context = accessor.HttpContext;
             this.logger = logger;
-            apiAddress = config.Value.ApiAddress;
+            address = config.Value.Host;
+            port = config.Value.Port;
         }
 
         public async Task<HttpResponseMessage> Get(string endpoint)

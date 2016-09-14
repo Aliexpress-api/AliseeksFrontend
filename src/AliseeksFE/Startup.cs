@@ -35,7 +35,9 @@ namespace AliseeksFE
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddJsonFile("appsecrets.json", optional: true, reloadOnChange: true)
-                .AddEnvironmentVariables();
+                .AddEnvironmentVariables("ALISEEKS_")
+                .AddEnvironmentVariables("ALISEEKSFE_");
+
             Configuration = builder.Build();
         }
 
@@ -100,10 +102,7 @@ namespace AliseeksFE
                 }
             });
 
-            app.UseSession(new SessionOptions()
-            {
-                
-            });
+            app.UseSession();
 
             app.UseMiddleware<Logger>();
     

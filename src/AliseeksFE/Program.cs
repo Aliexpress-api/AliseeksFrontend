@@ -18,7 +18,8 @@ namespace AliseeksFE
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("hosting.json", optional: true)
-                .AddEnvironmentVariables()
+                .AddEnvironmentVariables("ALISEEKS_")
+                .AddEnvironmentVariables("ALISEEKSFE_")
                 .Build();
 
             var host = new WebHostBuilder()

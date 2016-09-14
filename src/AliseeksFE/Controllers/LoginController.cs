@@ -39,8 +39,15 @@ namespace AliseeksFE.Controllers
                         return View(model);
 
                     case HttpStatusCode.OK:
-                    default:
                         return LocalRedirect("/");
+
+                    case HttpStatusCode.BadRequest:
+                        TempData["message"] = "We may be having some communication issues on our end :c";
+                        return View(model);
+
+                    default:
+                        TempData["message"] = "Some strange error must of happened :c";
+                        return View(model);
                 }
             }
             else

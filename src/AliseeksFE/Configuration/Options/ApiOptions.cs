@@ -7,6 +7,7 @@ namespace AliseeksFE.Configuration.Options
 {
     public class ApiOptions
     {
-        public string ApiAddress { get; set; }
+        public string Host { get; set; }
+        public string Port { get; set; }
     }
 }
