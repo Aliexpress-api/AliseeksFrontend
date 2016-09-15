@@ -71,7 +71,7 @@
    },
 
   "scripts": {
-    "prepublish": [ "" ],
-    "postpublish": [ "" ]
+    //"prepublish": [ "" ],
+    //"postpublish": [ "" ]
   }
 }
