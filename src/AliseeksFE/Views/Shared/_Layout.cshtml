@@ -7,9 +7,7 @@
     <environment names="Development">
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     </environment>
-    <environment names="Staging,Production">
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    @RenderSection("stylesheets", required: false)
 </head>
 <body>
     <header>
@@ -74,6 +72,9 @@
     <noscript id="deferred-styles">
         <link rel="stylesheet" type="text/css" href="~/lib/bootstrap-select/css/bootstrap-select.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+        <environment names="Staging,Production">
+            <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        </environment>
     </noscript>
     <script>
       var loadDeferredStyles = function() {

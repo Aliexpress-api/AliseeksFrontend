@@ -1,6 +1,11 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Aliseeks";
+}
+
+@section stylesheets {
+    <environment names="Staging,Production">
+        <link rel="stylesheet" type="text/css" href="~/css/home/home.min.css" asp-append-version="true" />
+    </environment>
 }
 
 <div class="row">
