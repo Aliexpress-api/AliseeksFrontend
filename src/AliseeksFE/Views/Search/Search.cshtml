@@ -2,7 +2,7 @@
 @inject SearchPaginationInject pagination
 
 @{
-    ViewBag.Title = $"{Model.Criteria} - Aliseeks";
+    ViewBag.Title = $"{Model.Criteria.SearchText} - Aliseeks";
 }
 
 @Html.Partial("Partials/SearchBar", Model.Criteria)
