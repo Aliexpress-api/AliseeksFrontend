@@ -57,7 +57,7 @@ namespace AliseeksFE.Middleware
             {
                 var feature = new LoggerFeature()
                 {
-                    Path = context.Request.Path
+                    Path = context.Request.Path + context.Request.QueryString.ToString()
                 };
                 context.Features.Set<LoggerFeature>(feature);
 
