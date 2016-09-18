@@ -33,11 +33,12 @@ namespace AliseeksFE.Controllers
             try
             {
                 var error = HttpContext.Features.Get<IExceptionHandlerFeature>().Error;
+                var path = HttpContext.Features.Get<AliseeksFE.Middleware.LoggerFeature>().Path;
 
                 var model = new LoggingExceptionModel()
                 {
                     Criticality = 5,
-                    Message = error.Message,
+                    Message = $"Query: {path}\n{error.Message}",
                     StackTrace = error.StackTrace
                 };
 

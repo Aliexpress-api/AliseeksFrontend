@@ -49,7 +49,22 @@ namespace AliseeksFE.Middleware
             };
             AppTask.Forget(() => appLogging.LogActivity(activity));
 
-            await _next.Invoke(context);
+            try
+            {
+                await _next.Invoke(context);
+            }
+            catch(Exception e)
+            {
+                var feature = new LoggerFeature()
+                {
+                    Path = context.Request.Path
+                };
+                context.Features.Set<LoggerFeature>(feature);
+
+                //rethrow
+                throw e;
+            }
+
             sw.Stop();
             logger.LogInformation($"{context.Request.Path}\t{sw.Elapsed.TotalMilliseconds}(ms)");
         }
