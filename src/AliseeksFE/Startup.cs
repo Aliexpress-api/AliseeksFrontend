@@ -23,6 +23,9 @@ using AliseeksFE.Services.Logging;
 using AliseeksFE.Injectables.Search;
 using AliseeksFE.Middleware;
 using Microsoft.Net.Http.Headers;
+using SharpRaven.Core;
+using SharpRaven.Core.Configuration;
+using AliseeksFE.Filters;
 
 namespace AliseeksFE
 {
@@ -49,7 +52,7 @@ namespace AliseeksFE
             // Add framework services.
             services.AddMvc(config =>
             {
-                
+                config.Filters.Add(typeof(ApplicationMessageFilter));   
             });
 
             services.AddOptions();
@@ -58,6 +61,7 @@ namespace AliseeksFE
 
             services.Configure<JwtOptions>(Configuration.GetSection("JwtOptions"));
             services.Configure<ApiOptions>(Configuration.GetSection("ApiOptions"));
+            services.Configure<RavenOptions>(Configuration.GetSection("RavenOptions"));
 
             configureDependencyInjection(services);
         }
@@ -85,7 +89,7 @@ namespace AliseeksFE
                 AutomaticChallenge = true,
                 AuthenticationScheme = "AliseeksCookie",
                 CookieName = "access_token",
-                TicketDataFormat = new AliseeksJwtCookieAuthentication(AliseeksJwtAuthentication.TokenValidationParameters(options.SecretKey))
+                TicketDataFormat = new AliseeksJwtCookieAuthentication(AliseeksJwtAuthentication.TokenValidationParameters(options.SecretKey), app.ApplicationServices.GetRequiredService<IRavenClient>())
             });
 
             app.UseStaticFiles(new StaticFileOptions()
@@ -123,6 +127,17 @@ namespace AliseeksFE
             services.AddTransient<IFeedbackService, FeedbackService>();
             services.AddTransient<ILoggingService, LoggingService>();
             services.AddTransient<AliseeksJwtAuthentication, AliseeksJwtAuthentication>();
+
+            services.AddScoped<IRavenClient, RavenClient>((s) => {
+
+                var rc = new RavenClient(s.GetRequiredService<IOptions<RavenOptions>>(), s.GetRequiredService<IHttpContextAccessor>())
+                {
+                    Environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
+                };
+                return rc;
+            });
+
+            services.AddScoped<ModelBinderBreadcrumbFilter>();
 
             //Injectable Services
             services.AddTransient<SearchCriteriaInject>();

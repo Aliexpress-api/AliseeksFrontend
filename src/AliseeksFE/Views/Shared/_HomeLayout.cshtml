@@ -56,9 +56,15 @@
         </nav>
     </header>
     <div class="container-fluid body-content">
-        @if (TempData != null && TempData.ContainsKey("message"))
-        {
-            <div class="alert alert-success">@TempData["message"]</div>
+        @{
+            if (Context.Session != null && Context.Session.Keys.Contains("application-message"))
+            {
+                byte[] bytes;
+                Context.Session.TryGetValue("application-message", out bytes);
+                var message = JsonConvert.DeserializeObject<ApplicationMessageFeature>(Encoding.UTF8.GetString(bytes));
+                <div class="alert alert-@message.Level.ToString().ToLower()">@message.Message</div>
+            }
+
         }
         @RenderBody()
     </div>

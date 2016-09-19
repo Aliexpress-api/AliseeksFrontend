@@ -9,7 +9,11 @@ using System.Diagnostics;
 using AliseeksFE.Services.Logging;
 using AliseeksFE.Models.Logging;
 using System.Security.Claims;
-using AliseeksFE.Utility.Extensions;   
+using AliseeksFE.Utility.Extensions;
+using SharpRaven.Core;
+using SharpRaven.Core.Logging;
+using SharpRaven.Core.Data;
+using AliseeksFE.Features;
 
 namespace AliseeksFE.Middleware
 {
@@ -25,14 +29,16 @@ namespace AliseeksFE.Middleware
     public class Logger
     {
         private readonly RequestDelegate _next;
+        private readonly IRavenClient raven;
         private ILogger<Logger> logger;
         private ILoggingService appLogging;
 
-        public Logger(RequestDelegate next, ILogger<Logger> logger, ILoggingService appLogging)
+        public Logger(RequestDelegate next, ILogger<Logger> logger, ILoggingService appLogging, IRavenClient raven)
         {
             this._next = next;
             this.logger = logger;
             this.appLogging = appLogging;
+            this.raven = raven;
         }
 
         public async Task Invoke(HttpContext context)
@@ -41,6 +47,7 @@ namespace AliseeksFE.Middleware
             var sw = new Stopwatch();
             sw.Start();
 
+            //Log activty through API
             var activity = new LoggingActivityModel()
             {
                 IP = context.Connection.RemoteIpAddress.ToString(),
@@ -49,22 +56,37 @@ namespace AliseeksFE.Middleware
             };
             AppTask.Forget(() => appLogging.LogActivity(activity));
 
+            //Log activty through Sentry Breadcrumb
+            var crumb = new Breadcrumb("LoggerMiddleware");
+            crumb.Message = $"{context.Request.Method} {context.Request.Path}{context.Request.QueryString.ToUriComponent()}";
+            crumb.Data = new Dictionary<string, string>() {
+                { "IsAuthenticated", context.User.Identity.IsAuthenticated.ToString() },
+                { "Authentication", context.User.Identity.IsAuthenticated ? context.User.Identity.Name : "Unknown" }
+            };
+            raven.AddTrail(crumb);
+
+            //Start processing the request
             try
             {
                 await _next.Invoke(context);
             }
             catch(Exception e)
             {
+                //Allow Postgres to receive querystring
                 var feature = new LoggerFeature()
                 {
                     Path = context.Request.Path + context.Request.QueryString.ToString()
                 };
                 context.Features.Set<LoggerFeature>(feature);
 
-                //rethrow
+                //Try to send the request to Sentry
+                await raven.CaptureNetCoreEventAsync(e);
+
+                //rethrow so we can redirect to Error page
                 throw e;
             }
 
+            //Stop request timing and output time
             sw.Stop();
             logger.LogInformation($"{context.Request.Path}\t{sw.Elapsed.TotalMilliseconds}(ms)");
         }

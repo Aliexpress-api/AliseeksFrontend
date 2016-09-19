@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AliseeksFE.Models.Feedback;
 using AliseeksFE.Services.Feedback;
+using SharpRaven.Core;
+using SharpRaven.Core.Data;
+using AliseeksFE.Features;
+using System.Net;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,13 +31,19 @@ namespace AliseeksFE.Controllers
             {
                 var response = await feedback.Submit(model);
 
-                TempData["message"] = "Feedback has been sent! Thank you for your feedback!";
-                return LocalRedirect("/");
+                switch(response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        HttpContext.Features.Set<ApplicationMessageFeature>(new ApplicationMessageFeature()
+                        {
+                            Message = "Feedback has been sent! Thank you for your feedback!",
+                            Level = Category.Success
+                        });
+                        return LocalRedirect("/");
+                }
             }
-            else
-            {
-                return View(model);
-            }
+
+            return View(model);
         }
 
         [HttpGet]
