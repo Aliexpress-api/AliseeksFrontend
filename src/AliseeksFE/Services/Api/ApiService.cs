@@ -62,7 +62,7 @@ namespace AliseeksFE.Services.Api
         {
             HttpResponseMessage response = new HttpResponseMessage(System.Net.HttpStatusCode.ServiceUnavailable);
 
-            var request = new HttpRequestMessage(HttpMethod.Get, new Uri(endpoint, UriKind.Relative));
+            var request = new HttpRequestMessage(HttpMethod.Post, new Uri(endpoint, UriKind.Relative));
             request.Content = data;
 
             response = await sendRequest(request, clientConfig);
