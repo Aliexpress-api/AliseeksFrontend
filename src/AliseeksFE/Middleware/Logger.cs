@@ -43,52 +43,60 @@ namespace AliseeksFE.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            logger.LogInformation($"{context.Request.Path}\tRECEIVED");
-            var sw = new Stopwatch();
-            sw.Start();
-
-            //Log activty through API
-            var activity = new LoggingActivityModel()
-            {
-                IP = context.Connection.RemoteIpAddress.ToString(),
-                User = (context.User.Identity.IsAuthenticated == false) ? "Guest" : context.User.FindFirst(ClaimTypes.Name).Value,
-                Request = context.Request.Path
-            };
-            AppTask.Forget(() => appLogging.LogActivity(activity));
-
-            //Log activty through Sentry Breadcrumb
-            var crumb = new Breadcrumb("LoggerMiddleware");
-            crumb.Message = $"{context.Request.Method} {context.Request.Path}{context.Request.QueryString.ToUriComponent()}";
-            crumb.Data = new Dictionary<string, string>() {
-                { "IsAuthenticated", context.User.Identity.IsAuthenticated.ToString() },
-                { "Authentication", context.User.Identity.IsAuthenticated ? context.User.Identity.Name : "Unknown" }
-            };
-            raven.AddTrail(crumb);
-
-            //Start processing the request
             try
             {
-                await _next.Invoke(context);
+                logger.LogInformation($"{context.Request.Path}\tRECEIVED");
+                var sw = new Stopwatch();
+                sw.Start();
+
+                //Log activty through Sentry Breadcrumb
+                var crumb = new Breadcrumb("LoggerMiddleware");
+                crumb.Message = $"{context.Request.Method} {context.Request.Path}{context.Request.QueryString.ToUriComponent()}";
+                crumb.Data = new Dictionary<string, string>() {
+                { "IsAuthenticated", context.User.Identity.IsAuthenticated.ToString() },
+                { "Authentication", context.User.Identity.IsAuthenticated ? context.User.Identity.Name : "Unknown" }
+                    };
+                raven.AddTrail(crumb);
+
+                //Log activty through API
+                var activity = new LoggingActivityModel()
+                {
+                    IP = context.Connection.RemoteIpAddress.ToString(),
+                    User = (context.User.Identity.IsAuthenticated == false) ? "Guest" : context.User.FindFirst(ClaimTypes.Name).Value,
+                    Request = context.Request.Path
+                };
+                AppTask.Forget(() => appLogging.LogActivity(activity));
+
+                //Start processing the request
+                try
+                {
+                    await _next.Invoke(context);
+                }
+                catch (Exception e)
+                {
+                    //Allow Postgres to receive querystring
+                    var feature = new LoggerFeature()
+                    {
+                        Path = context.Request.Path + context.Request.QueryString.ToString()
+                    };
+                    context.Features.Set<LoggerFeature>(feature);
+
+                    //Try to send the request to Sentry
+                    await raven.CaptureNetCoreEventAsync(e);
+
+                    //rethrow so we can redirect to Error page
+                    throw e;
+                }
+
+                //Stop request timing and output time
+                sw.Stop();
+                logger.LogInformation($"{context.Request.Path}\t{sw.Elapsed.TotalMilliseconds}(ms)");
             }
             catch(Exception e)
             {
-                //Allow Postgres to receive querystring
-                var feature = new LoggerFeature()
-                {
-                    Path = context.Request.Path + context.Request.QueryString.ToString()
-                };
-                context.Features.Set<LoggerFeature>(feature);
-
                 //Try to send the request to Sentry
                 await raven.CaptureNetCoreEventAsync(e);
-
-                //rethrow so we can redirect to Error page
-                throw e;
             }
-
-            //Stop request timing and output time
-            sw.Stop();
-            logger.LogInformation($"{context.Request.Path}\t{sw.Elapsed.TotalMilliseconds}(ms)");
         }
     }
 }

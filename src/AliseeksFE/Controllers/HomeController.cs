@@ -49,6 +49,7 @@ namespace AliseeksFE.Controllers
                 };
 
                 await logging.LogException(model);
+                await raven.CaptureNetCoreEventAsync(error);
             }
             catch(Exception e)
             {
