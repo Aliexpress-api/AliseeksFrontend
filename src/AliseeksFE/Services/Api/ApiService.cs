@@ -104,7 +104,9 @@ namespace AliseeksFE.Services.Api
             var response = new HttpResponseMessage(System.Net.HttpStatusCode.ServiceUnavailable);
             
             using (HttpClient client = new HttpClient())
-            { 
+            {
+                client.BaseAddress = new Uri(apiAddress);
+
                 try
                 {
                     await preRequest(request);
