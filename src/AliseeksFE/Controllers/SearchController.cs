@@ -7,6 +7,9 @@ using AliseeksFE.Services.Search;
 using AliseeksFE.Models.Search;
 using AliseeksFE.Filters;
 using Microsoft.AspNetCore.Http;
+using SharpRaven.Core;
+using SharpRaven.Core.Data;
+using AliseeksFE.Utility.Extensions;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,10 +18,12 @@ namespace AliseeksFE.Controllers
     public class SearchController : Controller
     {
         ISearchService search;
+        IRavenClient raven;
 
-        public SearchController(ISearchService search)
+        public SearchController(ISearchService search, IRavenClient raven)
         {
             this.search = search;
+            this.raven = raven;
         }
 
         // POST: /search
@@ -37,6 +42,10 @@ namespace AliseeksFE.Controllers
             }
             else
             {
+                var message = new SentryEvent(new SentryMessage("Invalid Search Criteria"));
+                message.Level = ErrorLevel.Warning;
+                await raven.CaptureAsync(message);
+
                 return LocalRedirect("/");
             }
         }

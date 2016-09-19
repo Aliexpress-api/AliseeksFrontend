@@ -27,9 +27,9 @@ namespace AliseeksFE.Utility.Extensions
 
         public static async Task<string> CaptureNetCoreEvent(this IRavenClient client, SentryEvent @event)
         {
-            //Do not send errors during development
+            /*//Do not send errors during development
             if (client.Environment == "Development")
-                return "development";
+                return "development";*/
 
             return await client.CaptureAsync(@event);
         }
@@ -37,8 +37,8 @@ namespace AliseeksFE.Utility.Extensions
         public static async Task<string> CaptureNetCoreEvent(this IRavenClient client, Exception e)
         {
             //Do not send errors during development
-            if (client.Environment == "Development")
-                return "development";
+            /*if (client.Environment == "Development")
+                return "development";*/
 
             SentryEvent @event = new SentryEvent(e);
 
