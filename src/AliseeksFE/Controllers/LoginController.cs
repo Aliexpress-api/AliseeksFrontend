@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using AliseeksFE.Models.Login;
 using AliseeksFE.Services.User;
 using System.Net;
+using AliseeksFE.Features;
 
 namespace AliseeksFE.Controllers
 {
@@ -41,12 +42,7 @@ namespace AliseeksFE.Controllers
                     case HttpStatusCode.OK:
                         return LocalRedirect("/");
 
-                    case HttpStatusCode.BadRequest:
-                        TempData["message"] = "We may be having some communication issues on our end :c";
-                        return View(model);
-
                     default:
-                        TempData["message"] = "Some strange error must of happened :c";
                         return View(model);
                 }
             }
@@ -108,10 +104,21 @@ namespace AliseeksFE.Controllers
         {
             if(ModelState.IsValid)
             {
-                await user.Reset(model);
+                var response = await user.Reset(model);
 
-                TempData["message"] = "New password has been sent to your mailbox";
-                return LocalRedirect("/");
+                switch(response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        HttpContext.Features.Set<ApplicationMessageFeature>(new ApplicationMessageFeature()
+                        {
+                            Message = "A password reset token has been sent to your mailbox",
+                            Level = Category.Success
+                        });
+                        return LocalRedirect("/");
+
+                    default:
+                        return View(model);
+                }
             }
             else
             {

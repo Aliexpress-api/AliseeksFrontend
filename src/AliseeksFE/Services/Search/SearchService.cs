@@ -8,6 +8,7 @@ using AliseeksFE.Services.Api;
 using AliseeksFE.Utility;
 using Newtonsoft.Json;
 using System.Net.Http;
+using System.Net;
 
 namespace AliseeksFE.Services.Search
 {
@@ -29,8 +30,13 @@ namespace AliseeksFE.Services.Search
 
             var model = new SearchResultsModel();
 
-            model.SearchCount = response.Headers.Contains("X-TOTAL-COUNT") ? int.Parse(response.Headers.First(x => x.Key == "X-TOTAL-COUNT").Value.First()) : 0;
-            model.Items = JsonConvert.DeserializeObject<Item[]>(await response.Content.ReadAsStringAsync());
+            switch(response.StatusCode)
+            {
+                case HttpStatusCode.OK:
+                    model.SearchCount = response.Headers.Contains("X-TOTAL-COUNT") ? int.Parse(response.Headers.First(x => x.Key == "X-TOTAL-COUNT").Value.First()) : 0;
+                    model.Items = JsonConvert.DeserializeObject<Item[]>(await response.Content.ReadAsStringAsync());
+                    break;
+            }
 
             return model;
         }

@@ -10,6 +10,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.Extensions.Options;
 using AliseeksFE.Configuration.Options;
+using SharpRaven.Core;
+using SharpRaven.Core.Data;
+using AliseeksFE.Utility.Extensions;
+using Newtonsoft.Json;
 
 namespace AliseeksFE.Authentication
 {
@@ -39,15 +43,22 @@ namespace AliseeksFE.Authentication
         const string audience = "AliseeksUser";
 
         private readonly JwtOptions jwtOptions;
+        private readonly IRavenClient raven;
 
-        public AliseeksJwtAuthentication(IOptions<JwtOptions> jwtOptions)
+        public AliseeksJwtAuthentication(IOptions<JwtOptions> jwtOptions, IRavenClient raven)
         {
             this.jwtOptions = jwtOptions.Value;
+            this.raven = raven;
         }
 
         //Should not be used on the FE, this is for backend JWT generation
         public string GenerateToken(Claim[] claims)
         {
+            //Add breadcrumb for Raven error monitoring
+            var crumb = new Breadcrumb("AliseeksJwtAuthentication");
+            crumb.Message = "Creating jwt token";
+            raven.AddTrail(crumb);
+
             var securityKey = System.Text.Encoding.ASCII.GetBytes(jwtOptions.SecretKey);
 
             var handler = new JwtSecurityTokenHandler();
@@ -73,6 +84,10 @@ namespace AliseeksFE.Authentication
             }
             catch(Exception e)
             {
+                //Blocking I/O
+                raven.CaptureNetCoreEvent(e).Wait();
+
+                //Throw for whatever service is calling it
                 throw e;
             }
         }
@@ -82,11 +97,13 @@ namespace AliseeksFE.Authentication
     {
         private readonly string algorithm;
         private readonly TokenValidationParameters validationParameters;
+        private readonly IRavenClient raven;
 
-        public AliseeksJwtCookieAuthentication(TokenValidationParameters parameters)
+        public AliseeksJwtCookieAuthentication(TokenValidationParameters parameters, IRavenClient raven)
         {
             this.algorithm = SecurityAlgorithms.HmacSha256;
             this.validationParameters = parameters;
+            this.raven = raven;
         }
 
         public string Protect(AuthenticationTicket data)
@@ -110,6 +127,15 @@ namespace AliseeksFE.Authentication
 
             try
             {
+                //Add breadcrumb for Sentry error monitoring
+                var crumb = new Breadcrumb("AliseeksJwtCookieAuthentication");
+                crumb.Message = "Attempting to validate JWT token";
+                crumb.Data = new Dictionary<string, string>() {
+                    { "ValidationParameters", JsonConvert.SerializeObject(this.validationParameters) },
+                    { "ProtectedText", protectedText }
+                };
+                raven.AddTrail(crumb);
+
                 principal = handler.ValidateToken(protectedText, this.validationParameters, out validToken);
 
                 var validJwt = validToken as JwtSecurityToken;
@@ -134,12 +160,25 @@ namespace AliseeksFE.Authentication
                 },
                     "AliseeksCookie");
             }
-            catch (SecurityTokenValidationException)
+            catch (SecurityTokenValidationException e)
             {
+                //Blocking I/O
+                raven.CaptureNetCoreEvent(e).Wait();
+
                 return null;
             }
-            catch (ArgumentException)
+            catch (ArgumentException e)
             {
+                //Blocking I/O
+                raven.CaptureNetCoreEvent(e).Wait();
+
+                return null;
+            }
+            catch(Exception e)
+            {
+                //Blocking I/O
+                raven.CaptureNetCoreEvent(e).Wait();
+
                 return null;
             }
         }

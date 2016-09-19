@@ -10,16 +10,22 @@ using AliseeksFE.Models.Login;
 using AliseeksFE.Services.Logging;
 using AliseeksFE.Models.Logging;
 using Microsoft.Extensions.Logging;
+using SharpRaven.Core;
+using SharpRaven.Core.Data;
+using AliseeksFE.Utility.Extensions;
+using AliseeksFE.Features;
 
 namespace AliseeksFE.Controllers
 {
     public class HomeController : Controller
     {
         ILogger<HomeController> logger;
+        IRavenClient raven;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IRavenClient raven)
         {
             this.logger = logger;
+            this.raven = raven;
         }
 
         public IActionResult Index()
@@ -33,11 +39,12 @@ namespace AliseeksFE.Controllers
             try
             {
                 var error = HttpContext.Features.Get<IExceptionHandlerFeature>().Error;
+                var path = HttpContext.Features.Get<AliseeksFE.Middleware.LoggerFeature>().Path;
 
                 var model = new LoggingExceptionModel()
                 {
                     Criticality = 5,
-                    Message = error.Message,
+                    Message = $"Query: {path}\n{error.Message}",
                     StackTrace = error.StackTrace
                 };
 

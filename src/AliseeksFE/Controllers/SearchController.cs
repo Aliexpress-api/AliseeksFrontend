@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AliseeksFE.Services.Search;
 using AliseeksFE.Models.Search;
+using AliseeksFE.Filters;
 using Microsoft.AspNetCore.Http;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -23,13 +24,21 @@ namespace AliseeksFE.Controllers
         // POST: /search
         [HttpGet]
         [Route("/search")]
+        [ServiceFilter(typeof(ModelBinderBreadcrumbFilter))]
         public async Task<IActionResult> Search(SearchCriteria criteria)
         {
-            var results = await search.Search(criteria);
+            if(ModelState.IsValid)
+            {
+                var results = await search.Search(criteria);
 
-            var model = new SearchModel() { Criteria = criteria, Results = results };
+                var model = new SearchModel() { Criteria = criteria, Results = results };
 
-            return View(model);
+                return View(model);
+            }
+            else
+            {
+                return LocalRedirect("/");
+            }
         }
 
         [HttpGet]
