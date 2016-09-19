@@ -7,7 +7,7 @@ namespace AliseeksFE.Injectables.Search
 {
     public class SearchCriteriaInject
     {
-        public Dictionary<string, string> GetShipToCountries()
+        public Dictionary<string, string> GetShipFromCountries()
         {
             var countries = new Dictionary<string, string>()
             {
@@ -24,7 +24,7 @@ namespace AliseeksFE.Injectables.Search
         }
 
         //Don't open this
-        public Dictionary<string, string> GetShipFromCountries()
+        public Dictionary<string, string> GetShipToCountries()
         {
             var countries = new Dictionary<string, string>()
             {

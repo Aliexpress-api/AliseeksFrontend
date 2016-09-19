@@ -10,5 +10,11 @@ namespace AliseeksFE.Models.Search
     {
         public int SearchCount { get; set; }
         public Item[] Items { get; set; }
+
+        public SearchResultsModel()
+        {
+            SearchCount = 0;
+            Items = new Item[0];
+        }
     }
 }

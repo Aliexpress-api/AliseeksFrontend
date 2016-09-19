@@ -9,5 +9,11 @@ namespace AliseeksFE.Models.Search
     {
         public SearchCriteria Criteria { get; set; }
         public SearchResultsModel Results { get; set; }
+
+        public SearchModel()
+        {
+            Criteria = new SearchCriteria();
+            Results = new SearchResultsModel();
+        }
     }
 }
