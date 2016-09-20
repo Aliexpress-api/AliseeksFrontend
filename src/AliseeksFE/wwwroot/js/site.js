@@ -116,12 +116,14 @@ $(document).ready(function () {
 
 //Quickscroll
 $(".quick-scroll").click(function () {
+    if ($(target.currentTarget).css('opacity') == 0) { return; }
     $("html,body").animate({
         scrollTop: document.body.scrollHeight
     }, 1000);
 });
 
-$(".quick-scroll-mobile").click(function () {
+$(".quick-scroll-mobile").click(function (target) {
+    if ($(target.currentTarget).css('opacity') == 0) { return; }
     $("html,body").animate({
         scrollTop: document.body.scrollHeight
     }, 1000);
@@ -135,15 +137,20 @@ $(window).scroll(function () {
         if ($(quickScroll).css('display') != 'none' && $(quickScroll).css('opacity') != '1')
         {
             $(quickScroll).css('opacity', '1');
+            $(quickScroll).css('z-index', '9999');
+
         }
         if ($(quickScrollMobile).css('display') != 'none' && $(quickScrollMobile).css('opacity') != '1') {
+            $(quickScrollMobile).css('z-index', '9999');
             $(quickScrollMobile).css('opacity', '1');
         }
     }
     else {
         var quickScroll = $('.quick-scroll');
         var quickScrollMobile = $('.quick-scroll-mobile');
-        $(quickScroll).css('opacity', '0');
-        $(quickScrollMobile).css('opacity', '0');
+        quickScroll.css('opacity', '0');
+        quickScrollMobile.css('opacity', '0');
+        quickScroll.css('z-index', '-1');
+        quickScrollMobile.css('z-index', '-1');
     }
 });
