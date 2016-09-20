@@ -1,11 +1,13 @@
 $(premptiveSearchCache);
 
 const doneTypingDelay = 200;
+var timesCached = 0;
 var typingTimer;
 var ajaxCache = "/search/cache";
 
+//Search Caching
 function premptiveSearchCache() {
-    $('#search-text').on('input', function () {
+    $('#search-text').on('input', function (event) {
         clearTimeout(typingTimer);
         typingTimer = window.setTimeout(premptiveSearchDoneTyping, doneTypingDelay);
     });
@@ -14,15 +16,15 @@ function premptiveSearchCache() {
     });
 }
 
-function premptiveSearchDoneTyping() {
-    console.log("Triggered done typing event");
+function premptiveSearchDoneTyping(event) {
+    //Don't cache if we have already done it couple of times
+    if (timesCached > 2) { return; }
     var form = $('#searchForm');
     var endpoint = ajaxCache + '?' + form.serialize();
-    console.log("Sending ajax to: " + endpoint);
     $.ajax(endpoint, {
         method: "get",
         success: function () {
-            console.log("Successful response on ajax");
+            //Success response
         }
     });
 }
@@ -66,9 +68,24 @@ $(function () {
 });
 
 //Prior to Form Submit
-(function() {
-    $('#searchForm').on('submit', function () {
+$(function() {
+    $('[id="searchForm"]').on('submit', function (event) {
+        var form = event.currentTarget;
         var selectedVals = $("#searchForm > [data-id='multiselect']").attr('title');
+        var checkboxes = $("[type='checkbox']", form);
+        for(var i = 0; i != checkboxes.length; i++)
+        {
+            var checkbox = checkboxes[i];
+            if(!$(checkbox).is(':checked'))
+            {
+                $('[name="' + $(checkbox).attr('name') + '"]', form).prop('disabled', true);
+            }
+            else
+            {
+                $('[name="' + $(checkbox).attr('name') + '"]', form).prop('disabled', true);
+                $(checkbox).prop('disabled', false);
+            }
+        }
     });
 });
 
