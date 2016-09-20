@@ -76,10 +76,10 @@
                         <div class="dropdown-content">
                             <div class="dropdown-item">
                             </div>
-                            <p class="dropdown-item"><input id="FreeShipping" type="checkbox" name="FreeShipping" value="true" /><span>Free Shipping</span><input id="FreeShipping" type="hidden" value="false" name="FreeShipping" /></p>
-                            <p class="dropdown-item"><input id="SaleItems" type="checkbox" name="SaleItems" value="true" /><span>Sale Items</span><input id="SaleItems" type="hidden" value="false" name="SaleItems" /></p>
-                            <p class="dropdown-item"><input id="PieceOnly" type="checkbox" name="PieceOnly" value="true" /><span>One Piece Only</span><input id="PieceOnly" type="hidden" value="false" name="PieceOnly" /></p>
-                            <p class="dropdown-item"><input id="AppOnly" type="checkbox" name="AppOnly" value="true" /><span>Mobile Deals Only</span><input id="AppOnly" type="hidden" value="false" name="AppOnly" /></p>
+                            <p class="dropdown-item">@Html.CheckBoxFor(x => x.FreeShipping)<span>Free Shipping</span></p>
+                            <p class="dropdown-item">@Html.CheckBoxFor(x => x.SaleItems)<span>Sale Items</span></p>
+                            <p class="dropdown-item">@Html.CheckBoxFor(x => x.PieceOnly)<span>One Piece Only</span></p>
+                            <p class="dropdown-item">@Html.CheckBoxFor(x => x.AppOnly)<span>Mobile Deals Only</span></p>
                         </div>
                     </div>
                 </div>
@@ -167,13 +167,13 @@
                         </div>
                     </div>
                     <div class="ascheckbox-inline-flex">
-                        <div class="ascheckbox"><input type="checkbox" asp-for="FreeShipping" /><span>Free Shipping</span><input type="hidden" value="false" name="FreeShipping" />
+                        <div class="ascheckbox">@Html.CheckBoxFor(x => x.FreeShipping)<span>Free Shipping</span>
                         </div>
-                        <div class="ascheckbox"><input type="checkbox" asp-for="SaleItems" /><span>SaleItems</span><input type="hidden" value="false" name="SaleItems" />
+                        <div class="ascheckbox">@Html.CheckBoxFor(x => x.SaleItems)<span>Sale Items</span>
                         </div>
-                        <div class="ascheckbox"><input type="checkbox" asp-for="PieceOnly" /><span>One Piece Only</span><input type="hidden" value="false" name="PieceOnly" />
+                        <div class="ascheckbox">@Html.CheckBoxFor(x => x.PieceOnly)<span>One Piece Only</span>
                         </div>
-                        <div class="ascheckbox"><input type="checkbox" asp-for="AppOnly" /><span>App Only Deals</span><input type="hidden" value="false" name="AppOnly" />
+                        <div class="ascheckbox">@Html.CheckBoxFor(x => x.AppOnly)<span>Mobile Deals Only</span>
                         </div>
                     </div>
                 </div>
