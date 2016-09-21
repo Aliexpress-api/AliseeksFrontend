@@ -61,7 +61,7 @@ namespace AliseeksFE.Middleware
                 //Log activty through API
                 var activity = new LoggingActivityModel()
                 {
-                    IP = context.Connection.RemoteIpAddress.ToString(),
+                    IP = context.Connection.RemoteIpAddress == null ? "N/A" : context.Connection.RemoteIpAddress.ToString(),
                     User = (context.User.Identity.IsAuthenticated == false) ? "Guest" : context.User.FindFirst(ClaimTypes.Name).Value,
                     Request = context.Request.Path
                 };

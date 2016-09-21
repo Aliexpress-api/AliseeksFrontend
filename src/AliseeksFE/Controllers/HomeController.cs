@@ -64,11 +64,5 @@ namespace AliseeksFE.Controllers
         {
             return View();
         }
-
-        [Route("/feedback")]
-        public IActionResult Feedback()
-        {
-            return View();
-        }
     }
 }
