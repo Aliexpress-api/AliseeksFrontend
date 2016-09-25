@@ -115,7 +115,7 @@ $(document).ready(function () {
 });
 
 //Quickscroll
-$(".quick-scroll").click(function () {
+$(".quick-scroll").click(function (target) {
     if ($(target.currentTarget).css('opacity') == 0) { return; }
     $("html,body").animate({
         scrollTop: document.body.scrollHeight
