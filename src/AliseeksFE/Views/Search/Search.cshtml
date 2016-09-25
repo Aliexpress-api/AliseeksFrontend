@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = $"{Model.Criteria.SearchText} - Aliseeks";
+    var affLink = "&aff_platform=aaf&sk=eub6yrrBy%3A&cpt=1474793549666&af=377879&cv=4123311&cn=2oe1xzh6f9uer7tq3juxedxev3oyuehi&dp=v5_2oe1xzh6f9uer7tq3juxedxev3oyuehi&afref=&aff_trace_key=efd4318e94ec40b582be7298e10ee804-1474793549667-05715-eub6yrrBy";
 }
 
 @Html.Partial("Partials/SearchBar", Model.Criteria)
@@ -30,7 +31,7 @@
                 <img class="item-image" src="@item.ImageURL" alt="@item.Name" />
                 <div class="col-xs-12 col-sm-5 col-md-6 col-lg-6 item-info">
                     <h4 class="item-link">
-                        <a class="item-link" rel="nofollow" href="@item.Link">
+                        <a class="item-link" rel="nofollow" href="@item.Link@affLink">
                             @item.Name
                         </a>
                     </h4>
