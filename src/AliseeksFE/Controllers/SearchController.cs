@@ -51,6 +51,21 @@ namespace AliseeksFE.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Save(SearchCriteria criteria)
+        {
+            if(ModelState.IsValid)
+            {
+                await search.Save(criteria);
+
+                return await Search(criteria);
+            }
+            else
+            {
+                return LocalRedirect("/");
+            }
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Cache(SearchCriteria criteria)
         {
             var response = await search.SearchCache(criteria);

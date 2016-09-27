@@ -13,5 +13,6 @@ namespace AliseeksFE.Services.Search
     {
         Task<SearchResultsModel> Search(SearchCriteria criteria);
         Task<HttpResponseMessage> SearchCache(SearchCriteria criteria);
+        Task<HttpResponseMessage> Save(SearchCriteria criteria);
     }
 }

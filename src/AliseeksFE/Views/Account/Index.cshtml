@@ -1,0 +1,10 @@
+﻿@model AccountOverview
+
+<div>
+    <ul>
+        @foreach(var savedSearch in Model.User.SavedSearches)
+        {
+            <li>@savedSearch.Criteria.ToString()</li>
+        }
+    </ul>
+</div>

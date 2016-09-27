@@ -41,6 +41,17 @@ namespace AliseeksFE.Services.Search
             return model;
         }
 
+        public async Task<HttpResponseMessage> Save(SearchCriteria criteria)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(criteria));
+            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            var endpoint = ApiEndpoints.Save;
+
+            var response = await api.Post(endpoint, content);
+
+            return response;
+        }
+
         public async Task<HttpResponseMessage> SearchCache(SearchCriteria criteria)
         {
             string qs = new QueryStringEncoder().Encode(criteria);

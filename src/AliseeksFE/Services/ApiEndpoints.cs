@@ -9,6 +9,7 @@ namespace AliseeksFE.Services
     {
         public const string Search = "api/search";
         public const string SearchCache = "api/search/cache";
+        public const string Save = "api/search/save";
 
         public const string Feedback = "api/feedback";
 

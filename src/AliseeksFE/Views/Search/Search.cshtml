@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = $"{Model.Criteria.SearchText} - Aliseeks";
+    var savePath = "search/save" + Context.Request.QueryString.Value;
 }
 
 @Html.Partial("Partials/SearchBar", Model.Criteria)
@@ -10,7 +11,7 @@
 
 <div class="col-md-12 col-lg-8 col-center">
     <div class="row">
-        <p class="pull-right text-muted">Total Results: <strong>@Model.Results.SearchCount</strong></p>
+        <p class="pull-right text-muted">Total Results: <strong>@Model.Results.SearchCount</strong> | <a href="@savePath">Save this search?</a></p>
     </div>
 
     @if (Model.Results.Items.Length == 0)
