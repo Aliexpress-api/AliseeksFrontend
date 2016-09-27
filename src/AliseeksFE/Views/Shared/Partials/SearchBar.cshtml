@@ -35,6 +35,11 @@
                         <input value="@Model.PriceFrom" name="PriceFrom" type="text" />
                         <input value="@Model.PriceTo" name="PriceTo" type="text" />
                     </div>
+                    <div class="input-quantity-control-bar">
+                        <label>Quantity: </label>
+                        <input value="@Model.QuantityMin" name="QuantityMin" type="number" />
+                        <input value="@Model.QuantityMax" name="QuantityMax" type="number" />
+                    </div>
                     <div class="input-ship-control-bar">
                         <label>Ship From:</label>
                         <select name="ShipFrom" class="form-control">
@@ -125,6 +130,12 @@
                         <input value="@Model.PriceFrom" name="PriceFrom" type="text" class="form-control" />
                         <span class="input-price-addon">-</span>
                         <input value="@Model.PriceTo" name="PriceTo" type="text" class="form-control" />
+                    </div>
+                    <div class="input-price-control">
+                        <span class="input-price-addon">Quantity :</span>
+                        <input value="@Model.QuantityMin" name="QuantityMin" type="number" class="form-control" />
+                        <span class="input-price-addon">-</span>
+                        <input value="@Model.QuantityMax" name="QuantityMax" type="number" class="form-control" />
                     </div>
                     <div class="form-group input-ship-control">
                         <label class="col-sm-2 col-md-4 input-control-label left">Ship From:</label>

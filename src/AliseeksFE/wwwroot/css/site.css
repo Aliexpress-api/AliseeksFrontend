@@ -2301,7 +2301,7 @@ output {
   line-height: 1.42857;
   color: #555555; }
 
-.form-control, .input-price-control-bar input, .input-ship-control-bar select {
+.form-control, .input-price-control-bar input, .input-quantity-control-bar input, .input-ship-control-bar select {
   display: block;
   width: 100%;
   height: 34px;
@@ -2318,32 +2318,36 @@ output {
   -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; }
-  .form-control:focus, .input-price-control-bar input:focus, .input-ship-control-bar select:focus {
+  .form-control:focus, .input-price-control-bar input:focus, .input-quantity-control-bar input:focus, .input-ship-control-bar select:focus {
     border-color: #66afe9;
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); }
-  .form-control::-moz-placeholder, .input-price-control-bar input::-moz-placeholder, .input-ship-control-bar select::-moz-placeholder {
+  .form-control::-moz-placeholder, .input-price-control-bar input::-moz-placeholder, .input-quantity-control-bar input::-moz-placeholder, .input-ship-control-bar select::-moz-placeholder {
     color: #999;
     opacity: 1; }
-  .form-control:-ms-input-placeholder, .input-price-control-bar input:-ms-input-placeholder, .input-ship-control-bar select:-ms-input-placeholder {
+  .form-control:-ms-input-placeholder, .input-price-control-bar input:-ms-input-placeholder, .input-quantity-control-bar input:-ms-input-placeholder, .input-ship-control-bar select:-ms-input-placeholder {
     color: #999; }
-  .form-control::-webkit-input-placeholder, .input-price-control-bar input::-webkit-input-placeholder, .input-ship-control-bar select::-webkit-input-placeholder {
+  .form-control::-webkit-input-placeholder, .input-price-control-bar input::-webkit-input-placeholder, .input-quantity-control-bar input::-webkit-input-placeholder, .input-ship-control-bar select::-webkit-input-placeholder {
     color: #999; }
-  .form-control::-ms-expand, .input-price-control-bar input::-ms-expand, .input-ship-control-bar select::-ms-expand {
+  .form-control::-ms-expand, .input-price-control-bar input::-ms-expand, .input-quantity-control-bar input::-ms-expand, .input-ship-control-bar select::-ms-expand {
     border: 0;
     background-color: transparent; }
-  .form-control[disabled], .input-price-control-bar input[disabled], .input-ship-control-bar select[disabled], .form-control[readonly], .input-price-control-bar input[readonly], .input-ship-control-bar select[readonly],
+  .form-control[disabled], .input-price-control-bar input[disabled], .input-quantity-control-bar input[disabled], .input-ship-control-bar select[disabled], .form-control[readonly], .input-price-control-bar input[readonly], .input-quantity-control-bar input[readonly], .input-ship-control-bar select[readonly],
   fieldset[disabled] .form-control,
   fieldset[disabled] .input-price-control-bar input, .input-price-control-bar
+  fieldset[disabled] input,
+  fieldset[disabled] .input-quantity-control-bar input, .input-quantity-control-bar
   fieldset[disabled] input,
   fieldset[disabled] .input-ship-control-bar select, .input-ship-control-bar
   fieldset[disabled] select {
     background-color: #eeeeee;
     opacity: 1; }
-  .form-control[disabled], .input-price-control-bar input[disabled], .input-ship-control-bar select[disabled],
+  .form-control[disabled], .input-price-control-bar input[disabled], .input-quantity-control-bar input[disabled], .input-ship-control-bar select[disabled],
   fieldset[disabled] .form-control,
   fieldset[disabled] .input-price-control-bar input, .input-price-control-bar
+  fieldset[disabled] input,
+  fieldset[disabled] .input-quantity-control-bar input, .input-quantity-control-bar
   fieldset[disabled] input,
   fieldset[disabled] .input-ship-control-bar select, .input-ship-control-bar
   fieldset[disabled] select {
@@ -2356,15 +2360,18 @@ input[type="search"] {
   -webkit-appearance: none; }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-  input[type="date"].form-control, .input-price-control-bar input[type="date"],
+  input[type="date"].form-control, .input-price-control-bar input[type="date"], .input-quantity-control-bar input[type="date"],
   input[type="time"].form-control,
   .input-price-control-bar input[type="time"],
+  .input-quantity-control-bar input[type="time"],
   input[type="datetime-local"].form-control,
   .input-price-control-bar input[type="datetime-local"],
+  .input-quantity-control-bar input[type="datetime-local"],
   input[type="month"].form-control,
-  .input-price-control-bar input[type="month"] {
+  .input-price-control-bar input[type="month"],
+  .input-quantity-control-bar input[type="month"] {
     line-height: 34px; }
-  input[type="date"].input-sm, .input-group-sm > input[type="date"].form-control, .input-price-control-bar .input-group-sm > input[type="date"],
+  input[type="date"].input-sm, .input-group-sm > input[type="date"].form-control, .input-price-control-bar .input-group-sm > input[type="date"], .input-quantity-control-bar .input-group-sm > input[type="date"],
   .input-group-sm > input[type="date"].input-group-addon,
   .input-group-sm > input[type="date"].input-price-addon,
   .input-group-sm > .input-group-btn > input[type="date"].btn,
@@ -2372,6 +2379,7 @@ input[type="search"] {
   input[type="time"].input-sm,
   .input-group-sm > input[type="time"].form-control,
   .input-price-control-bar .input-group-sm > input[type="time"],
+  .input-quantity-control-bar .input-group-sm > input[type="time"],
   .input-group-sm > input[type="time"].input-group-addon,
   .input-group-sm > input[type="time"].input-price-addon,
   .input-group-sm > .input-group-btn > input[type="time"].btn,
@@ -2380,6 +2388,7 @@ input[type="search"] {
   input[type="datetime-local"].input-sm,
   .input-group-sm > input[type="datetime-local"].form-control,
   .input-price-control-bar .input-group-sm > input[type="datetime-local"],
+  .input-quantity-control-bar .input-group-sm > input[type="datetime-local"],
   .input-group-sm > input[type="datetime-local"].input-group-addon,
   .input-group-sm > input[type="datetime-local"].input-price-addon,
   .input-group-sm > .input-group-btn > input[type="datetime-local"].btn,
@@ -2388,13 +2397,14 @@ input[type="search"] {
   input[type="month"].input-sm,
   .input-group-sm > input[type="month"].form-control,
   .input-price-control-bar .input-group-sm > input[type="month"],
+  .input-quantity-control-bar .input-group-sm > input[type="month"],
   .input-group-sm > input[type="month"].input-group-addon,
   .input-group-sm > input[type="month"].input-price-addon,
   .input-group-sm > .input-group-btn > input[type="month"].btn,
   .input-group-sm
   input[type="month"] {
     line-height: 30px; }
-  input[type="date"].input-lg, .input-group-lg > input[type="date"].form-control, .input-price-control-bar .input-group-lg > input[type="date"],
+  input[type="date"].input-lg, .input-group-lg > input[type="date"].form-control, .input-price-control-bar .input-group-lg > input[type="date"], .input-quantity-control-bar .input-group-lg > input[type="date"],
   .input-group-lg > input[type="date"].input-group-addon,
   .input-group-lg > input[type="date"].input-price-addon,
   .input-group-lg > .input-group-btn > input[type="date"].btn,
@@ -2402,6 +2412,7 @@ input[type="search"] {
   input[type="time"].input-lg,
   .input-group-lg > input[type="time"].form-control,
   .input-price-control-bar .input-group-lg > input[type="time"],
+  .input-quantity-control-bar .input-group-lg > input[type="time"],
   .input-group-lg > input[type="time"].input-group-addon,
   .input-group-lg > input[type="time"].input-price-addon,
   .input-group-lg > .input-group-btn > input[type="time"].btn,
@@ -2410,6 +2421,7 @@ input[type="search"] {
   input[type="datetime-local"].input-lg,
   .input-group-lg > input[type="datetime-local"].form-control,
   .input-price-control-bar .input-group-lg > input[type="datetime-local"],
+  .input-quantity-control-bar .input-group-lg > input[type="datetime-local"],
   .input-group-lg > input[type="datetime-local"].input-group-addon,
   .input-group-lg > input[type="datetime-local"].input-price-addon,
   .input-group-lg > .input-group-btn > input[type="datetime-local"].btn,
@@ -2418,6 +2430,7 @@ input[type="search"] {
   input[type="month"].input-lg,
   .input-group-lg > input[type="month"].form-control,
   .input-price-control-bar .input-group-lg > input[type="month"],
+  .input-quantity-control-bar .input-group-lg > input[type="month"],
   .input-group-lg > input[type="month"].input-group-addon,
   .input-group-lg > input[type="month"].input-price-addon,
   .input-group-lg > .input-group-btn > input[type="month"].btn,
@@ -2496,17 +2509,17 @@ fieldset[disabled]
   padding-bottom: 7px;
   margin-bottom: 0;
   min-height: 34px; }
-  .form-control-static.input-lg, .input-group-lg > .form-control-static.form-control, .input-price-control-bar .input-group-lg > input.form-control-static, .input-ship-control-bar .input-group-lg > select.form-control-static,
+  .form-control-static.input-lg, .input-group-lg > .form-control-static.form-control, .input-price-control-bar .input-group-lg > input.form-control-static, .input-quantity-control-bar .input-group-lg > input.form-control-static, .input-ship-control-bar .input-group-lg > select.form-control-static,
   .input-group-lg > .form-control-static.input-group-addon,
   .input-group-lg > .form-control-static.input-price-addon,
-  .input-group-lg > .input-group-btn > .form-control-static.btn, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control, .input-price-control-bar .input-group-sm > input.form-control-static, .input-ship-control-bar .input-group-sm > select.form-control-static,
+  .input-group-lg > .input-group-btn > .form-control-static.btn, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control, .input-price-control-bar .input-group-sm > input.form-control-static, .input-quantity-control-bar .input-group-sm > input.form-control-static, .input-ship-control-bar .input-group-sm > select.form-control-static,
   .input-group-sm > .form-control-static.input-group-addon,
   .input-group-sm > .form-control-static.input-price-addon,
   .input-group-sm > .input-group-btn > .form-control-static.btn {
     padding-left: 0;
     padding-right: 0; }
 
-.input-sm, .input-group-sm > .form-control, .input-price-control-bar .input-group-sm > input, .input-ship-control-bar .input-group-sm > select,
+.input-sm, .input-group-sm > .form-control, .input-price-control-bar .input-group-sm > input, .input-quantity-control-bar .input-group-sm > input, .input-ship-control-bar .input-group-sm > select,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-price-addon,
 .input-group-sm > .input-group-btn > .btn {
@@ -2535,7 +2548,7 @@ select[multiple].input-sm,
 .input-group-sm > .input-group-btn > select[multiple].btn {
   height: auto; }
 
-.form-group-sm .form-control, .form-group-sm .input-price-control-bar input, .input-price-control-bar .form-group-sm input, .form-group-sm .input-ship-control-bar select, .input-ship-control-bar .form-group-sm select {
+.form-group-sm .form-control, .form-group-sm .input-price-control-bar input, .input-price-control-bar .form-group-sm input, .form-group-sm .input-quantity-control-bar input, .input-quantity-control-bar .form-group-sm input, .form-group-sm .input-ship-control-bar select, .input-ship-control-bar .form-group-sm select {
   height: 30px;
   padding: 5px 10px;
   font-size: 12px;
@@ -2559,7 +2572,7 @@ select[multiple].input-sm,
   font-size: 12px;
   line-height: 1.5; }
 
-.input-lg, .input-group-lg > .form-control, .input-price-control-bar .input-group-lg > input, .input-ship-control-bar .input-group-lg > select,
+.input-lg, .input-group-lg > .form-control, .input-price-control-bar .input-group-lg > input, .input-quantity-control-bar .input-group-lg > input, .input-ship-control-bar .input-group-lg > select,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-price-addon,
 .input-group-lg > .input-group-btn > .btn {
@@ -2588,7 +2601,7 @@ select[multiple].input-lg,
 .input-group-lg > .input-group-btn > select[multiple].btn {
   height: auto; }
 
-.form-group-lg .form-control, .form-group-lg .input-price-control-bar input, .input-price-control-bar .form-group-lg input, .form-group-lg .input-ship-control-bar select, .input-ship-control-bar .form-group-lg select {
+.form-group-lg .form-control, .form-group-lg .input-price-control-bar input, .input-price-control-bar .form-group-lg input, .form-group-lg .input-quantity-control-bar input, .input-quantity-control-bar .form-group-lg input, .form-group-lg .input-ship-control-bar select, .input-ship-control-bar .form-group-lg select {
   height: 46px;
   padding: 10px 16px;
   font-size: 18px;
@@ -2614,7 +2627,7 @@ select[multiple].input-lg,
 
 .has-feedback {
   position: relative; }
-  .has-feedback .form-control, .has-feedback .input-price-control-bar input, .input-price-control-bar .has-feedback input, .has-feedback .input-ship-control-bar select, .input-ship-control-bar .has-feedback select {
+  .has-feedback .form-control, .has-feedback .input-price-control-bar input, .input-price-control-bar .has-feedback input, .has-feedback .input-quantity-control-bar input, .input-quantity-control-bar .has-feedback input, .has-feedback .input-ship-control-bar select, .input-ship-control-bar .has-feedback select {
     padding-right: 42.5px; }
 
 .form-control-feedback {
@@ -2629,7 +2642,7 @@ select[multiple].input-lg,
   text-align: center;
   pointer-events: none; }
 
-.input-lg + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback, .input-price-control-bar .input-group-lg > input + .form-control-feedback, .input-ship-control-bar .input-group-lg > select + .form-control-feedback,
+.input-lg + .form-control-feedback, .input-group-lg > .form-control + .form-control-feedback, .input-price-control-bar .input-group-lg > input + .form-control-feedback, .input-quantity-control-bar .input-group-lg > input + .form-control-feedback, .input-ship-control-bar .input-group-lg > select + .form-control-feedback,
 .input-group-lg > .input-group-addon + .form-control-feedback,
 .input-group-lg > .input-price-addon + .form-control-feedback,
 .input-group-lg > .input-group-btn > .btn + .form-control-feedback,
@@ -2637,19 +2650,23 @@ select[multiple].input-lg,
 .form-group-lg .form-control + .form-control-feedback,
 .form-group-lg .input-price-control-bar input + .form-control-feedback, .input-price-control-bar
 .form-group-lg input + .form-control-feedback,
+.form-group-lg .input-quantity-control-bar input + .form-control-feedback, .input-quantity-control-bar
+.form-group-lg input + .form-control-feedback,
 .form-group-lg .input-ship-control-bar select + .form-control-feedback, .input-ship-control-bar
 .form-group-lg select + .form-control-feedback {
   width: 46px;
   height: 46px;
   line-height: 46px; }
 
-.input-sm + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback, .input-price-control-bar .input-group-sm > input + .form-control-feedback, .input-ship-control-bar .input-group-sm > select + .form-control-feedback,
+.input-sm + .form-control-feedback, .input-group-sm > .form-control + .form-control-feedback, .input-price-control-bar .input-group-sm > input + .form-control-feedback, .input-quantity-control-bar .input-group-sm > input + .form-control-feedback, .input-ship-control-bar .input-group-sm > select + .form-control-feedback,
 .input-group-sm > .input-group-addon + .form-control-feedback,
 .input-group-sm > .input-price-addon + .form-control-feedback,
 .input-group-sm > .input-group-btn > .btn + .form-control-feedback,
 .input-group-sm + .form-control-feedback,
 .form-group-sm .form-control + .form-control-feedback,
 .form-group-sm .input-price-control-bar input + .form-control-feedback, .input-price-control-bar
+.form-group-sm input + .form-control-feedback,
+.form-group-sm .input-quantity-control-bar input + .form-control-feedback, .input-quantity-control-bar
 .form-group-sm input + .form-control-feedback,
 .form-group-sm .input-ship-control-bar select + .form-control-feedback, .input-ship-control-bar
 .form-group-sm select + .form-control-feedback {
@@ -2670,11 +2687,11 @@ select[multiple].input-lg,
 .has-success.checkbox-inline label {
   color: #3c763d; }
 
-.has-success .form-control, .has-success .input-price-control-bar input, .input-price-control-bar .has-success input, .has-success .input-ship-control-bar select, .input-ship-control-bar .has-success select {
+.has-success .form-control, .has-success .input-price-control-bar input, .input-price-control-bar .has-success input, .has-success .input-quantity-control-bar input, .input-quantity-control-bar .has-success input, .has-success .input-ship-control-bar select, .input-ship-control-bar .has-success select {
   border-color: #3c763d;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
-  .has-success .form-control:focus, .has-success .input-price-control-bar input:focus, .input-price-control-bar .has-success input:focus, .has-success .input-ship-control-bar select:focus, .input-ship-control-bar .has-success select:focus {
+  .has-success .form-control:focus, .has-success .input-price-control-bar input:focus, .input-price-control-bar .has-success input:focus, .has-success .input-quantity-control-bar input:focus, .input-quantity-control-bar .has-success input:focus, .has-success .input-ship-control-bar select:focus, .input-ship-control-bar .has-success select:focus {
     border-color: #2b542c;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168; }
@@ -2700,11 +2717,11 @@ select[multiple].input-lg,
 .has-warning.checkbox-inline label {
   color: #8a6d3b; }
 
-.has-warning .form-control, .has-warning .input-price-control-bar input, .input-price-control-bar .has-warning input, .has-warning .input-ship-control-bar select, .input-ship-control-bar .has-warning select {
+.has-warning .form-control, .has-warning .input-price-control-bar input, .input-price-control-bar .has-warning input, .has-warning .input-quantity-control-bar input, .input-quantity-control-bar .has-warning input, .has-warning .input-ship-control-bar select, .input-ship-control-bar .has-warning select {
   border-color: #8a6d3b;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
-  .has-warning .form-control:focus, .has-warning .input-price-control-bar input:focus, .input-price-control-bar .has-warning input:focus, .has-warning .input-ship-control-bar select:focus, .input-ship-control-bar .has-warning select:focus {
+  .has-warning .form-control:focus, .has-warning .input-price-control-bar input:focus, .input-price-control-bar .has-warning input:focus, .has-warning .input-quantity-control-bar input:focus, .input-quantity-control-bar .has-warning input:focus, .has-warning .input-ship-control-bar select:focus, .input-ship-control-bar .has-warning select:focus {
     border-color: #66512c;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b; }
@@ -2730,11 +2747,11 @@ select[multiple].input-lg,
 .has-error.checkbox-inline label {
   color: #a94442; }
 
-.has-error .form-control, .has-error .input-price-control-bar input, .input-price-control-bar .has-error input, .has-error .input-ship-control-bar select, .input-ship-control-bar .has-error select {
+.has-error .form-control, .has-error .input-price-control-bar input, .input-price-control-bar .has-error input, .has-error .input-quantity-control-bar input, .input-quantity-control-bar .has-error input, .has-error .input-ship-control-bar select, .input-ship-control-bar .has-error select {
   border-color: #a94442;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
-  .has-error .form-control:focus, .has-error .input-price-control-bar input:focus, .input-price-control-bar .has-error input:focus, .has-error .input-ship-control-bar select:focus, .input-ship-control-bar .has-error select:focus {
+  .has-error .form-control:focus, .has-error .input-price-control-bar input:focus, .input-price-control-bar .has-error input:focus, .has-error .input-quantity-control-bar input:focus, .input-quantity-control-bar .has-error input:focus, .has-error .input-ship-control-bar select:focus, .input-ship-control-bar .has-error select:focus {
     border-color: #843534;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483; }
@@ -2764,7 +2781,7 @@ select[multiple].input-lg,
     display: inline-block;
     margin-bottom: 0;
     vertical-align: middle; }
-  .form-inline .form-control, .form-inline .input-price-control-bar input, .input-price-control-bar .form-inline input, .form-inline .input-ship-control-bar select, .input-ship-control-bar .form-inline select {
+  .form-inline .form-control, .form-inline .input-price-control-bar input, .input-price-control-bar .form-inline input, .form-inline .input-quantity-control-bar input, .input-quantity-control-bar .form-inline input, .form-inline .input-ship-control-bar select, .input-ship-control-bar .form-inline select {
     display: inline-block;
     width: auto;
     vertical-align: middle; }
@@ -2782,12 +2799,16 @@ select[multiple].input-lg,
     .form-inline .input-group input,
     .form-inline .input-price-control .input-price-control-bar input, .input-price-control-bar
     .form-inline .input-price-control input,
+    .form-inline .input-group .input-quantity-control-bar input, .input-quantity-control-bar
+    .form-inline .input-group input,
+    .form-inline .input-price-control .input-quantity-control-bar input, .input-quantity-control-bar
+    .form-inline .input-price-control input,
     .form-inline .input-group .input-ship-control-bar select, .input-ship-control-bar
     .form-inline .input-group select,
     .form-inline .input-price-control .input-ship-control-bar select, .input-ship-control-bar
     .form-inline .input-price-control select {
       width: auto; }
-  .form-inline .input-group > .form-control, .form-inline .input-price-control > .form-control, .form-inline .input-price-control-bar .input-group > input, .input-price-control-bar .form-inline .input-group > input, .form-inline .input-price-control-bar .input-price-control > input, .input-price-control-bar .form-inline .input-price-control > input, .form-inline .input-ship-control-bar .input-group > select, .input-ship-control-bar .form-inline .input-group > select, .form-inline .input-ship-control-bar .input-price-control > select, .input-ship-control-bar .form-inline .input-price-control > select {
+  .form-inline .input-group > .form-control, .form-inline .input-price-control > .form-control, .form-inline .input-price-control-bar .input-group > input, .input-price-control-bar .form-inline .input-group > input, .form-inline .input-price-control-bar .input-price-control > input, .input-price-control-bar .form-inline .input-price-control > input, .form-inline .input-quantity-control-bar .input-group > input, .input-quantity-control-bar .form-inline .input-group > input, .form-inline .input-quantity-control-bar .input-price-control > input, .input-quantity-control-bar .form-inline .input-price-control > input, .form-inline .input-ship-control-bar .input-group > select, .input-ship-control-bar .form-inline .input-group > select, .form-inline .input-ship-control-bar .input-price-control > select, .input-ship-control-bar .form-inline .input-price-control > select {
     width: 100%; }
   .form-inline .control-label, .form-inline .input-control-label {
     margin-bottom: 0;
@@ -3505,13 +3526,13 @@ tbody.collapse.in, tbody.in.advanced-tools {
     float: none;
     padding-left: 0;
     padding-right: 0; }
-  .input-group .form-control, .input-price-control .form-control, .input-group .input-price-control-bar input, .input-price-control-bar .input-group input, .input-price-control .input-price-control-bar input, .input-price-control-bar .input-price-control input, .input-group .input-ship-control-bar select, .input-ship-control-bar .input-group select, .input-price-control .input-ship-control-bar select, .input-ship-control-bar .input-price-control select {
+  .input-group .form-control, .input-price-control .form-control, .input-group .input-price-control-bar input, .input-price-control-bar .input-group input, .input-price-control .input-price-control-bar input, .input-price-control-bar .input-price-control input, .input-group .input-quantity-control-bar input, .input-quantity-control-bar .input-group input, .input-price-control .input-quantity-control-bar input, .input-quantity-control-bar .input-price-control input, .input-group .input-ship-control-bar select, .input-ship-control-bar .input-group select, .input-price-control .input-ship-control-bar select, .input-ship-control-bar .input-price-control select {
     position: relative;
     z-index: 2;
     float: left;
     width: 100%;
     margin-bottom: 0; }
-    .input-group .form-control:focus, .input-price-control .form-control:focus, .input-group .input-price-control-bar input:focus, .input-price-control-bar .input-group input:focus, .input-price-control .input-price-control-bar input:focus, .input-price-control-bar .input-price-control input:focus, .input-group .input-ship-control-bar select:focus, .input-ship-control-bar .input-group select:focus, .input-price-control .input-ship-control-bar select:focus, .input-ship-control-bar .input-price-control select:focus {
+    .input-group .form-control:focus, .input-price-control .form-control:focus, .input-group .input-price-control-bar input:focus, .input-price-control-bar .input-group input:focus, .input-price-control .input-price-control-bar input:focus, .input-price-control-bar .input-price-control input:focus, .input-group .input-quantity-control-bar input:focus, .input-quantity-control-bar .input-group input:focus, .input-price-control .input-quantity-control-bar input:focus, .input-quantity-control-bar .input-price-control input:focus, .input-group .input-ship-control-bar select:focus, .input-ship-control-bar .input-group select:focus, .input-price-control .input-ship-control-bar select:focus, .input-ship-control-bar .input-price-control select:focus {
       z-index: 3; }
 
 .input-group-addon, .input-price-addon,
@@ -3519,6 +3540,8 @@ tbody.collapse.in, tbody.in.advanced-tools {
 .input-group .form-control, .input-price-control .form-control,
 .input-group .input-price-control-bar input, .input-price-control-bar
 .input-group input, .input-price-control .input-price-control-bar input, .input-price-control-bar .input-price-control input,
+.input-group .input-quantity-control-bar input, .input-quantity-control-bar
+.input-group input, .input-price-control .input-quantity-control-bar input, .input-quantity-control-bar .input-price-control input,
 .input-group .input-ship-control-bar select, .input-ship-control-bar
 .input-group select, .input-price-control .input-ship-control-bar select, .input-ship-control-bar .input-price-control select {
   display: table-cell; }
@@ -3527,6 +3550,8 @@ tbody.collapse.in, tbody.in.advanced-tools {
   .input-group .form-control:not(:first-child):not(:last-child), .input-price-control .form-control:not(:first-child):not(:last-child),
   .input-group .input-price-control-bar input:not(:first-child):not(:last-child), .input-price-control-bar
   .input-group input:not(:first-child):not(:last-child), .input-price-control .input-price-control-bar input:not(:first-child):not(:last-child), .input-price-control-bar .input-price-control input:not(:first-child):not(:last-child),
+  .input-group .input-quantity-control-bar input:not(:first-child):not(:last-child), .input-quantity-control-bar
+  .input-group input:not(:first-child):not(:last-child), .input-price-control .input-quantity-control-bar input:not(:first-child):not(:last-child), .input-quantity-control-bar .input-price-control input:not(:first-child):not(:last-child),
   .input-group .input-ship-control-bar select:not(:first-child):not(:last-child), .input-ship-control-bar
   .input-group select:not(:first-child):not(:last-child), .input-price-control .input-ship-control-bar select:not(:first-child):not(:last-child), .input-ship-control-bar .input-price-control select:not(:first-child):not(:last-child) {
     border-radius: 0; }
@@ -3547,7 +3572,7 @@ tbody.collapse.in, tbody.in.advanced-tools {
   background-color: #eeeeee;
   border: 1px solid #ccc;
   border-radius: 4px; }
-  .input-group-addon.input-sm, .input-price-control-bar .input-group-sm > input.input-group-addon, .input-price-control-bar .input-group-sm > input.input-price-addon, .input-ship-control-bar .input-group-sm > select.input-group-addon, .input-ship-control-bar .input-group-sm > select.input-price-addon,
+  .input-group-addon.input-sm, .input-price-control-bar .input-group-sm > input.input-group-addon, .input-price-control-bar .input-group-sm > input.input-price-addon, .input-quantity-control-bar .input-group-sm > input.input-group-addon, .input-quantity-control-bar .input-group-sm > input.input-price-addon, .input-ship-control-bar .input-group-sm > select.input-group-addon, .input-ship-control-bar .input-group-sm > select.input-price-addon,
   .input-group-sm > .input-group-addon,
   .input-group-sm > .input-price-addon,
   .input-group-sm > .input-group-btn > .input-group-addon.btn,
@@ -3555,7 +3580,7 @@ tbody.collapse.in, tbody.in.advanced-tools {
     padding: 5px 10px;
     font-size: 12px;
     border-radius: 3px; }
-  .input-group-addon.input-lg, .input-price-control-bar .input-group-lg > input.input-group-addon, .input-price-control-bar .input-group-lg > input.input-price-addon, .input-ship-control-bar .input-group-lg > select.input-group-addon, .input-ship-control-bar .input-group-lg > select.input-price-addon,
+  .input-group-addon.input-lg, .input-price-control-bar .input-group-lg > input.input-group-addon, .input-price-control-bar .input-group-lg > input.input-price-addon, .input-quantity-control-bar .input-group-lg > input.input-group-addon, .input-quantity-control-bar .input-group-lg > input.input-price-addon, .input-ship-control-bar .input-group-lg > select.input-group-addon, .input-ship-control-bar .input-group-lg > select.input-price-addon,
   .input-group-lg > .input-group-addon,
   .input-group-lg > .input-price-addon,
   .input-group-lg > .input-group-btn > .input-group-addon.btn,
@@ -3567,7 +3592,7 @@ tbody.collapse.in, tbody.in.advanced-tools {
   .input-group-addon input[type="checkbox"], .input-price-addon input[type="checkbox"] {
     margin-top: 0; }
 
-.input-group .form-control:first-child, .input-price-control .form-control:first-child, .input-group .input-price-control-bar input:first-child, .input-price-control-bar .input-group input:first-child, .input-price-control .input-price-control-bar input:first-child, .input-price-control-bar .input-price-control input:first-child, .input-group .input-ship-control-bar select:first-child, .input-ship-control-bar .input-group select:first-child, .input-price-control .input-ship-control-bar select:first-child, .input-ship-control-bar .input-price-control select:first-child,
+.input-group .form-control:first-child, .input-price-control .form-control:first-child, .input-group .input-price-control-bar input:first-child, .input-price-control-bar .input-group input:first-child, .input-price-control .input-price-control-bar input:first-child, .input-price-control-bar .input-price-control input:first-child, .input-group .input-quantity-control-bar input:first-child, .input-quantity-control-bar .input-group input:first-child, .input-price-control .input-quantity-control-bar input:first-child, .input-quantity-control-bar .input-price-control input:first-child, .input-group .input-ship-control-bar select:first-child, .input-ship-control-bar .input-group select:first-child, .input-price-control .input-ship-control-bar select:first-child, .input-ship-control-bar .input-price-control select:first-child,
 .input-group-addon:first-child,
 .input-price-addon:first-child,
 .input-group-btn:first-child > .btn,
@@ -3581,7 +3606,7 @@ tbody.collapse.in, tbody.in.advanced-tools {
 .input-group-addon:first-child, .input-price-addon:first-child {
   border-right: 0; }
 
-.input-group .form-control:last-child, .input-price-control .form-control:last-child, .input-group .input-price-control-bar input:last-child, .input-price-control-bar .input-group input:last-child, .input-price-control .input-price-control-bar input:last-child, .input-price-control-bar .input-price-control input:last-child, .input-group .input-ship-control-bar select:last-child, .input-ship-control-bar .input-group select:last-child, .input-price-control .input-ship-control-bar select:last-child, .input-ship-control-bar .input-price-control select:last-child,
+.input-group .form-control:last-child, .input-price-control .form-control:last-child, .input-group .input-price-control-bar input:last-child, .input-price-control-bar .input-group input:last-child, .input-price-control .input-price-control-bar input:last-child, .input-price-control-bar .input-price-control input:last-child, .input-group .input-quantity-control-bar input:last-child, .input-quantity-control-bar .input-group input:last-child, .input-price-control .input-quantity-control-bar input:last-child, .input-quantity-control-bar .input-price-control input:last-child, .input-group .input-ship-control-bar select:last-child, .input-ship-control-bar .input-group select:last-child, .input-price-control .input-ship-control-bar select:last-child, .input-ship-control-bar .input-price-control select:last-child,
 .input-group-addon:last-child,
 .input-price-addon:last-child,
 .input-group-btn:last-child > .btn,
@@ -3923,7 +3948,7 @@ tbody.collapse.in, tbody.in.advanced-tools {
       display: inline-block;
       margin-bottom: 0;
       vertical-align: middle; }
-    .navbar-form .form-control, .navbar-form .input-price-control-bar input, .input-price-control-bar .navbar-form input, .navbar-form .input-ship-control-bar select, .input-ship-control-bar .navbar-form select {
+    .navbar-form .form-control, .navbar-form .input-price-control-bar input, .input-price-control-bar .navbar-form input, .navbar-form .input-quantity-control-bar input, .input-quantity-control-bar .navbar-form input, .navbar-form .input-ship-control-bar select, .input-ship-control-bar .navbar-form select {
       display: inline-block;
       width: auto;
       vertical-align: middle; }
@@ -3941,12 +3966,16 @@ tbody.collapse.in, tbody.in.advanced-tools {
       .navbar-form .input-group input,
       .navbar-form .input-price-control .input-price-control-bar input, .input-price-control-bar
       .navbar-form .input-price-control input,
+      .navbar-form .input-group .input-quantity-control-bar input, .input-quantity-control-bar
+      .navbar-form .input-group input,
+      .navbar-form .input-price-control .input-quantity-control-bar input, .input-quantity-control-bar
+      .navbar-form .input-price-control input,
       .navbar-form .input-group .input-ship-control-bar select, .input-ship-control-bar
       .navbar-form .input-group select,
       .navbar-form .input-price-control .input-ship-control-bar select, .input-ship-control-bar
       .navbar-form .input-price-control select {
         width: auto; }
-    .navbar-form .input-group > .form-control, .navbar-form .input-price-control > .form-control, .navbar-form .input-price-control-bar .input-group > input, .input-price-control-bar .navbar-form .input-group > input, .navbar-form .input-price-control-bar .input-price-control > input, .input-price-control-bar .navbar-form .input-price-control > input, .navbar-form .input-ship-control-bar .input-group > select, .input-ship-control-bar .navbar-form .input-group > select, .navbar-form .input-ship-control-bar .input-price-control > select, .input-ship-control-bar .navbar-form .input-price-control > select {
+    .navbar-form .input-group > .form-control, .navbar-form .input-price-control > .form-control, .navbar-form .input-price-control-bar .input-group > input, .input-price-control-bar .navbar-form .input-group > input, .navbar-form .input-price-control-bar .input-price-control > input, .input-price-control-bar .navbar-form .input-price-control > input, .navbar-form .input-quantity-control-bar .input-group > input, .input-quantity-control-bar .navbar-form .input-group > input, .navbar-form .input-quantity-control-bar .input-price-control > input, .input-quantity-control-bar .navbar-form .input-price-control > input, .navbar-form .input-ship-control-bar .input-group > select, .input-ship-control-bar .navbar-form .input-group > select, .navbar-form .input-ship-control-bar .input-price-control > select, .input-ship-control-bar .navbar-form .input-price-control > select {
       width: 100%; }
     .navbar-form .control-label, .navbar-form .input-control-label {
       margin-bottom: 0;
@@ -6049,10 +6078,11 @@ footer {
   max-width: 800px; }
 
 .advanced-tools-bar {
-  height: 4rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
   background-color: #f8f8f8;
@@ -6062,6 +6092,13 @@ footer {
   padding: 0px 0px;
   color: #666666;
   font-size: 1rem; }
+  .advanced-tools-bar div:last-child {
+    margin-left: auto;
+    margin-right: 1rem; }
+  .advanced-tools-bar div {
+    margin-top: 1rem;
+    margin-left: .25rem;
+    text-align: left; }
 
 .input-multi-select-bar {
   width: 20%; }
@@ -6075,19 +6112,23 @@ footer {
   min-width: 300px; }
 
 .input-price-control-bar {
-  flex-basis: 18%;
-  margin-left: 1rem;
-  margin-right: 1rem; }
+  flex-basis: 30%; }
   .input-price-control-bar input {
     display: inline;
     border-radius: 3px 3px;
     width: 33%;
     height: 2.5rem; }
 
+.input-quantity-control-bar {
+  flex-basis: 30%; }
+  .input-quantity-control-bar input {
+    display: inline;
+    border-radius: 3px 3px;
+    width: 33%;
+    height: 2.5rem; }
+
 .input-ship-control-bar {
-  display: inline;
-  margin-left: 1rem;
-  margin-right: 1rem; }
+  display: inline; }
   .input-ship-control-bar select {
     display: inline;
     width: 130px;
