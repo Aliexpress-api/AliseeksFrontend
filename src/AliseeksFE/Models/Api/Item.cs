@@ -13,6 +13,7 @@ namespace AliseeksFE.Models.Api
         public decimal ShippingPrice { get; set; }
         public string Unit { get; set; }
         public bool FreeShipping { get; set; }
+        public string ShippingType { get; set; }
         public string ImageURL { get; set; }
         public string MobileOnly { get; set; }
         public string StoreName { get; set; }

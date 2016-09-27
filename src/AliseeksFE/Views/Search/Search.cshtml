@@ -58,7 +58,7 @@
                         <span class="item-unit"> / @item.Unit</span><br />
                         @if (!item.FreeShipping)
                         {
-                            <span class="text-muted">@item.Currency @item.ShippingPrice <span class="small">per unit</span></span><br />
+                            <span class="text-muted">@item.Currency @item.ShippingPrice <span class="text-muted small">@item.ShippingType</span> <span class="small">per unit</span></span><br />
                         }
                         <span class="text-muted">Lot Price: @item.Currency @item.LotPrice <span class="small">(@item.Quantity)</span></span><br />
                     </p>
