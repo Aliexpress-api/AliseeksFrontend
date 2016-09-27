@@ -17,6 +17,7 @@ namespace AliseeksFE.Services
         public const string UserRegister = "api/user/register";
         public const string UserReset = "api/user/reset";
         public const string UserResetValid = "api/user/resetvalid";
+        public static Func<string, string> UserAccount = (username) => { return $"api/user/{username}"; };
 
         public const string LoggingException = "api/logging/exception";
         public const string LoggingActivity = "api/logging/activity";

@@ -89,7 +89,9 @@ namespace AliseeksFE
                 AutomaticChallenge = true,
                 AuthenticationScheme = "AliseeksCookie",
                 CookieName = "access_token",
-                TicketDataFormat = new AliseeksJwtCookieAuthentication(AliseeksJwtAuthentication.TokenValidationParameters(options.SecretKey), app.ApplicationServices.GetRequiredService<IRavenClient>())
+                TicketDataFormat = new AliseeksJwtCookieAuthentication(AliseeksJwtAuthentication.TokenValidationParameters(options.SecretKey), app.ApplicationServices.GetRequiredService<IRavenClient>()),
+                LoginPath = "/login",
+                LogoutPath = "/logout"
             });
 
             app.UseStaticFiles(new StaticFileOptions()

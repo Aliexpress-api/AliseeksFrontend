@@ -1,10 +1,20 @@
 ﻿@model AccountOverview
 
+@{ 
+    Func<string, string> searchEndpoint = (qs) => $"/search?{qs}";
+}
+
+<div>
+    <ul>
+        <li>@Model.User.Username</li>
+    </ul>
+</div>
+
 <div>
     <ul>
         @foreach(var savedSearch in Model.User.SavedSearches)
         {
-            <li>@savedSearch.Criteria.ToString()</li>
+            <li><a href="@searchEndpoint(new QueryStringEncoder().Encode(savedSearch.Criteria))">@savedSearch.Criteria.SearchText</a></li>
         }
     </ul>
 </div>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
 using AliseeksFE.Models.Login;
+using AliseeksFE.Models.Account;
 
 namespace AliseeksFE.Services.User
 {
@@ -14,5 +15,6 @@ namespace AliseeksFE.Services.User
         Task<HttpResponseMessage> Register(NewUserModel model);
         Task<HttpResponseMessage> Reset(ResetUserModel model);
         Task<HttpResponseMessage> ResetValid(ResetValidModel model);
+        Task<UserOverview> Overview(string username);
     }
 }

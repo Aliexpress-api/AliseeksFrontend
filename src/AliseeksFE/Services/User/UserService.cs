@@ -12,6 +12,7 @@ using AliseeksFE.Authentication;
 using Microsoft.Extensions.Options;
 using AliseeksFE.Configuration.Options;
 using Newtonsoft.Json;
+using AliseeksFE.Models.Account;
 
 namespace AliseeksFE.Services.User
 {
@@ -90,6 +91,16 @@ namespace AliseeksFE.Services.User
             content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
             var response = await api.Post(ApiEndpoints.UserResetValid, content);
             return response;
+        }
+
+        public async Task<UserOverview> Overview(string username)
+        {
+            var endpoint = ApiEndpoints.UserAccount(username);
+            var response = await api.Get(endpoint);
+
+            var model = JsonConvert.DeserializeObject<UserOverview>(await response.Content.ReadAsStringAsync());
+
+            return model;
         }
     }
 }
