@@ -17,6 +17,12 @@ namespace AliseeksFE.Models.Search
         [Range(0.01, double.MaxValue, ErrorMessage = "Please enter a positive price")]
         public double? PriceTo { get; set; }
 
+        [Range(0, double.MaxValue, ErrorMessage = "Please enter a positive quantity")]
+        public int? QuantityMin { get; set; }
+
+        [Range(0, double.MaxValue, ErrorMessage = "Please enter a positive quantity")]
+        public int? QuantityMax { get; set; }
+
         public string ShipFrom { get; set; }
         public string ShipTo { get; set; }
 

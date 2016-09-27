@@ -13,11 +13,11 @@
         <p class="pull-right text-muted">Total Results: <strong>@Model.Results.SearchCount</strong></p>
     </div>
 
-    @if(Model.Results.Items.Length == 0)
+    @if (Model.Results.Items.Length == 0)
     {
         <div class="row">
             <div class="col-xs-12 col-center" style="text-align:center;">
-                <h4>There doesn't seem to be anything here <i class="fa fa-fire" aria-hidden="true"></i></h4><br/>
+                <h4>There doesn't seem to be anything here <i class="fa fa-fire" aria-hidden="true"></i></h4><br />
                 <img class="search-no-results-img" src="~/images/noresults.png" alt="No results" />
             </div>
         </div>
@@ -35,9 +35,15 @@
                         </a>
                     </h4>
                     <span class="mobile-gone standard-text hidden-xs">
-                        @if (@item.Source == "Aliexpress")
+                        @switch (item.Source)
                         {
-                            <img class="item-logo" src="~/images/logos/ae.png" alt="Aliexpress" />
+                            case "Aliexpress":
+                                <img class="item-logo" src="~/images/logos/ae.png" alt="Aliexpress" />
+                                break;
+
+                            case "DHGate":
+                                <span>DHGate!</span>
+                                break;
                         }
                         <strong>&nbsp;@item.StoreName</strong>
                     </span>
@@ -49,25 +55,25 @@
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 item-info-more">
                     <p>
                         <span class="item-price">@item.Currency @String.Join("-", item.Price)</span>
-                        <span class="item-unit"> / @item.Unit</span><br/>
+                        <span class="item-unit"> / @item.Unit</span><br />
                         @if (!item.FreeShipping)
                         {
-                            <span class="text-muted">@item.Currency @item.ShippingPrice <span class="small">per unit</span></span><br/>
+                            <span class="text-muted">@item.Currency @item.ShippingPrice <span class="small">per unit</span></span><br />
                         }
-                        <span class="text-muted">Lot Price: @item.Currency @item.LotPrice <span class="small">(@item.Quantity)</span></span><br/>
+                        <span class="text-muted">Lot Price: @item.Currency @item.LotPrice <span class="small">(@item.Quantity)</span></span><br />
                     </p>
-                @if (@item.FreeShipping)
+                    @if (@item.FreeShipping)
                 {
-                    <p class="label label-success">Free Shipping!</p>
-                }
-                @if (@item.MobileOnly != "")
+                        <p class="label label-success">Free Shipping!</p>
+                    }
+                    @if (@item.MobileOnly != "")
                 {
-                    <p class="label label-danger">@item.MobileOnly</p>
-                }
-                @if (@item.Source == "Aliexpress")
+                        <p class="label label-danger">@item.MobileOnly</p>
+                    }
+                    @if (@item.Source == "Aliexpress")
                 {
                         <img class="visible-xs item-logo-xs" src="~/images/logos/ae.png" alt="Aliexpress" />
-                }
+                    }
                 </div>
             </div>
         </div>
@@ -92,18 +98,18 @@
                         if (pageNum == Model.Criteria.Page)
                         {
 
-                        <li class="active">
-                         <a asp-controller="Search" asp-action="Search" asp-all-route-data="@dictionaryQs">@pageNum</a>
-                        </li>
+                            <li class="active">
+                                <a asp-controller="Search" asp-action="Search" asp-all-route-data="@dictionaryQs">@pageNum</a>
+                            </li>
                         }
                         else
                         {
-                        <li>
-                            <a asp-controller="Search" asp-action="Search" asp-all-route-data="@dictionaryQs">@pageNum</a>
-                        </li>
-                            }
+                            <li>
+                                <a asp-controller="Search" asp-action="Search" asp-all-route-data="@dictionaryQs">@pageNum</a>
+                            </li>
                         }
                     }
+                }
             </ul>
         </div>
     </div>
