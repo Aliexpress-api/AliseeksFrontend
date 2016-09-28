@@ -10,5 +10,6 @@ namespace AliseeksFE.Services.Api
     {
         Task<HttpResponseMessage> Get(string endpoint, Action<HttpClient> clientConfig = null);
         Task<HttpResponseMessage> Post(string endpoint, StringContent data, Action<HttpClient> clientConfig = null);
+        Task<HttpResponseMessage> Delete(string endpoint, Action<HttpClient> clientConfig = null);
     }
 }

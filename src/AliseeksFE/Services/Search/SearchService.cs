@@ -61,5 +61,13 @@ namespace AliseeksFE.Services.Search
 
             return response;
         }
+
+        public async Task<HttpResponseMessage> DeleteSearch(int id)
+        {
+            var endpoint = ApiEndpoints.Save + $"/{id}";
+            var response = await api.Delete(endpoint);
+
+            return response;
+        }
     }
 }

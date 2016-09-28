@@ -65,6 +65,14 @@ namespace AliseeksFE.Controllers
             }
         }
 
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await search.DeleteSearch(id);
+
+            return Ok();
+        }
+
         [HttpGet]
         public async Task<IActionResult> Cache(SearchCriteria criteria)
         {

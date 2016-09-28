@@ -172,5 +172,16 @@ namespace AliseeksFE.Services.Api
                 headers.Authorization = new AuthenticationHeaderValue("Bearer", claim.Value);
             }
         }
+
+        public async Task<HttpResponseMessage> Delete(string endpoint, Action<HttpClient> clientConfig = null)
+        {
+            HttpResponseMessage response = new HttpResponseMessage(System.Net.HttpStatusCode.ServiceUnavailable);
+
+            var request = new HttpRequestMessage(HttpMethod.Delete, new Uri(endpoint, UriKind.Relative));
+
+            response = await sendRequest(request, clientConfig);
+
+            return response;
+        }
     }
 }

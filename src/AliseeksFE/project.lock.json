@@ -12,6 +12,15 @@
           "lib/dotnet/AsyncStackTraceEx.dll": {}
         }
       },
+      "jQuery/1.4.4": {
+        "type": "package"
+      },
+      "jQuery.Ajax.Unobtrusive/2.0.20710": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.jQuery.Unobtrusive.Ajax": "2.0.20613"
+        }
+      },
       "Libuv/1.9.0": {
         "type": "package",
         "dependencies": {
@@ -1511,6 +1520,12 @@
         },
         "runtime": {
           "lib/netstandard1.4/Microsoft.IdentityModel.Tokens.dll": {}
+        }
+      },
+      "Microsoft.jQuery.Unobtrusive.Ajax/2.0.20710": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "[1.4.4, 2.0.0)"
         }
       },
       "Microsoft.Net.Http.Headers/1.0.0": {
@@ -3988,6 +4003,15 @@
           "lib/dotnet/AsyncStackTraceEx.dll": {}
         }
       },
+      "jQuery/1.4.4": {
+        "type": "package"
+      },
+      "jQuery.Ajax.Unobtrusive/2.0.20710": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.jQuery.Unobtrusive.Ajax": "2.0.20613"
+        }
+      },
       "Libuv/1.9.0": {
         "type": "package",
         "dependencies": {
@@ -5456,6 +5480,12 @@
         },
         "runtime": {
           "lib/netstandard1.4/Microsoft.IdentityModel.Tokens.dll": {}
+        }
+      },
+      "Microsoft.jQuery.Unobtrusive.Ajax/2.0.20710": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "[1.4.4, 2.0.0)"
         }
       },
       "Microsoft.Net.Http.Headers/1.0.0": {
@@ -8213,6 +8243,15 @@
           "lib/dotnet/AsyncStackTraceEx.dll": {}
         }
       },
+      "jQuery/1.4.4": {
+        "type": "package"
+      },
+      "jQuery.Ajax.Unobtrusive/2.0.20710": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.jQuery.Unobtrusive.Ajax": "2.0.20613"
+        }
+      },
       "Libuv/1.9.0": {
         "type": "package",
         "dependencies": {
@@ -9681,6 +9720,12 @@
         },
         "runtime": {
           "lib/netstandard1.4/Microsoft.IdentityModel.Tokens.dll": {}
+        }
+      },
+      "Microsoft.jQuery.Unobtrusive.Ajax/2.0.20710": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "[1.4.4, 2.0.0)"
         }
       },
       "Microsoft.Net.Http.Headers/1.0.0": {
@@ -12447,6 +12492,27 @@
         "lib/wpa/AsyncStackTraceExWinRT.dll"
       ]
     },
+    "jQuery/1.4.4": {
+      "sha512": "kexCeYIZehR5fRjo8CK1sngN5SZEQRFNfCYZHMS1RxwEEiSKetBw/gliYJcLJdJEBB+e9aHqleLCjuaSI7u23g==",
+      "type": "package",
+      "path": "jQuery/1.4.4",
+      "files": [
+        "Content/Scripts/jquery-1.4.4-vsdoc.js",
+        "Content/Scripts/jquery-1.4.4.js",
+        "Content/Scripts/jquery-1.4.4.min.js",
+        "jQuery.1.4.4.nupkg.sha512",
+        "jQuery.nuspec"
+      ]
+    },
+    "jQuery.Ajax.Unobtrusive/2.0.20710": {
+      "sha512": "Pi9soMRdzL30AMb/gXPLjTLzjYs3/Ac0S51h4M28Iyc4rYQ4ln1fZxPTEmEbnUYRZzuP2b5P2saBq9llJ1e1tg==",
+      "type": "package",
+      "path": "jQuery.Ajax.Unobtrusive/2.0.20710",
+      "files": [
+        "jQuery.Ajax.Unobtrusive.2.0.20710.nupkg.sha512",
+        "jQuery.Ajax.Unobtrusive.nuspec"
+      ]
+    },
     "Libuv/1.9.0": {
       "sha512": "9Q7AaqtQhS8JDSIvRBt6ODSLWDBI4c8YxNxyCQemWebBFUtBbc6M5Vi5Gz1ZyIUlTW3rZK9bIr5gnVyv0z7a2Q==",
       "type": "package",
@@ -13591,6 +13657,17 @@
         "lib/net451/Microsoft.IdentityModel.Tokens.xml",
         "lib/netstandard1.4/Microsoft.IdentityModel.Tokens.dll",
         "lib/netstandard1.4/Microsoft.IdentityModel.Tokens.xml"
+      ]
+    },
+    "Microsoft.jQuery.Unobtrusive.Ajax/2.0.20710": {
+      "sha512": "qe7300U7GFkYuncm2cCR/Lj8xexvYlGYIjvb857N1oLpGXUmHIqmWl7cCajV0BkQ0V+jRqadfqf2znLsAZ3KLg==",
+      "type": "package",
+      "path": "Microsoft.jQuery.Unobtrusive.Ajax/2.0.20710",
+      "files": [
+        "Content/Scripts/jquery.unobtrusive-ajax.js",
+        "Content/Scripts/jquery.unobtrusive-ajax.min.js",
+        "Microsoft.jQuery.Unobtrusive.Ajax.2.0.20710.nupkg.sha512",
+        "Microsoft.jQuery.Unobtrusive.Ajax.nuspec"
       ]
     },
     "Microsoft.Net.Http.Headers/1.0.0": {
@@ -19468,7 +19545,8 @@
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.0.0",
       "Microsoft.NETCore.App >= 1.0.0",
       "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0",
-      "RavenSharp.Core >= 1.0.0-beta-1"
+      "RavenSharp.Core >= 1.0.0-beta-1",
+      "jQuery.Ajax.Unobtrusive >= 2.0.20710"
     ],
     ".NETCoreApp,Version=v1.0": []
   },
