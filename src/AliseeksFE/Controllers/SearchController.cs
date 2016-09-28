@@ -66,6 +66,7 @@ namespace AliseeksFE.Controllers
         }
 
         [HttpDelete]
+        [Route("/[controller]/save/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await search.DeleteSearch(id);
