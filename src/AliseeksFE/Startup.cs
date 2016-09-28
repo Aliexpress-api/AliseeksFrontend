@@ -26,6 +26,7 @@ using Microsoft.Net.Http.Headers;
 using SharpRaven.Core;
 using SharpRaven.Core.Configuration;
 using AliseeksFE.Filters;
+using AliseeksFE.Injectables.Account;
 
 namespace AliseeksFE
 {
@@ -144,6 +145,7 @@ namespace AliseeksFE
             //Injectable Services
             services.AddTransient<SearchCriteriaInject>();
             services.AddTransient<SearchPaginationInject>();
+            services.AddTransient<SavedSearchInject>();
         }
     }
 }

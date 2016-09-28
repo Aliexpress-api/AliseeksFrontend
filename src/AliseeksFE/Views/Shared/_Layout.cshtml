@@ -48,6 +48,7 @@
                                     <strong>@User.FindFirst(ClaimTypes.Name).Value</strong>
                                 </a>
                                 <ul class="dropdown-menu">
+                                    <li><a asp-controller="Account" asp-action="Index">Profile</a></li>
                                     <li><a href="/logout">Logout</a></li>
                                 </ul>
                             </li>
