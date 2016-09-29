@@ -1,5 +1,6 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="../gulpfile.js" />
+/// <reference path="dev/js/account/search.js" />
 /// <reference path="dev/js/search/search.js" />
 /// <reference path="dev/js/utilities/ajax.js" />
 /// <reference path="js/site.js" />

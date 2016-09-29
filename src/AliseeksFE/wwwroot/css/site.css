@@ -6249,13 +6249,19 @@ footer {
 .profile {
   padding: 15px 15px 15px 15px; }
   .profile div {
-    padding: 0 15px 0 15px; }
+    padding-right: 15px;
+    padding-left: 15px; }
 
 .profile-info {
-  padding-top: 30px; }
+  padding-top: 1rem; }
 
 .profile-nav {
-  padding-top: 30px; }
+  padding-top: 1rem; }
+
+.saved-search-list {
+  margin-top: 2rem; }
+  .saved-search-list a {
+    color: #333333; }
 
 .ascheckbox {
   display: flex;

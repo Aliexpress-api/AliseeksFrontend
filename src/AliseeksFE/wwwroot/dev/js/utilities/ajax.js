@@ -15,10 +15,12 @@ function ajaxEvent(event)
     }
 
     var method = $(target).attr('data-ajax-method');
+    var success = $(target).attr('data-ajax-success');
 
     $.ajax({
         url: href,
-        method: method
+        method: method,
+        success: window[success]
     });
 
     event.preventDefault();

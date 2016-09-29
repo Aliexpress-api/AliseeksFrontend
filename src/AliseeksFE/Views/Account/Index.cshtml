@@ -22,13 +22,13 @@
 
     <div class="col-md-9">
             <div class="well profile-info">
-                <a data-toggle="collapse" data-target="#savedSearch" class="btn-link">Saved Searches</a>
-                <div id="savedSearch" class="collapse">
-                    <div class="list-group">
+                <h4><p data-toggle="collapse" data-target="#savedSearch" class="">Saved Searches</p></h4>
+                <div id="savedSearch" class="">
+                    <div class="list-group saved-search-list">
                         @foreach (var savedSearch in Model.User.SavedSearches)
                         {
                             <div class="list-group-item">
-                                <a class="btn btn-danger pull-right" href="/search/save/@savedSearch.ID" data-ajax="true" data-ajax-method="delete">&times;</a>
+                                <a class="pull-right" href="/search/save/@savedSearch.ID" data-ajax="true" data-ajax-method="delete" data-ajax-success="deleteSavedSearch"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                                 <a href="@searchEndpoint(new QueryStringEncoder().Encode(savedSearch.Criteria))">
                                     <h4>@savedSearch.Criteria.SearchText</h4>
                                     <p class="list-group-item-text">
@@ -52,3 +52,7 @@
             </div>
         </div>
 </div>
+
+<script>
+
+</script>
