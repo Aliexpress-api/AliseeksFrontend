@@ -155,6 +155,30 @@ $(window).scroll(function () {
     }
 });
 
+//Get Price Histories
+$(function () {
+    var items = $(".item");
+    var ids = [];
+
+    for(var i = 0; i != items.length; i++)
+    {
+        var id = $('[data-id="itemid"]', items[i]).attr('data-val');
+        var source = $('[data-id="source"]', items[i]).attr('data-val');
+
+        ids.push({
+            "ItemID": id,
+            "Source": source
+        });
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/search/pricehistory",
+        data: JSON.stringify(ids),
+        contentType: "application/json;",
+        dataType: "json"
+    });
+});
 $(function () {
     $('[data-ajax=true]').click(ajaxEvent);
 });

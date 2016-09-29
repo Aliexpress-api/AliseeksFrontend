@@ -15,5 +15,6 @@ namespace AliseeksFE.Services.Search
         Task<HttpResponseMessage> SearchCache(SearchCriteria criteria);
         Task<HttpResponseMessage> Save(SearchCriteria criteria);
         Task<HttpResponseMessage> DeleteSearch(int id);
+        Task<HttpResponseMessage> PriceHistory(PriceHistoryRequestModel[] models);
     }
 }

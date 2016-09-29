@@ -76,6 +76,8 @@
                         <img class="visible-xs item-logo-xs" src="~/images/logos/ae.png" alt="Aliexpress" />
                     }
                 </div>
+                <span class="hidden" data-id="itemid" data-val="@item.ItemID"></span>
+                <span class="hidden" data-id="source" data-val="@item.Source"></span>
             </div>
         </div>
     }
@@ -123,3 +125,32 @@
 <div class="quick-scroll-mobile visible-xs">
     <div class="fa fa-chevron-down btn-back-to-top-arrow"></div>
 </div>
+
+<script>
+    //Get Price Histories
+    $(function () {
+        var items = $(".item");
+        var ids = [];
+
+        if (items.length == 0)
+            return;
+
+        for (var i = 0; i != items.length; i++) {
+            var id = $('[data-id="itemid"]', items[i]).attr('data-val');
+            var source = $('[data-id="source"]', items[i]).attr('data-val');
+
+            ids.push({
+                "ItemID": id,
+                "Source": source
+            });
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/search/pricehistory",
+            data: JSON.stringify(ids),
+            contentType: "application/json;",
+            dataType: "json"
+        });
+    });
+</script>

@@ -23,5 +23,6 @@ namespace AliseeksFE.Models.Api
         public string Currency { get; set; }
         public int Quantity { get; set; }
         public string Source { get; set; }
+        public string ItemID { get; set; }
     }
 }

@@ -80,5 +80,13 @@ namespace AliseeksFE.Controllers
             var response = await search.SearchCache(criteria);
             return Ok();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> PriceHistory([FromBody]PriceHistoryRequestModel[] models)
+        {
+            var response = await search.PriceHistory(models);
+
+            return Ok();
+        }
     }
 }

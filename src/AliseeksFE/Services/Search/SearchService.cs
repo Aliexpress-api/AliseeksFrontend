@@ -69,5 +69,16 @@ namespace AliseeksFE.Services.Search
 
             return response;
         }
+
+        public async Task<HttpResponseMessage> PriceHistory(PriceHistoryRequestModel[] models)
+        {
+            var endpoint = ApiEndpoints.PriceHistory;
+            var content = new StringContent(JsonConvert.SerializeObject(models));
+            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+            var response = await api.Post(endpoint, content);
+
+            return response;
+        }
     }
 }
