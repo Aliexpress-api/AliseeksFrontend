@@ -64,6 +64,17 @@ namespace AliseeksFE
             services.Configure<ApiOptions>(Configuration.GetSection("ApiOptions"));
             services.Configure<RavenOptions>(Configuration.GetSection("RavenOptions"));
 
+            services.add
+
+            services.AddAuthorization(x =>
+            {
+                x.AddPolicy("Dropshipping", (policy) =>
+                {
+                    policy.AuthenticationSchemes.Add("Dropshipping");
+                    policy.RequireAuthenticatedUser();
+                });
+            });
+
             configureDependencyInjection(services);
         }
 

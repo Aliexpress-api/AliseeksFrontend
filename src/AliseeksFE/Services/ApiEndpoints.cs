@@ -22,5 +22,12 @@ namespace AliseeksFE.Services
 
         public const string LoggingException = "api/logging/exception";
         public const string LoggingActivity = "api/logging/activity";
+
+        public const string DropshipAddProduct = "api/dropshipping/add";
+        public const string DropshipUpdateProduct = "api/dropshipping/update";
+        public const string DropshipGetProducts = "api/dropshipping";
+        public const string DropshipGetAccount = "api/dropshipping/account";
+        public const string DropshipGetOrders = "api/dropshipping/account/orders";
+        public const string DropshipCreateAccount = "api/dropshipping/account";
     }
 }
