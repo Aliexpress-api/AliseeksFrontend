@@ -1,5 +1,6 @@
 ﻿$(function () {
     $('[data-ajax=true]').click(ajaxEvent);
+    $('[data-ajax-form=true]').submit(ajaxEvent);
 });
 
 function ajaxEvent(event)
@@ -17,10 +18,18 @@ function ajaxEvent(event)
     var method = $(target).attr('data-ajax-method');
     var success = $(target).attr('data-ajax-success');
 
+    var data = [];
+
+    if ($(target).is('form'))
+    {
+        data = $(target).serialize();
+    }
+
     $.ajax({
         url: href,
         method: method,
-        success: window[success]
+        success: window[success],
+        data: data
     });
 
     event.preventDefault();

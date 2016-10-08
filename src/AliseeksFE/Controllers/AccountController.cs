@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using AliseeksFE.Services.User;
 using AliseeksFE.Models.Account;
+using AliseeksFE.Services.Dropshipping;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,10 +15,12 @@ namespace AliseeksFE.Controllers
     public class AccountController : Controller
     {
         private readonly IUserService user;
+        private readonly DropshipService dropship;
 
-        public AccountController(IUserService user)
+        public AccountController(IUserService user, DropshipService dropship)
         {
-            this.user = user;   
+            this.user = user;
+            this.dropship = dropship;
         }
 
         // GET: /<controller>/
@@ -39,6 +42,22 @@ namespace AliseeksFE.Controllers
             };
 
             return View(model);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Dropshipping()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Dropshipping(DropshipAccountConfiguration config)
+        {
+            await dropship.SetupAccount(config);
+
+            return LocalRedirect("/dropship");
         }
     }
 }

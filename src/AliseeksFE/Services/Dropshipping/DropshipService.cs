@@ -65,5 +65,13 @@ namespace AliseeksFE.Services.Dropshipping
                 Status = AccountStatus.New
             };
         }
+        
+        public async Task SetupAccount(DropshipAccountConfiguration config)
+        {
+            var json = JsonConvert.SerializeObject(config);
+            var jsonContent = new JsonContent(json);
+
+            var response = await api.Post(ApiEndpoints.DropshipCreateAccount, jsonContent);
+        }
     }
 }

@@ -53,18 +53,6 @@ namespace AliseeksFE.Services.User
             if (!response.IsSuccessStatusCode)
                 return response;            
 
-            var token = JsonConvert.DeserializeObject<ResponseLoginUserModel>(await response.Content.ReadAsStringAsync());
-
-            context.Response.Cookies.Append("access_token", token.Token,
-                new CookieOptions()
-                {
-                    Path = "/",
-                    Domain = context.Request.Host.Host,
-                    HttpOnly = false,
-                    Secure = false,
-                    Expires = DateTimeOffset.Now.AddDays(14)
-                });
-
             return response;
         }
 

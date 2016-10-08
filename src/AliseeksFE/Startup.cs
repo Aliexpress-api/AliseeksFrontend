@@ -27,6 +27,7 @@ using SharpRaven.Core;
 using SharpRaven.Core.Configuration;
 using AliseeksFE.Filters;
 using AliseeksFE.Injectables.Account;
+using AliseeksFE.Services.Dropshipping;
 
 namespace AliseeksFE
 {
@@ -63,17 +64,6 @@ namespace AliseeksFE
             services.Configure<JwtOptions>(Configuration.GetSection("JwtOptions"));
             services.Configure<ApiOptions>(Configuration.GetSection("ApiOptions"));
             services.Configure<RavenOptions>(Configuration.GetSection("RavenOptions"));
-
-            services.add
-
-            services.AddAuthorization(x =>
-            {
-                x.AddPolicy("Dropshipping", (policy) =>
-                {
-                    policy.AuthenticationSchemes.Add("Dropshipping");
-                    policy.RequireAuthenticatedUser();
-                });
-            });
 
             configureDependencyInjection(services);
         }
@@ -141,6 +131,7 @@ namespace AliseeksFE
             services.AddTransient<IFeedbackService, FeedbackService>();
             services.AddTransient<ILoggingService, LoggingService>();
             services.AddTransient<AliseeksJwtAuthentication, AliseeksJwtAuthentication>();
+            services.AddTransient<DropshipService>();
 
             services.AddScoped<IRavenClient, RavenClient>((s) => {
 
@@ -152,6 +143,7 @@ namespace AliseeksFE
             });
 
             services.AddScoped<ModelBinderBreadcrumbFilter>();
+            services.AddScoped<DropshipAuthorizationFilter>();
 
             //Injectable Services
             services.AddTransient<SearchCriteriaInject>();

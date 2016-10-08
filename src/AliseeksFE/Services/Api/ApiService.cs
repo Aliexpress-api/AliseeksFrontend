@@ -97,6 +97,21 @@ namespace AliseeksFE.Services.Api
             //Add body if any
             if (response.Content != null)
                 crumb.Data.Add("Body", await response.Content.ReadAsStringAsync());
+
+            if(response.Headers.Contains("X-USER-TOKEN"))
+            {
+                var token = response.Headers.GetValues("X-USER-TOKEN").ElementAt(0);
+
+                context.Response.Cookies.Append("access_token", token,
+                    new CookieOptions()
+                    {
+                        Path = "/",
+                        Domain = context.Request.Host.Host,
+                        HttpOnly = false,
+                        Secure = false,
+                        Expires = DateTimeOffset.Now.AddDays(14)
+                    });
+            }
         }
 
         async Task<HttpResponseMessage> sendRequest(HttpRequestMessage request, Action<HttpClient> clientConfig = null)
