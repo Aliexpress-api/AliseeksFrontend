@@ -30,5 +30,7 @@ namespace AliseeksFE.Services
         public const string DropshipGetOrders = "api/dropshipping/account/orders";
         public const string DropshipCreateAccount = "api/dropshipping/account";
         public const string DropshipOverview = "api/dropshipping/overview";
+        public const string DropshipOAuthShopify = "api/dropshipping/account/shopify/oauth";
+        public const string DropshipIntegrations = "api/dropshipping/account/integrations";
     }
 }

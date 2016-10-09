@@ -113,6 +113,8 @@ namespace AliseeksFE
             app.UseSession();
 
             app.UseMiddleware<Logger>();
+
+            
     
             app.UseMvc(routes =>
             {

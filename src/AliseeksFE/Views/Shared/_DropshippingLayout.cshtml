@@ -1,5 +1,7 @@
 ﻿@{
     Layout = "_Layout";
+    var path = Context.Request.Path.ToString().ToLower();
+    var routeData = ViewContext.RouteData.Values;
 }
 
 <div class="row profile">
@@ -9,10 +11,10 @@
             <p class="text-muted">Dropshipping</p>
             <hr />
             <div class="list-group">
-                <a href="/dropship" class="list-group-item active">Overview</a>
-                <a href="/dropship/integrations" class="list-group-item">Integrations</a>
-                <a href="/dropship/orders" class="list-group-item">Orders</a>
-                <a href="/dropship/products" class="list-group-item">Products</a>
+                <a href="/dropship" class="list-group-item @(routeData["Action"].ToString() == "Index" ? "active" : "")">Overview</a>
+                <a href="/dropship/integrations" class="list-group-item @(path.Contains("integrations") ? "active" : "")">Integrations</a>
+                <a href="/dropship/orders" class="list-group-item @(path.Contains("orders") ? "active" : "")">Orders</a>
+                <a href="/dropship/products" class="list-group-item @(path.Contains("products") ? "active" : "")">Products</a>
             </div>
         </div>
     </div>

@@ -86,6 +86,8 @@ namespace AliseeksFE.Services.User
             var endpoint = ApiEndpoints.UserAccount(username);
             var response = await api.Get(endpoint);
 
+            var json = await response.Content.ReadAsStringAsync();
+
             var model = JsonConvert.DeserializeObject<UserOverview>(await response.Content.ReadAsStringAsync());
 
             return model;

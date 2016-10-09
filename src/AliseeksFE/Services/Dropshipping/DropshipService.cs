@@ -7,6 +7,8 @@ using AliseeksFE.Models.Search;
 using AliseeksFE.Models.Dropship;
 using AliseeksFE.Utility;
 using Newtonsoft.Json;
+using AliseeksFE.Models.Shopify;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace AliseeksFE.Services.Dropshipping
 {
@@ -86,6 +88,54 @@ namespace AliseeksFE.Services.Dropshipping
             var jsonContent = new JsonContent(json);
 
             var response = await api.Post(ApiEndpoints.DropshipCreateAccount, jsonContent);
+        }
+
+        public async Task<DropshipIntegration[]> GetIntegrations()
+        {
+            var response = await api.Get(ApiEndpoints.DropshipIntegrations);
+
+            var message = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                var integrations = JsonConvert.DeserializeObject<DropshipIntegration[]>(message);
+
+                return integrations;
+            }
+            else
+                return new DropshipIntegration[0];
+        }
+
+        public async Task<ShopifyOAuthRequest> GetShopifyOAuth(string shop)
+        {
+            var qs = new Dictionary<string, string>()
+            {
+                { "shop", shop },
+                { "redirect", "http://localhost:1470/dropship/integrations/shopify/oauth" }
+            };
+
+            var uri = QueryHelpers.AddQueryString(ApiEndpoints.DropshipOAuthShopify, qs);
+
+            var response = await api.Get(uri);
+
+            var message = await response.Content.ReadAsStringAsync();
+
+            if(response.IsSuccessStatusCode)
+            {
+                var oauthRequest = JsonConvert.DeserializeObject<ShopifyOAuthRequest>(message);
+
+                return oauthRequest;
+            }
+
+            return null;
+        }
+
+        public async Task CompleteShopifyOAuth(ShopifyOAuthResponse resp)
+        {
+            var json = JsonConvert.SerializeObject(resp);
+            var jsonContent = new JsonContent(json);
+
+            var response = await api.Post(ApiEndpoints.DropshipOAuthShopify, jsonContent);                      
         }
     }
 }

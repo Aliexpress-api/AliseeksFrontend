@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+
+    Layout = "_DropshippingLayout";
+}
+
+@model DropshipIntegration[]
+
+<h4>Integrations</h4>
+
+<div class="row">
+    @if(Model.FirstOrDefault(x => x.Service == "Shopify") == null)
+    {
+        <a asp-controller="dropship" asp-action="integrateshopify" class="btn btn-primary">+ Integrate Shopify</a>
+    }
+</div>
+
+<div class="row">
+    @foreach(var integration in Model)
+    {
+        <p class="text-capitalize">@integration.Service</p>
+        <p class="text-muted">Account Info: @integration.AccountInfo</p>
+    }
+</div>
