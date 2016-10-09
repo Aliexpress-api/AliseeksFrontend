@@ -75,12 +75,11 @@
                 {
                         <img class="visible-xs item-logo-xs" src="~/images/logos/ae.png" alt="Aliexpress" />
                     }
-
-                    <form method="post" asp-controller="dropship" asp-action="add">
+                    <form class="form-inline" post" asp-controller="dropship" asp-action="add">
                         <input class="hidden" name="Title" value="@item.Name" />
                         <input class="hidden" name="ID" value="@item.ItemID" />
                         <input class="hidden" name="Source" value="@item.Source" />
-                        <button class="small text-muted">DS</button>
+                        <button class="btn-link" data-toggle="tooltip" data-placement="bottom" title="Dropship this!"><i class="fa fa-ship" aria-hidden="true"></i></button>
                     </form>
                 </div>
                 <span class="hidden" data-id="itemid" data-val="@item.ItemID"></span>

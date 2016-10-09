@@ -49,6 +49,20 @@ namespace AliseeksFE.Services.Dropshipping
             return new DropshipItem[0];
         }
 
+        public async Task<DropshipOverview> GetOverview()
+        {
+            var response = await api.Get(ApiEndpoints.DropshipOverview);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var overview = JsonConvert.DeserializeObject<DropshipOverview>(json);
+                return overview;
+            }
+
+            return new DropshipOverview();
+        }
+
         public async Task<DropshipAccount> GetAccount()
         {
             var response = await api.Get(ApiEndpoints.DropshipGetAccount);

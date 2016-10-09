@@ -6253,10 +6253,12 @@ footer {
     padding-left: 15px; }
 
 .profile-info {
-  padding-top: 1rem; }
+  padding-top: 1rem;
+  background-color: white; }
 
 .profile-nav {
-  padding-top: 1rem; }
+  padding-top: 1rem;
+  background-color: white; }
 
 .saved-search-list {
   margin-top: 2rem; }

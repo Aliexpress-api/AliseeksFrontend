@@ -2,8 +2,39 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+
+    Layout = "_DropshippingLayout";
 }
 
-<div class="col-md-10 col-center">
-    <h4>Dropshipping Item Overview</h4>
+@model DropshipOverview
+
+    <h4>Overview</h4>
+    <p class="text-muted">Subscription: @Model.Account.Subscription</p>
+
+    <hr />
+
+    <div class="row">
+        <h4>Unfulfilled Orders:</h4>
+        @foreach (var order in Model.Orders)
+        {
+            <div class="row">
+                <h4>@order.Order.ID</h4>
+                @foreach (var item in order.Items)
+                {
+                    <img src="@item.Image" />
+                    <p>@item.Source.Title</p>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="row">
+        <h4>Listed Items:</h4>
+        <p class="text-muted">@Model.Items.Length / 500 Items</p>
+        @foreach (var item in Model.Items)
+        {
+            <img src="@item.Image" />
+            <p>@item.Source.Title</p>
+        }
+    </div>
 </div>

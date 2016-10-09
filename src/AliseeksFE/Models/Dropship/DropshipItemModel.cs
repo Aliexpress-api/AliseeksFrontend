@@ -14,5 +14,6 @@ namespace AliseeksFE.Models.Dropship
         public string ListingID { get; set; }
         public string Listing { get; set; }
         public DropshipListingRules Rules { get; set; }
+        public string Image { get; set; }
     }
 }

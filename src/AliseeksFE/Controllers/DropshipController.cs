@@ -27,9 +27,11 @@ namespace AliseeksFE.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var overview = await dropship.GetOverview();
+
+            return View(overview);
         }
 
         public async Task<IActionResult> Add(SingleItemRequest item)
