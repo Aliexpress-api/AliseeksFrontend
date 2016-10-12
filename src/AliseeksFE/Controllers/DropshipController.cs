@@ -9,6 +9,10 @@ using SharpRaven.Core;
 using AliseeksFE.Models.Search;
 using AliseeksFE.Models.Shopify;
 using AliseeksFE.Filters;
+using AliseeksFE.Services.Api;
+using Newtonsoft.Json;
+using AliseeksFE.Services;
+using AliseeksFE.Models.Dropship;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,11 +24,15 @@ namespace AliseeksFE.Controllers
     {
         private readonly DropshipService dropship;
         private readonly IRavenClient raven;
+        private readonly IApiService api;
 
-        public DropshipController(DropshipService dropship, IRavenClient raven)
+        private const int productsPerPage = 20;
+
+        public DropshipController(DropshipService dropship, IApiService api, IRavenClient raven)
         {
             this.dropship = dropship;
             this.raven = raven;
+            this.api = api;
         }
 
         // GET: /<controller>/
@@ -39,7 +47,7 @@ namespace AliseeksFE.Controllers
         {
             await dropship.AddProduct(item);
 
-            return Ok();
+            return RedirectToAction("Products");
         }
 
         public async Task<IActionResult> Integrations()
@@ -82,6 +90,27 @@ namespace AliseeksFE.Controllers
             await dropship.CompleteShopifyOAuth(response);
 
             return RedirectToAction("Integrations");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Products(int page = 1)
+        {
+            var response = await api.Get(ApiEndpoints.DropshipGetProducts(productsPerPage * (page - 1), productsPerPage));
+
+            var products = new DropshipItem[0];
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                products = JsonConvert.DeserializeObject<DropshipItem[]>(json);
+            }
+
+            //Add total count for pagination
+            ViewBag.MaxCount = response.Headers.Contains("X-Total-Count") ? Convert.ToInt32(response.Headers.GetValues("X-Total-Count").First()) : productsPerPage;
+            ViewBag.Page = page;
+            ViewBag.ItemsPerPage = productsPerPage;
+
+            return View(products);
         }
     }
 }

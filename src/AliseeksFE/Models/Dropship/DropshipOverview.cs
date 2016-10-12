@@ -8,7 +8,8 @@ namespace AliseeksFE.Models.Dropship
     public class DropshipOverview
     {
         public DropshipAccount Account { get; set; }
-        public DropshipOrder[] Orders { get; set; }
-        public DropshipItemModel[] Items { get; set; }
+        //public DropshipOrder[] Orders { get; set; } TODO: FUTURE
+        public int ProductCount { get; set; }
+        public int IntegrationCount { get; set; }
     }
 }

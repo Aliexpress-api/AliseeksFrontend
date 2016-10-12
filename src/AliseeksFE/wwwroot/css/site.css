@@ -6339,3 +6339,24 @@ footer {
     line-height: 40px; }
   .quick-scroll-mobile:hover {
     background-color: rgba(0, 0, 0, 0.08); }
+
+.product {
+  padding-left: 2rem; }
+  .product:after {
+    content: "";
+    clear: both;
+    display: table; }
+
+.dropship-image {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin-right: 1rem;
+  float: left; }
+
+.dropship-title {
+  font-size: 1.25em; }
+
+.dropship-price {
+  font-size: 1em;
+  color: #e06500; }

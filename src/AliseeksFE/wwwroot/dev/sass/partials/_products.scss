@@ -1,0 +1,26 @@
+﻿.product {
+    padding-left:2rem;
+
+    &:after {
+        content: "";
+        clear:both;
+        display:table;
+    }
+}
+
+.dropship-image {
+    display:block;
+    width:150px;
+    height:150px;
+    margin-right:1rem;
+    float:left;
+}
+
+.dropship-title {
+    font-size:1.25em;
+}
+
+.dropship-price {
+    font-size:1em;
+    color: $item-price-color;
+}

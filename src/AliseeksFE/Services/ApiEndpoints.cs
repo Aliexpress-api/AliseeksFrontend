@@ -25,7 +25,9 @@ namespace AliseeksFE.Services
 
         public const string DropshipAddProduct = "api/dropshipping/add";
         public const string DropshipUpdateProduct = "api/dropshipping/update";
-        public const string DropshipGetProducts = "api/dropshipping";
+
+        public static string DropshipGetProducts(int offset, int limit) { return $"api/dropshipping?offset={offset.ToString()}&limit={limit.ToString()}"; }
+
         public const string DropshipGetAccount = "api/dropshipping/account";
         public const string DropshipGetOrders = "api/dropshipping/account/orders";
         public const string DropshipCreateAccount = "api/dropshipping/account";

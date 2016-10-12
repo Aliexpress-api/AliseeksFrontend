@@ -13,27 +13,12 @@
 
     <hr />
 
-    <div class="row">
-        <h4>Unfulfilled Orders:</h4>
-        @foreach (var order in Model.Orders)
-        {
-            <div class="row">
-                <h4>@order.Order.ID</h4>
-                @foreach (var item in order.Items)
-                {
-                    <img src="@item.Image" />
-                    <p>@item.Source.Title</p>
-                }
-            </div>
-        }
-    </div>
+    <p>Integrations: @Model.IntegrationCount</p>
+    <p>Products: @Model.ProductCount / 500</p>
 
-    <div class="row">
-        <h4>Listed Items:</h4>
-        <p class="text-muted">@Model.Items.Length / 500 Items</p>
-        @foreach (var item in Model.Items)
-        {
-            <img src="@item.Image" />
-            <p>@item.Source.Title</p>
-        }
-    </div>
+    @if (Model.IntegrationCount == 0)
+    {
+        <h4>
+            Add an integration to get started dropshipping today!
+        </h4>
+    }

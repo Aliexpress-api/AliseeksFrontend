@@ -28,6 +28,7 @@ using SharpRaven.Core.Configuration;
 using AliseeksFE.Filters;
 using AliseeksFE.Injectables.Account;
 using AliseeksFE.Services.Dropshipping;
+using AliseeksFE.Injectables.Dropship;
 
 namespace AliseeksFE
 {
@@ -149,8 +150,9 @@ namespace AliseeksFE
 
             //Injectable Services
             services.AddTransient<SearchCriteriaInject>();
-            services.AddTransient<SearchPaginationInject>();
+            services.AddTransient<PaginationInject>();
             services.AddTransient<SavedSearchInject>();
+            services.AddTransient<DropshipRuleInject>();
         }
     }
 }

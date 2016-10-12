@@ -39,7 +39,7 @@ namespace AliseeksFE.Services.Dropshipping
 
         public async Task<DropshipItem[]> GetProducts()
         {
-            var response = await api.Get(ApiEndpoints.DropshipGetProducts);
+            var response = await api.Get(ApiEndpoints.DropshipGetProducts(0, 28));
 
             if(response.IsSuccessStatusCode)
             {

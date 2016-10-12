@@ -1,0 +1,59 @@
+﻿
+@model DropshipItem[]
+@inject PaginationInject pagination
+@inject DropshipRuleInject rules
+
+@{ 
+    var page = ViewBag.Page;
+    var maxCount = ViewBag.MaxCount;
+    var itemsPerPage = ViewBag.ItemsPerPage;
+}
+
+<div class="col-lg-8 col-md-12 col-center">
+    @foreach (var item in Model)
+    {
+        <div class="row row-centered">
+            <div class="product">
+                <img class="dropship-image" src="@item.Product.Images.FirstOrDefault().Src" alt="@item.Product.Title" />
+                <div class="col-md-6">
+                    <p class="dropship-title">@item.Dropshipping.Source.Title</p>
+                    <p>Pricing Rule: @rules.PriceAdjustment(item.Dropshipping.Rules)</p>
+                    <p>Stock Rule: @rules.StockAdjustment(item.Dropshipping.Rules)</p>
+                </div>
+                <div class="col-md-3">
+                    @foreach (var variant in item.Product.Variants)
+                    {
+                        <p class="dropship-price">@variant.Price</p>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row row-centered">
+    <div class="col-xs-12 text-center">
+        <div class="btn-group">
+            <ul class="pagination">
+                @{
+                    foreach (int pageNum in pagination.GetPages(page, maxCount, itemsPerPage))
+                    {
+                        if (pageNum == page)
+                        {
+
+                            <li class="active">
+                                <a asp-controller="Dropship" asp-action="Products" asp-route-page="@pageNum">@pageNum</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-controller="Dropship" asp-action="Products" asp-route-page="@pageNum">@pageNum</a>
+                            </li>
+                        }
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>
