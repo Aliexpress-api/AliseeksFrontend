@@ -50,6 +50,14 @@ namespace AliseeksFE.Controllers
             return RedirectToAction("Products");
         }
 
+        [Route("[controller]/products/{itemid}")]
+        public async Task<IActionResult> Product(int itemid)
+        {
+            var dropshipItem = await dropship.GetProduct(itemid);
+
+            return View(dropshipItem);
+        }
+
         public async Task<IActionResult> Integrations()
         {
             var integrations = await dropship.GetIntegrations();

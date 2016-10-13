@@ -37,6 +37,20 @@ namespace AliseeksFE.Services.Dropshipping
             var response = await api.Post(ApiEndpoints.DropshipUpdateProduct, jsonContent);
         }
 
+        public async Task<DropshipItem> GetProduct(int itemid)
+        {
+            var response = await api.Get(ApiEndpoints.DropshipGetProduct(itemid));
+
+            if(response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var product = JsonConvert.DeserializeObject<DropshipItem>(json);
+                return product;
+            }
+
+            return new DropshipItem();
+        }
+
         public async Task<DropshipItem[]> GetProducts()
         {
             var response = await api.Get(ApiEndpoints.DropshipGetProducts(0, 28));

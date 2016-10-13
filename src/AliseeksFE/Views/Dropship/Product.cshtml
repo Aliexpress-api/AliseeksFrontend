@@ -1,0 +1,77 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_DropshippingLayout";
+}
+
+@model DropshipItem
+
+<form id="item-form" asp-controller="Dropship" asp-action="Product" method="post" class="form-horizontal">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label class="control-label">Price Adjustment: </label>
+        <div class="input-group">
+            <span id="price-unit" class="input-group-addon">$</span>
+            <input id="price-adjust" class="form-control" placeholder="$" value="@Model.Dropshipping.Rules.FixedPriceAdjustment.GetValueOrDefault()" />
+        </div>
+        <input class="hidden" type="text" asp-for="Dropshipping.Rules.FixedPrice" />
+        <input class="hidden" type="text" asp-for="Dropshipping.Rules.FixedPriceAdjustment" />
+        <input class="hidden" type="text" asp-for="Dropshipping.Rules.FixedPricePercentage" />
+    </div>
+    <div class="form-group">
+        <select id="price-dropdown" class="dropdown form-control input-sm">
+            <option value="#Dropshipping_Rules_FixedPricePercentage">Percentage</option>
+            <option value="#Dropshipping_Rules_FixedPriceAdjustment" selected>Price Adjustment</option>
+            <option value="#Dropshipping_Rules_FixedPrice">Fixed Price</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Stock Adjustment:</label>
+        <div class="input-group">
+            <span class="input-group-addon">+/-</span>
+            <input id="stock-adjust" class="form-control" placeholder="" type="number" value="@Model.Dropshipping.Rules.FixedStockAdjustment" />
+            </div>
+            <input class="hidden" type="text" asp-for="Dropshipping.Rules.FixedStock" />
+            <input class="hidden" type="text" asp-for="Dropshipping.Rules.FixedStockAdjustment" />
+        </div>
+        <div class="form-group">
+            <select id="stock-dropdown" class="dropdown form-control input-sm">
+                <option value="#Dropshipping_Rules_FixedStock">Fixed Stock</option>
+                <option value="#Dropshipping_Rules_FixedStockAdjustment" selected>Stock Adjustment</option>
+            </select>
+        </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Apply</button>
+    </div>
+</form>
+
+@section scripts {
+    <script>
+        $(main);
+
+        function main() {
+            $('#price-dropdown').change(function () {
+                var priceDropdownVal = $('price-dropdown').val();
+
+                $('#price-adjust').val($(priceDropdownVal).val());
+            });
+
+            $('#stock-dropdown').change(function () {
+                $('#stock-adjust').val($($('#stock-dropdown').val()).val());
+            });
+
+            $('#item-form').on('submit', function () {
+                var price = $('#price-adjust').val();
+                var priceElementSelector = $('#price-dropdown').val();
+
+                var stock = $('#stock-adjust').val();
+                var stockElementSelector = $('#stock-dropdown').val();
+
+                $(priceElementSelector).attr('value', price);
+                $(stockElementSelector).attr('value', stock);
+            });
+        }
+
+</script>
+}
