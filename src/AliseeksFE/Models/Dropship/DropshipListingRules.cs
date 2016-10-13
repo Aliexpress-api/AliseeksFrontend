@@ -5,6 +5,21 @@ using System.Threading.Tasks;
 
 namespace AliseeksFE.Models.Dropship
 {
+    public enum PriceRule
+    {
+        FixedPrice,
+        PriceAdjustment,
+        PricePercentage,
+        None
+    }
+
+    public enum StockRule
+    {
+        FixedStock,
+        StockAdjustment,
+        None
+    }
+
     public class DropshipListingRules
     {
         public static DropshipListingRules Default
@@ -19,6 +34,11 @@ namespace AliseeksFE.Models.Dropship
                 };
             }
         }
+
+        public decimal? Price { get; set; }
+        public PriceRule PriceRule { get; set; }
+        public int? Stock { get; set; }
+        public StockRule StockRule { get; set; }
 
         public decimal? FixedPrice { get; set; }
         public decimal? FixedPriceAdjustment { get; set; }

@@ -5,11 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AliseeksFE.Services.Search;
 using AliseeksFE.Models.Search;
+using AliseeksFE.Services.Api;
 using AliseeksFE.Filters;
 using Microsoft.AspNetCore.Http;
 using SharpRaven.Core;
 using SharpRaven.Core.Data;
 using AliseeksFE.Utility.Extensions;
+using AliseeksFE.Services;
+using Newtonsoft.Json;
+using AliseeksFE.Models.Api;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,11 +23,13 @@ namespace AliseeksFE.Controllers
     {
         ISearchService search;
         IRavenClient raven;
+        IApiService api;
 
-        public SearchController(ISearchService search, IRavenClient raven)
+        public SearchController(ISearchService search, IApiService api, IRavenClient raven)
         {
             this.search = search;
             this.raven = raven;
+            this.api = api;
         }
 
         // POST: /search
@@ -63,6 +69,25 @@ namespace AliseeksFE.Controllers
             {
                 return LocalRedirect("/");
             }
+        }
+
+        [HttpGet]
+        [Route("[controller]/ajax/aliexpress")]
+        public async Task<IActionResult> AjaxSingleItem(string link)
+        {
+            var response = await api.Get(ApiEndpoints.SearchSingle(link, "Aliexpress"));
+
+            if(response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var product = JsonConvert.DeserializeObject<ItemDetail>(json);
+                if (product == null)
+                    return NotFound();
+
+                return Json(product);
+            }
+
+            return NotFound();
         }
 
         [HttpDelete]
