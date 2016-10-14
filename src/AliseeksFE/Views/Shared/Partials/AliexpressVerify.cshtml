@@ -1,0 +1,17 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ItemDetail
+
+@{
+    Layout = null;
+}
+
+<div>
+    <img class="source-img" src="@Model.ImageUrls[0]" />
+    <div>
+        <p>@Model.Name</p>
+        <p>@Model.Currency @Model.Price</p>
+        <p>@Model.Stock in stock</p>
+    </div>
+</div>

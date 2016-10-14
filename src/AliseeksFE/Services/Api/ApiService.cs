@@ -71,6 +71,19 @@ namespace AliseeksFE.Services.Api
             return response;
         }
 
+        public async Task<HttpResponseMessage> Put(string endpoint, StringContent data, Action<HttpClient> clientConfig = null)
+        {
+            HttpResponseMessage response = new HttpResponseMessage(System.Net.HttpStatusCode.ServiceUnavailable);
+
+            var request = new HttpRequestMessage(HttpMethod.Put, new Uri(endpoint, UriKind.Relative));
+            request.Content = data;
+
+            response = await sendRequest(request, clientConfig);
+
+
+            return response;
+        }
+
         async Task preRequest(HttpRequestMessage request)
         {
             //Add authorization to request

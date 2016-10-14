@@ -1,0 +1,21 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model ShopifyProductModel
+
+@{
+}
+
+<div>
+    @if (Model.Images.FirstOrDefault() != null)
+    {
+        <img class="listing-img" src="@Model.Images.FirstOrDefault().Src" />
+    }
+    else
+    {
+        <img class="listing-img" src="" />
+    }
+    <p>@Model.Title</p>
+    <p id="calculated-price">@Model.Variants[0].Price</p>
+</div>

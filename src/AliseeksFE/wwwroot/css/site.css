@@ -6360,3 +6360,15 @@ footer {
 .dropship-price {
   font-size: 1em;
   color: #e06500; }
+
+.source-img {
+  display: block;
+  width: 150px;
+  height: 150px;
+  float: left; }
+
+.listing-img {
+  display: block;
+  width: 150px;
+  height: 150px;
+  float: left; }

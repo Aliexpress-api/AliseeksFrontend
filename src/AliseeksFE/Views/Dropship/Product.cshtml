@@ -5,7 +5,7 @@
     Layout = "_DropshippingLayout";
 }
 
-@model DropshipItem
+@model DropshipItemModel
 
 <div class="row">
     <div class="col-md-6">
@@ -13,7 +13,7 @@
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">AliExpress Link:</label>
-                <input asp-for="Dropshipping.Source.Link" class="form-control" placeholder="https://www.aliexpress.com/item/10-PCS-LOT-HOT-SALE-GDT-DC-12V-Brushless-Cooling-Fan-40mm-10mm-free-shipping/1776219605.html" />
+                <input asp-for="Source.Link" class="form-control" placeholder="https://www.aliexpress.com/item/10-PCS-LOT-HOT-SALE-GDT-DC-12V-Brushless-Cooling-Fan-40mm-10mm-free-shipping/1776219605.html" />
                 <button id="aliexpress-verify"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
                 <div id="source-verify-content">
 
@@ -21,18 +21,21 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Shopify Listing:</label>
-                <input asp-for="Dropshipping.ListingID" class="form-control" placeholder="2513574" />
-                <p>Price: <span id="price-calc">@Model.Product.Variants[0].Price</span></p>
+                <input asp-for="ListingID" class="form-control" placeholder="2513574" />
+                <button id="listing-verify"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
+                <div id="listing-verify-content">
+
+                </div>
             </div>
             <div class="form-group">
                 <label class="control-label">Price Adjustment: </label>
                 <div class="input-group">
                     <span id="price-unit" class="input-group-addon">$</span>
-                    <input asp-for="Dropshipping.Rules.Price" class="form-control" placeholder="$" />
+                    <input asp-for="Rules.Price" class="form-control" placeholder="$" />
                 </div>
             </div>
             <div class="form-group">
-                <select asp-for="Dropshipping.Rules.PriceRule" onchange="priceDropdownChange" class="dropdown form-control input-sm">
+                <select asp-for="Rules.PriceRule" onchange="priceDropdownChange" class="dropdown form-control input-sm">
                     <option value="0">Static</option>
                     <option value="1" selected>Margin</option>
                     <option value="2">Percentage</option>
@@ -43,11 +46,11 @@
                 <label class="control-label">Stock Adjustment:</label>
                 <div class="input-group">
                     <span class="input-group-addon">+/-</span>
-                    <input asp-for="Dropshipping.Rules.Stock" class="form-control" placeholder="" type="number" />
+                    <input asp-for="Rules.Stock" class="form-control" placeholder="" type="number" />
                 </div>
             </div>
             <div class="form-group">
-                <select asp-for="Dropshipping.Rules.StockRule" class="dropdown form-control input-sm">
+                <select asp-for="Rules.StockRule" class="dropdown form-control input-sm">
                     <option value="0">Fixed Stock</option>
                     <option value="1" selected>Margin</option>
                     <option value="2">None</option>
@@ -62,14 +65,38 @@
 
 @section scripts {
     <script>
-        function ajaxVerifyAliexpress(event)
-        {
-            var link = $("[name='Dropshipping.Source.Link']").val();
+        function ajaxVerifyShopify(event) {
+            var link = $("[name='ListingID']").val();
 
             $.ajax({
-                url: "/search/ajax/aliexpress?link=" + link,
+                url: "/dropship/ajax/shopify?listingid=" + link,
                 method: 'GET',
-                dataType: 'json',
+                success: success,
+                error: error
+            });
+
+            function success(data) {
+                $('#listing-verify').empty();
+                $('#listing-verify').append('OKAY');
+                $('#listing-verify-content').empty();
+                $('#listing-verify-content').append(data);
+            }
+
+            function error() {
+                $('#listing-verify').empty();
+                $('#listing-verify').append('NOT OKAY');
+            }
+
+            event.preventDefault();
+        }
+
+        function ajaxVerifyAliexpress(event)
+        {
+            var link = $("[name='Source.Link']").val();
+
+            $.ajax({
+                url: "/dropship/ajax/aliexpress?link=" + link,
+                method: 'GET',
                 success: success,
                 error: error
             });
@@ -79,7 +106,7 @@
                 $('#aliexpress-verify').empty();
                 $('#aliexpress-verify').append('OKAY');
                 $('#source-verify-content').empty();
-                $('#source-verify-content').append(`<p>Price: ${data['price']}</p>`)
+                $('#source-verify-content').append(data);
             }
 
             function error()
@@ -93,38 +120,39 @@
 
         $(function () {
             $('#aliexpress-verify').click(ajaxVerifyAliexpress);
+            $('#listing-verify').click(ajaxVerifyShopify);
 
-            $("[name='Dropshipping.Rules.PriceRule']").change(function() {
-                var dropdown = $("[name='Dropshipping.Rules.PriceRule']");
+            $("[name='Rules.PriceRule']").change(function() {
+                var dropdown = $("[name='Rules.PriceRule']");
                 switch(dropdown.val())
                 {
                     case '3':
-                        $("[name='Dropshipping.Rules.Price']").prop('disabled', true);
+                        $("[name='Rules.Price']").prop('disabled', true);
                         break;
 
                     case '2':
                         $('#price-unit').text('%');
-                        $("[name='Dropshipping.Rules.Price']").attr('placeholder', '10.0%');
-                        $("[name='Dropshipping.Rules.Price']").prop('disabled', false);
+                        $("[name='Rules.Price']").attr('placeholder', '10.0%');
+                        $("[name='Rules.Price']").prop('disabled', false);
                         break;
 
                     default:
                         $('#price-unit').text('$');
-                        $("[name='Dropshipping.Rules.Price']").attr('placeholder', '$10.00');
-                        $("[name='Dropshipping.Rules.Price']").prop('disabled', false);
+                        $("[name='Rules.Price']").attr('placeholder', '$10.00');
+                        $("[name='Rules.Price']").prop('disabled', false);
                         break;
                 }
             });
 
-            $("[name='Dropshipping.Rules.StockRule']").change(function () {
-                var dropdown = $("[name='Dropshipping.Rules.StockRule']");
+            $("[name='Rules.StockRule']").change(function () {
+                var dropdown = $("[name='Rules.StockRule']");
                 switch (dropdown.val()) {
                     case '2':
-                        $("[name='Dropshipping.Rules.Stock']").prop('disabled', true);
+                        $("[name='Rules.Stock']").prop('disabled', true);
                         break;
 
                     default:
-                        $("[name='Dropshipping.Rules.Stock']").prop('disabled', false);
+                        $("[name='Rules.Stock']").prop('disabled', false);
                         break;
                 }
             });

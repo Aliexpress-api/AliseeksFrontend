@@ -81,7 +81,12 @@
 
     <noscript id="deferred-styles">
         <link rel="stylesheet" type="text/css" href="~/lib/bootstrap-select/css/bootstrap-select.css">
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+        <environment names="Development">
+            <link rel="stylesheet" type="text/css" href="~/lib/font-awesome-4.6.3/css/font-awesome.min.css" />
+        </environment>
+        <environment names="Staging,Production">
+            <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+        </environment>
     </noscript>
     <script>
       var loadDeferredStyles = function() {
