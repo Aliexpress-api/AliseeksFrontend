@@ -19,5 +19,10 @@ namespace AliseeksFE.Utility.Extensions
             else
                 return value;
         }
+
+        public static bool IsEmptyOrNull(this string value)
+        {
+            return value == null || value == String.Empty;
+        }
     }
 }

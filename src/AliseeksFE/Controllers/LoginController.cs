@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using AliseeksFE.Models.Login;
 using AliseeksFE.Services.User;
 using System.Net;
+using AliseeksFE.Utility.Extensions;
 using AliseeksFE.Features;
 
 namespace AliseeksFE.Controllers
@@ -21,14 +22,17 @@ namespace AliseeksFE.Controllers
 
         [HttpGet]
         [Route("/login")]
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl)
         {
+            if(!returnUrl.IsEmptyOrNull())
+                ViewData.Add("ReturnUrl", returnUrl);
+
             return View(new LoginUserModel());
         }
 
         [HttpPost]
         [Route("/login")]
-        public async Task<IActionResult> Login(LoginUserModel model)
+        public async Task<IActionResult> Login(LoginUserModel model, string returnUrl)
         {
             if(ModelState.IsValid)
             {
@@ -40,7 +44,10 @@ namespace AliseeksFE.Controllers
                         return View(model);
 
                     case HttpStatusCode.OK:
-                        return LocalRedirect("/");
+                        if (returnUrl.IsEmptyOrNull())
+                            return LocalRedirect("/");
+                        else
+                            return LocalRedirect(returnUrl);
 
                     default:
                         return View(model);
@@ -62,15 +69,23 @@ namespace AliseeksFE.Controllers
 
         [HttpGet]
         [Route("/register")]
-        public IActionResult Register()
-        {         
+        public IActionResult Register(string returnUrl)
+        {
+            if (!returnUrl.IsEmptyOrNull())
+                ViewData.Add("ReturnUrl", returnUrl);
+
             return View(new NewUserModel());
         }
 
         [HttpPost]
         [Route("/register")]
-        public async Task<IActionResult> Register(NewUserModel model)
+        public async Task<IActionResult> Register(NewUserModel model, string returnUrl)
         {
+            object routeValues = null;
+
+            if (!returnUrl.IsEmptyOrNull())
+                routeValues = new { returnUrl = returnUrl };
+
             if(ModelState.IsValid)
             {
                 var response = await user.Register(model);
@@ -82,11 +97,14 @@ namespace AliseeksFE.Controllers
 
                     case HttpStatusCode.OK:
                     default:
-                        return LocalRedirect("/login");
+                        return RedirectToAction("Login", routeValues);
                 }
             }
             else
             {
+                if (!returnUrl.IsEmptyOrNull())
+                    ViewData.Add("ReturnUrl", returnUrl);
+
                 return View(model);
             }
         }

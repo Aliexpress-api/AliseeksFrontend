@@ -11,15 +11,28 @@
 @model DropshipIntegration[]
 
 <h4>Integrations</h4>
+<br/>
+<br/>
 
 <div class="row">
-    @if(Model.FirstOrDefault(x => x.Service == "Shopify") == null)
+    @if (Model.FirstOrDefault(x => x.Service == "Shopify") == null)
     {
-        <a asp-controller="dropship" asp-action="integrateshopify" class="btn btn-primary">+ Integrate Shopify</a>
+        <span><a asp-controller="dropship" asp-action="integrateshopify" class="btn btn-default">Connect with <img style="height:20px;width:auto;" src="~/images/shopifylogo.png" alt="shopify" /></a></span>
     }
 </div>
 
+<br />
+<hr />
+<br />
+
 <div class="row">
+    @if (Model.Length == 0)
+    {
+        <div class="col-md-3 col-center">
+            <div class="alert alert-info text-center">No integrations yet!
+            <br/>Add an integration above to get started!</div>
+        </div>
+    }
     @foreach(var integration in Model)
     {
         <p class="text-capitalize">@integration.Service</p>

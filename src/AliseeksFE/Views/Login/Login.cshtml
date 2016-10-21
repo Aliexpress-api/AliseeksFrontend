@@ -11,7 +11,7 @@
 </div>
 <div class="row">
     <div class="col-xs-10 col-sm-6 col-md-2 col-center col-center">
-        <form asp-controller="Login" asp-action="Login" method="post" class="form-horizontal">
+        <form asp-controller="Login" asp-action="Login" asp-route-returnUrl="@(ViewData.ContainsKey("ReturnUrl") ? ViewData["ReturnUrl"].ToString() : "")" method="post" class="form-horizontal">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">Username</label>
@@ -22,7 +22,7 @@
                 <input type="password" asp-for="Password" class="form-control" />
             </div>
             <div class="form-group">
-                <p>No account? <a href="/register">Click here</a> to register!</p>
+                <p>No account? <a asp-controller="Login" asp-action="Register" asp-route-returnUrl="@(ViewData.ContainsKey("ReturnUrl") ? ViewData["ReturnUrl"].ToString() : "")">Click here</a> to register!</p>
                 <p><a href="/passwordreset">Forgot your password?</a></p>
             </div>
             <div class="form-group">

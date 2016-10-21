@@ -4,89 +4,164 @@
 @{
 }
 
-<div class="col-md-8 col-center">
-    <div class="col-md-4">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="text-center">Free Alpha</h3>
-                <p class="text-center">Max Products: 500</p>
-            </div>
-            <div class="panel-body text-center">
-                <p class="lead">Free!</p>
-            </div>
-            <ul class="list-group list-group-flush text-center">
-                <li class="list-group-item">
-                    500 Products
-                </li>
-                <li class="list-group-item">
-                    Daily Price & Inventory Sync
-                </li>
-                <li class="list-group-item">
-                    One Click Add To Shopify
-                </li>
-            </ul>
-            <div class="panel-footer text-center">
-                <form asp-controller="Account" asp-action="Dropshipping" method="post">
-                    <input class="hidden" name="Subscription" value="alphapromo" />
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="text-center">Free Alpha</h3>
-                <p class="text-capitalize">Max Products: 500</p>
-            </div>
-            <div class="panel-body text-center">
-                <p class="lead">Free!</p>
-            </div>
-            <ul class="list-group list-group-flush text-center">
-                <li class="list-group-item">
-                    500 Products
-                </li>
-                <li class="list-group-item">
-                    Daily Price & Inventory Sync
-                </li>
-                <li>
-                    One Click Add To Shopify
-                </li>
-            </ul>
-            <div class="panel-footer text-center">
-                <form asp-controller="Account" asp-action="Dropshipping" method="post">
-                    <input class="hidden" name="Subscription" value="alphapromo" />
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="text-center">Free Alpha</h3>
-                <p class="text-capitalize">Max Products: 500</p>
-            </div>
-            <div class="panel-body text-center">
-                <p class="lead">Free!</p>
-            </div>
-            <ul class="list-group list-group-flush text-center">
-                <li class="list-group-item">
-                    500 Products
-                </li>
-                <li class="list-group-item">
-                    Daily Price & Inventory Sync
-                </li>
-                <li>
-                    One Click Add To Shopify
-                </li>
-            </ul>
-            <div class="panel-footer text-center">
-                <form asp-controller="Account" asp-action="Dropshipping" method="post">
-                    <input class="hidden" name="Subscription" value="alphapromo" />
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
-            </div>
+<br />
+<div class="row">
+    <div class="col-lg-4 col-md-6 col-center">
+        <div class="alert alert-warning">
+            <p>
+                We are still actively testing and developing this product. A free alpha will be available during this time period. We estimate this time period to be at <strong>least</strong> 60 days.
+                We are targeting that on the final release, the <strong>Alpha</strong> subscription will be approximently $4.50 a month.
+            </p>
         </div>
     </div>
 </div>
+<br />
+
+<div class="row">
+    <div class="col-lg-6 col-md-8 col-center">
+        <table class="table table-hover">
+            <tr>
+                <th>Plan Name</th>
+                <th class="text-center">Alpha <i class="fa fa-question-circle-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="See Above"></i></th>
+                <th class="text-center text-muted disabled">Regular</th>
+                <th class="text-center text-muted disabled">Profresh</th>
+            </tr>
+            <tr>
+                <td>
+                    Price
+                </td>
+                <td class="text-center">
+                    <span class="lead">Free</span><span class="text-muted"> / month</span>
+                </td>
+                <td class="text-center">
+                    <span class="lead">$14.95</span><span class="text-muted"> / month</span>
+                </td>
+                <td class="text-center">
+                    <span class="lead">$79.95</span><span class="text-muted"> / month</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Products
+                </td>
+                <td class="text-center">
+                    <strong>500</strong>
+                </td>
+                <td class="text-center">
+                    <strong>15000</strong>
+                </td>
+                <td class="text-center">
+                    <strong>Unlimited</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Orders per month
+                </td>
+                <td class="text-center">
+                    <strong>Unlimited</strong>
+                </td>
+                <td class="text-center">
+                    <strong>Unlimited</strong>
+                </td>
+                <td class="text-center">
+                    <strong>Unlimited</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Daily Product Sync
+                    <i class="fa fa-question-circle-o pull-right" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Set fixed or percentage inventory adjustments - Daily Sync"></i>
+                </td>
+                <td class="text-center">
+                    <i class="fa fa-check-circle text-success" aria-hidden="true"></i>
+                </td>
+                <td class="text-center">
+                    <i class="fa fa-check-circle text-success" aria-hidden="true"></i>
+                </td>
+                <td class="text-center">
+                    <i class="fa fa-check-circle text-success" aria-hidden="true"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Daily Pricing Sync
+                    <i class="fa fa-question-circle-o pull-right" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Set fixed or percentage pricing adjustments - Daily Sync"></i>
+                </td>
+                <td class="text-center">
+                    <i class="fa fa-check-circle text-success" aria-hidden="true"></i>
+                </td>
+                <td class="text-center">
+                    <i class="fa fa-check-circle text-success" aria-hidden="true"></i>
+                </td>
+                <td class="text-center">
+                    <i class="fa fa-check-circle text-success" aria-hidden="true"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    One Click List
+                    <i class="fa fa-question-circle-o pull-right" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="List directly from Aliseeks"></i>
+                </td>
+                <td class="text-center">
+                    <i class="fa fa-check-circle text-success" aria-hidden="true"></i>
+                </td>
+                <td class="text-center">
+                    <i class="fa fa-check-circle text-success" aria-hidden="true"></i>
+                </td>
+                <td class="text-center">
+                    <i class="fa fa-check-circle text-success" aria-hidden="true"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ebay Integration
+                    <i class="fa fa-question-circle-o pull-right" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Dropship through eBay and Shopify"></i>
+                </td>
+                <td class="text-center"><i>Coming Soon</i></td>
+                <td class="text-center">
+                    <span class="text-muted"><i>Coming Soon</i></span>
+                </td>
+                <td class="text-center">
+                    <span class="text-muted"><i>Coming Soon</i></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Multiple Storefronts
+                    <i class="fa fa-question-circle-o pull-right" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Dropship items through different account"></i>
+                </td>
+                <td class="text-center"></td>
+                <td class="text-center">
+                    <span class="text-muted"><i>Coming Soon</i></span>
+                </td>
+                <td class="text-center">
+                    <span class="text-muted"><i>Coming Soon</i></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td class="text-center">
+                    <form asp-controller="Account" asp-action="Dropshipping" method="post">
+                        <input class="hidden" name="Subscription" value="alphapromo" />
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </td>
+                <td class="text-center">
+                    <form asp-controller="Account" asp-action="Dropshipping" method="post">
+                        <input class="hidden" name="Subscription" value="regular" />
+                        <button type="submit" class="btn btn-primary disabled">Coming Soon</button>
+                    </form>
+                </td>
+                <td class="text-center">
+                    <form asp-controller="Account" asp-action="Dropshipping" method="post">
+                        <input class="hidden" name="Subscription" value="profresh" />
+                        <button type="submit" class="btn btn-primary disabled">Coming Soon</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+        </div>
+    </div>

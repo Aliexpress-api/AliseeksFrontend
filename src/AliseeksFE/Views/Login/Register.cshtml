@@ -11,7 +11,7 @@
     </div>
 </div>
 <div class="col-sm-6 col-md-2 col-center">
-    <form asp-controller="Login" asp-action="Register" method="post" class="form-horizontal">
+    <form asp-controller="Login" asp-action="Register" asp-route-returnUrl="@(ViewData.ContainsKey("ReturnUrl") ? ViewData["ReturnUrl"].ToString() : "")" method="post" class="form-horizontal">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group">
             <label class="control-label">Username</label>
