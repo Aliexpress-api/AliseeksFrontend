@@ -115,7 +115,11 @@ namespace AliseeksFE.Controllers
         [Route("[controller]/integration/{id}")]
         public async Task<IActionResult> DeleteIntegration(int id)
         {
+            var username = HttpContext.User.Identity.Name;
 
+            await dropship.DeleteIntegration(id);
+
+            return RedirectToAction("Integrations");
         }
 
         [HttpGet]

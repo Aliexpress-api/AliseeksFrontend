@@ -120,6 +120,11 @@ namespace AliseeksFE.Services.Dropshipping
                 return new DropshipIntegration[0];
         }
 
+        public async Task DeleteIntegration(int id)
+        {
+            var response = await api.Delete(ApiEndpoints.DropshipIntegrationDelete(id));
+        }
+
         public async Task<ShopifyOAuthRequest> GetShopifyOAuth(string shop)
         {
             var qs = new Dictionary<string, string>()

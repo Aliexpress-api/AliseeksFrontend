@@ -30,6 +30,7 @@ namespace AliseeksFE.Services
         public static string DropshipGetProducts(int offset, int limit) { return $"api/dropshipping?offset={offset.ToString()}&limit={limit.ToString()}"; }
         public static string DropshipGetProduct(int id) { return $"api/dropshipping/{id}"; }
         public static string DropshipIntegrationGetProduct(string listing, string listingid) { return $"api/dropshipping/integrations/{listing}/{listingid}"; }
+        public static string DropshipIntegrationDelete(int id) { return $"/api/dropshipping/account/integrations/{id}"; }
 
         public const string DropshipGetAccount = "api/dropshipping/account";
         public const string DropshipGetOrders = "api/dropshipping/account/orders";
