@@ -11,25 +11,34 @@
 }
 
 <div class="col-md-12 col-center">
-    @foreach (var item in Model)
+    @if (Model == null || Model.Length == 0)
     {
-        <div class="row row-centered">
-            <div class="product">
-                <img class="dropship-image" src="@item.Product.Images.FirstOrDefault().Src" alt="@item.Product.Title" />
-                <div class="col-md-6">
-                    <p class="dropship-title">@item.Dropshipping.Source.Title</p>
-                    <p>Pricing Rule: @rules.PriceAdjustment(item.Dropshipping.Rules)</p>
-                    <p>Stock Rule: @rules.StockAdjustment(item.Dropshipping.Rules)</p>
-                </div>
-                <div class="col-md-3">
-                    @foreach (var variant in item.Product.Variants)
+        <div class="alert alert-info text-center">
+            <p>No items listed yet! You can add dropshipping items through Aliseeks <a asp-controller="Home" asp-action="Index">Search</a>.</p>
+        </div>
+    }
+    else
+    {
+        @foreach (var item in Model)
+        {
+            <div class="row row-centered">
+                <div class="product">
+                    <img class="dropship-image" src="@item.Product.Images.FirstOrDefault().Src" alt="@item.Product.Title" />
+                    <div class="col-md-6">
+                        <p class="dropship-title">@item.Dropshipping.Source.Title</p>
+                        <p>Pricing Rule: @rules.PriceAdjustment(item.Dropshipping.Rules)</p>
+                        <p>Stock Rule: @rules.StockAdjustment(item.Dropshipping.Rules)</p>
+                    </div>
+                    <div class="col-md-3">
+                        @foreach (var variant in item.Product.Variants)
                     {
-                        <p class="dropship-price">@variant.Price</p>
-                    }
-                    <a asp-controller="Dropship" asp-action="Product" asp-route-itemid="@item.Dropshipping.ID"><i class="fa fa-gear"></i></a>
+                            <p class="dropship-price">@variant.Price</p>
+                        }
+                        <a asp-controller="Dropship" asp-action="Product" asp-route-itemid="@item.Dropshipping.ID"><i class="fa fa-gear"></i></a>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     }
 </div>
 
