@@ -98,7 +98,7 @@ gulp.task("min:images", function () {
 gulp.task("uncss:home", function () {
     return gulp.src(paths.uncss)
                 .pipe(uncss({
-                    html: ['http://www.aliseeks.com']
+                    html: ['http://104.236.48.115:1470/']
                 }))
                 .pipe(nano({
                     discardComments: {
