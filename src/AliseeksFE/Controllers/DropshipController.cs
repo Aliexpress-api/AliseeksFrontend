@@ -56,6 +56,38 @@ namespace AliseeksFE.Controllers
         }
 
         [HttpGet]
+        [Route("[controller]/products/add")]
+        public IActionResult AddProduct()
+        {
+            return View(new DropshipItemModel()
+            {
+                Source = new SingleItemRequest()
+                {
+                    Source = "Aliexpress"
+                },
+                Rules = DropshipListingRules.Default
+            });
+        }
+
+        [HttpPost]
+        [Route("[controller]/products/add")]
+        public async Task<IActionResult> AddProduct(DropshipItemModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var response = await dropship.AddProduct(model);
+
+            if(response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                ModelState.AddModelError("All", await response.Content.ReadAsStringAsync());
+                return View(model);
+            }
+
+            return RedirectToAction("Products");
+        }
+
+        [HttpGet]
         [Route("[controller]/products/{itemid}")]
         public async Task<IActionResult> Product(int itemid)
         {

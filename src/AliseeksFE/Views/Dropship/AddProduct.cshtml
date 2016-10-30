@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    Layout = "_DropshippingLayout";
+}
+
+@model DropshipItemModel
+
+<div class="row">
+    <div class="col-md-6">
+        <form id="item-form" asp-controller="Dropship" asp-action="AddProduct" method="post" class="form-horizontal">
+            <p class="lead">Add a Dropshipping Product</p>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input class="hidden" asp-for="Source.Source" />
+            <div class="form-group">
+                <label class="control-label">Aliexpress Link: </label>
+                <input class="form-control" asp-for="Source.Link" placeholder="https://www.aliexpress.com/item/10-PCS-LOT-HOT-SALE-GDT-DC-12V-Brushless-Cooling-Fan-40mm-10mm-free-shipping/1776219605.html" />
+            </div>
+            <input asp-for="Source.Source" class="hidden" />
+            <div class="form-group">
+                <label class="control-label">Price Adjustment: </label>
+                <div class="input-group">
+                    <span id="price-unit" class="input-group-addon">$</span>
+                    <input asp-for="Rules.Price" class="form-control" placeholder="$" />
+                </div>
+            </div>
+            <div class="form-group">
+                <select asp-for="Rules.PriceRule" onchange="priceDropdownChange" class="dropdown form-control input-sm">
+                    <option value="0">Static</option>
+                    <option value="1">Margin</option>
+                    <option value="2">Percentage</option>
+                    <option value="3">None</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Stock Adjustment:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">-</span>
+                    <input asp-for="Rules.Stock" class="form-control" placeholder="" type="number" />
+                </div>
+            </div>
+            <div class="form-group">
+                <select asp-for="Rules.StockRule" class="dropdown form-control input-sm">
+                    <option value="0">Fixed Stock</option>
+                    <option value="1">Margin</option>
+                    <option value="2">None</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </form>
+    </div>
+</div>

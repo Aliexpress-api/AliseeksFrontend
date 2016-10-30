@@ -37,6 +37,16 @@ namespace AliseeksFE.Services.Dropshipping
             return response;
         }
 
+        public async Task<HttpResponseMessage> AddProduct(DropshipItemModel item)
+        {
+            var json = JsonConvert.SerializeObject(item);
+            var jsonContent = new JsonContent(json);
+
+            var response = await api.Post(ApiEndpoints.DropshipAddProductDropshipItem, jsonContent);
+
+            return response;
+        }
+
         public async Task UpdateProduct(DropshipItemModel model)
         {
             var json = JsonConvert.SerializeObject(model);
