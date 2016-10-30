@@ -101,8 +101,7 @@ namespace AliseeksFE.Controllers
             }
         }
 
-        [HttpDelete]
-        [Route("[controller]/products/{itemid}")]
+        [Route("[controller]/products/{itemid}/delete")]
         public async Task<IActionResult> ProductDelete(int itemid)
         {
             var response = await api.Delete(ApiEndpoints.DropshipProductDelete(itemid));
@@ -148,8 +147,7 @@ namespace AliseeksFE.Controllers
             }
         }
 
-        [HttpDelete]
-        [Route("[controller]/integration/{id}")]
+        [Route("[controller]/integration/{id}/delete")]
         public async Task<IActionResult> DeleteIntegration(int id)
         {
             var username = HttpContext.User.Identity.Name;

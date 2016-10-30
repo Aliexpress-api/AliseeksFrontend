@@ -63,7 +63,7 @@ namespace AliseeksFE.Controllers
             {
                 await search.Save(criteria);
 
-                return await Search(criteria);
+                return Ok();
             }
             else
             {
@@ -90,13 +90,12 @@ namespace AliseeksFE.Controllers
             return NotFound();
         }
 
-        [HttpDelete]
-        [Route("/[controller]/save/{id}")]
+        [Route("/[controller]/save/{id}/delete")]
         public async Task<IActionResult> Delete(int id)
         {
             await search.DeleteSearch(id);
 
-            return Ok();
+            return RedirectToAction("Index", "Account");
         }
 
         [HttpGet]

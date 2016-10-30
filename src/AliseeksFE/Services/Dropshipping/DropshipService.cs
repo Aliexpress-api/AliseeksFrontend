@@ -11,16 +11,20 @@ using AliseeksFE.Models.Shopify;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.AspNetCore.Http;
 using System.Net.Http;
+using Microsoft.Extensions.Options;
+using AliseeksFE.Configuration.Options;
 
 namespace AliseeksFE.Services.Dropshipping
 {
     public class DropshipService
     {
         private readonly IApiService api;
+        private readonly ShopifyOptions shopifyConfig;
 
-        public DropshipService(IApiService api)
+        public DropshipService(IApiService api, IOptions<ShopifyOptions> shopifyConfig)
         {
             this.api = api;
+            this.shopifyConfig = shopifyConfig;
         }
 
         public async Task<HttpResponseMessage> AddProduct(SingleItemRequest item)
@@ -134,7 +138,7 @@ namespace AliseeksFE.Services.Dropshipping
             var qs = new Dictionary<string, string>()
             {
                 { "shop", shop },
-                { "redirect", "http://localhost:1470/dropship/integrations/shopify/oauth" }
+                { "redirect", shopifyConfig.OAuthRedirect }
             };
 
             var uri = QueryHelpers.AddQueryString(ApiEndpoints.DropshipOAuthShopify, qs);

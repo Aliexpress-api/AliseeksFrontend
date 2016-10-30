@@ -10,7 +10,33 @@ namespace AliseeksFE.Injectables.Dropship
     {
         public string PriceAdjustment(DropshipListingRules rules)
         {
-            return rules.Price.ToString();
+            var element = "";
+            switch(rules.PriceRule)
+            {
+                case PriceRule.FixedPrice:
+                    break;
+
+                case PriceRule.PriceAdjustment:
+                    if(rules.Price > 0)
+                    {
+                        element += $"<i class=\"fa fa-angle-up\" aria-hidden=\"true\"></i> $ {rules.Price}";
+                    }
+                    else
+                    {
+                        element += $"<i class=\"fa fa-angle-down\" aria-hidden=\"true\"></i> $ {rules.Price}";
+                    }
+                    break;
+
+                case PriceRule.PricePercentage:
+                    element += $"{rules.Price} %";
+                    break;
+
+                case PriceRule.None:
+                    element += "None";
+                    break;
+            }
+
+            return element;
             /*
             if(rules.FixedPricePercentage.HasValue)
             {
@@ -32,7 +58,27 @@ namespace AliseeksFE.Injectables.Dropship
 
         public string StockAdjustment(DropshipListingRules rules)
         {
-            return rules.Stock.ToString();
+            string element = "";
+
+            switch(rules.StockRule)
+            {
+                case StockRule.FixedStock:
+                    element += $"{rules.Stock} Fixed";
+                    break;
+
+                case StockRule.StockAdjustment:
+                    if (rules.Stock > 0)
+                    {
+                        element += $"<i class=\"fa fa-angle-down\" aria-hidden=\"true\"></i> $ {rules.Stock}";
+                    }
+                    else
+                    {
+                        element += $"<i class=\"fa fa-angle-up\" aria-hidden=\"true\"></i> $ {rules.Stock}";
+                    }
+                    break;
+            }
+
+            return element;
 /*
             if(rules.FixedStockAdjustment.HasValue)
             {

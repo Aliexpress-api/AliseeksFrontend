@@ -13,6 +13,10 @@
 
 @{
     Func<string, string> searchEndpoint = (qs) => $"/search?{qs}";
+    if (Model.User.SavedSearches != null)
+    {
+        Model.User.SavedSearches = Model.User.SavedSearches.OrderBy(x => x.Criteria.SearchText).ToArray();
+    }
 }
 
 <h4><span data-toggle="collapse" data-target="#savedSearch" class="">Saved Searches</span></h4>
@@ -21,7 +25,7 @@
         @foreach (var savedSearch in Model.User.SavedSearches)
         {
             <div class="list-group-item">
-                <a class="pull-right" href="/search/save/@savedSearch.ID" data-ajax="true" data-ajax-method="delete" data-ajax-success="deleteSavedSearch"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                <a class="pull-right" href="/search/save/@savedSearch.ID/delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                 <a href="@searchEndpoint(new QueryStringEncoder().Encode(savedSearch.Criteria))">
                     <h4>@savedSearch.Criteria.SearchText</h4>
                     <p class="list-group-item-text">

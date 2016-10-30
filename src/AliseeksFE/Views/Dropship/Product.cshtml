@@ -10,23 +10,12 @@
 <div class="row">
     <div class="col-md-6">
         <form id="item-form" asp-controller="Dropship" asp-action="Product" method="post" class="form-horizontal">
+            <p class="lead">Manage Rules</p>
             <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label class="control-label">AliExpress Link:</label>
-                <input asp-for="Source.Link" class="form-control" placeholder="https://www.aliexpress.com/item/10-PCS-LOT-HOT-SALE-GDT-DC-12V-Brushless-Cooling-Fan-40mm-10mm-free-shipping/1776219605.html" />
-                <button id="aliexpress-verify"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
-                <div id="source-verify-content">
-
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Shopify Listing:</label>
-                <input asp-for="ListingID" class="form-control" placeholder="2513574" />
-                <button id="listing-verify"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
-                <div id="listing-verify-content">
-
-                </div>
-            </div>
+            <input class="hidden" asp-for="Source.Source" />
+            <input asp-for="Source.Link" class="hidden" placeholder="https://www.aliexpress.com/item/10-PCS-LOT-HOT-SALE-GDT-DC-12V-Brushless-Cooling-Fan-40mm-10mm-free-shipping/1776219605.html" />
+            <input asp-for="Listing" class="hidden" />
+            <input asp-for="ListingID" class="hidden" />
             <div class="form-group">
                 <label class="control-label">Price Adjustment: </label>
                 <div class="input-group">

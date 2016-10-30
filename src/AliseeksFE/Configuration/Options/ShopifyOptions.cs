@@ -10,5 +10,6 @@ namespace AliseeksFE.Configuration.Options
         public string APIKey { get; set; }
         public string Refresh { get; set; }
         public string Credentials { get; set; }
+        public string OAuthRedirect { get; set; }
     }
 }

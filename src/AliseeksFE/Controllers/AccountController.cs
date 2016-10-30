@@ -45,6 +45,21 @@ namespace AliseeksFE.Controllers
         }
 
         [Authorize]
+        public async Task<IActionResult> Searches()
+        {
+            var username = HttpContext.User.Identity.Name;
+
+            var search = await user.Overview(username);
+
+            var model = new AccountOverview()
+            {
+                User = search
+            };
+
+            return View("Index", model);
+        }
+
+        [Authorize]
         [HttpGet]
         public IActionResult Dropshipping()
         {

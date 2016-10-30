@@ -11,7 +11,7 @@
 
 <div class="col-md-12 col-lg-8 col-center">
     <div class="row">
-        <p class="pull-right text-muted">Total Results: <strong>@Model.Results.SearchCount</strong> | <a href="@savePath" data-ajax="true" data-ajax-method="GET">Save this search?</a></p>
+        <p class="pull-right text-muted">Total Results: <strong>@Model.Results.SearchCount</strong> | <span id="saveSearchSpan"><a href="@savePath" data-ajax="true" data-ajax-method="GET" data-ajax-success="saveSearchSuccess">Save this search?</a></span></p>
     </div>
 
     @if (Model.Results.Items.Length == 0)
@@ -135,7 +135,7 @@
 <script>
     //Get Price Histories
     //DISABLED
-    $(function () {
+/*    $(function () {
         return;
 
         var items = $(".item");
@@ -161,5 +161,12 @@
             contentType: "application/json;",
             dataType: "json"
         });
-    });
+    }); */
+
+    function saveSearchSuccess()
+    {
+        var el = $('#saveSearchSpan');
+        $(el).empty();
+        $(el).text('Saved!');
+    }
 </script>

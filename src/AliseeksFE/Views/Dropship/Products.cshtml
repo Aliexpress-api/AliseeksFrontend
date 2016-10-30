@@ -3,7 +3,7 @@
 @inject PaginationInject pagination
 @inject DropshipRuleInject rules
 
-@{ 
+@{
     var page = ViewBag.Page;
     var maxCount = ViewBag.MaxCount;
     var itemsPerPage = ViewBag.ItemsPerPage;
@@ -23,30 +23,97 @@
         {
             <div class="row row-centered">
                 <div class="product">
-                    <img class="dropship-image" src="@item.Dropshipping.Image" alt="@item.Dropshipping.Source.Title" />
-                    <div class="col-md-6">
-                        <p class="dropship-title">@item.Dropshipping.Source.Title</p>
-                        <p>Pricing Rule: @rules.PriceAdjustment(item.Dropshipping.Rules)</p>
-                        <p>Stock Rule: @rules.StockAdjustment(item.Dropshipping.Rules)</p>
-                    </div>
-                    <div class="col-md-3">
-                        @if (item.Product != null)
-                        {
-                            @foreach (var variant in item.Product.Variants)
+                    <div class="col-xs-11">
+                        <img class="dropship-image" src="@item.Dropshipping.Image" alt="@item.Dropshipping.Source.Title" />
+                        <div class="col-md-6">
+                            <a href="@item.Dropshipping.Source.Link" class="dropship-title">@item.Dropshipping.Source.Title</a>
+                            <br />
+                            <br />
+                            <p>
+                                Pricing:
+                                <strong>
+                                    @switch (item.Dropshipping.Rules.PriceRule)
+                                    {
+                                        case PriceRule.PriceAdjustment:
+                                            if (item.Dropshipping.Rules.Price > 0)
+                                            {
+                                                <span style="color:green;"><i class="fa fa-angle-up" aria-hidden="true"></i> $ @item.Dropshipping.Rules.Price</span>
+                                            }
+                                            else
+                                            {
+                                                <span style="color:red;"><i class="fa fa-angle-down" aria-hidden="true"></i> $ @item.Dropshipping.Rules.Price</span>
+                                            }
+                                            break;
+
+                                        case PriceRule.PricePercentage:
+                                            if (item.Dropshipping.Rules.Price > 0)
+                                            {
+                                                <span style="color:green;"><i class="fa fa-angle-up" aria-hidden="true"></i> @item.Dropshipping.Rules.Price %</span>
+                                            }
+                                            else
+                                            {
+                                                <span style="color:red;"><i class="fa fa-angle-down" aria-hidden="true"></i> @item.Dropshipping.Rules.Price %</span>
+                                            }
+                                            break;
+
+                                        case PriceRule.FixedPrice:
+                                            <span>$ @item.Dropshipping.Rules.Price</span>
+                                            break;
+
+                                        case PriceRule.None:
+                                            <span>None</span>
+                                            break;
+                                    }
+                                </strong>
+                            </p>
+                            <p>
+                                    Stock:
+                                <strong>
+                                    @switch (item.Dropshipping.Rules.StockRule)
+                                    {
+                                        case StockRule.StockAdjustment:
+                                            if (item.Dropshipping.Rules.Stock > 0)
+                                            {
+                                                <span style="color:red;"><i class="fa fa-angle-down" aria-hidden="true"></i> @item.Dropshipping.Rules.Stock</span>
+                                            }
+                                            else
+                                            {
+                                                <span style="color:green;"><i class="fa fa-angle-up" aria-hidden="true"></i> @item.Dropshipping.Rules.Stock</span>
+                                            }
+                                            break;
+
+                                        case StockRule.FixedStock:
+                                            <span> @item.Dropshipping.Rules.Stock</span>
+                                            break;
+
+                                        case StockRule.None:
+                                            <span>None</span>
+                                            break;
+
+                                    }
+                                </strong>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            @if (item.Product != null)
                             {
-                                <p class="dropship-price">@variant.Price</p>
+                                @foreach (var variant in item.Product.Variants)
+                                {
+                                    <p class="dropship-price">$@variant.Price</p>
+                                    <a class="btn-default" href="@item.Product.Link"><i class="fa fa-external-link" aria-hidden="true"></i> View</a>
+                                }
                             }
-                        }
-                        else
-                        {
-                           <a asp-controller="dropship" asp-action="ProductAddToIntegration" asp-route-itemid="@item.Dropshipping.ID" class="btn btn-primary">Add!</a>
-                        }
-                        <a asp-controller="Dropship" asp-action="Product" asp-route-itemid="@item.Dropshipping.ID"><i class="fa fa-gear"></i></a>
-                        <br/>
-                        <br/>
-                        <form asp-controller="dropship" asp-action="ProductDelete" asp-route-itemid="@item.Dropshipping.ID" method="delete">
-                            <button class="btn-link" type="submit"><i class="fa fa-trash-o"></i></button>
-                        </form>
+                            else
+                            {
+                                <a asp-controller="dropship" asp-action="ProductAddToIntegration" asp-route-itemid="@item.Dropshipping.ID" class="btn btn-primary">Add!</a>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-xs-1">
+                        <a asp-controller="Dropship" asp-action="Product" asp-route-itemid="@item.Dropshipping.ID" class="btn btn-default"  data-toggle="tooltip" data-placement="bottom" title="Manage Rules"><i class="fa fa-gear"></i></a>
+                        <br />
+                        <br />
+                        <a asp-controller="Dropship" asp-action="ProductDelete" asp-route-itemid="@item.Dropshipping.ID" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
                     </div>
                 </div>
             </div>
