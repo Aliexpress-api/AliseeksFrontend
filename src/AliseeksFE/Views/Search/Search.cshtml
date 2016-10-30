@@ -11,7 +11,17 @@
 
 <div class="col-md-12 col-lg-8 col-center">
     <div class="row">
-        <p class="pull-right text-muted">Total Results: <strong>@Model.Results.SearchCount</strong> | <span id="saveSearchSpan"><a href="@savePath" data-ajax="true" data-ajax-method="GET" data-ajax-success="saveSearchSuccess">Save this search?</a></span></p>
+        <p class="pull-right text-muted">Total Results: <strong>@Model.Results.SearchCount</strong> |
+        <span id="saveSearchSpan">
+            @if (Context.User.Identity.IsAuthenticated)
+            {
+                <a href="@savePath" data-ajax="true" data-ajax-method="GET" data-ajax-success="saveSearchSuccess">Save this search?</a>
+            }
+            else
+            {
+                <a asp-controller="Login" asp-action="Login">Save this search?</a>
+            }
+        </span></p>
     </div>
 
     @if (Model.Results.Items.Length == 0)

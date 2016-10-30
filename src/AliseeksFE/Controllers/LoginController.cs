@@ -69,12 +69,15 @@ namespace AliseeksFE.Controllers
 
         [HttpGet]
         [Route("/register")]
-        public IActionResult Register(string returnUrl)
+        public IActionResult Register(string returnUrl, string reff)
         {
             if (!returnUrl.IsEmptyOrNull())
                 ViewData.Add("ReturnUrl", returnUrl);
 
-            return View(new NewUserModel());
+            return View(new NewUserModel()
+            {
+                Referral = reff
+            });
         }
 
         [HttpPost]

@@ -28,5 +28,7 @@ namespace AliseeksFE.Models.Login
 
         [Required(ErrorMessage = "Please enter your primary use")]
         public string PrimaryUse { get; set; }
+
+        public string Referral { get; set; }
     }
 }
