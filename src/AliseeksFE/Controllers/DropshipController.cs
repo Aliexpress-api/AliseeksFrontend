@@ -47,7 +47,10 @@ namespace AliseeksFE.Controllers
 
         public async Task<IActionResult> Add(SingleItemRequest item)
         {
-            await dropship.AddProduct(item);
+            var response = await dropship.AddProduct(item);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                return RedirectToAction("Integrations");
 
             return RedirectToAction("Products");
         }
@@ -61,10 +64,28 @@ namespace AliseeksFE.Controllers
             return View(dropshipItem.Dropshipping);
         }
 
+        [HttpGet]
+        [Route("[controller]/products/{itemid}/add")]
+        public async Task<IActionResult> ProductAddToIntegration(int itemid)
+        {
+            var response = await api.Get(ApiEndpoints.DropshipAddProductIntegration(itemid));
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Products");
+            }
+            else
+            {
+                return RedirectToAction("Products");
+            }
+        }
+
         [HttpPost]
         [Route("[controller]/products/{itemid}")]
-        public async Task<IActionResult> Product(DropshipItemModel item)
+        public async Task<IActionResult> Product(int itemid, [FromForm]DropshipItemModel item)
         {
+            item.ID = itemid;
+
             var json = JsonConvert.SerializeObject(item);
             var response = await api.Put(ApiEndpoints.DropshipUpdateProduct, new JsonContent(json));
 
@@ -77,6 +98,22 @@ namespace AliseeksFE.Controllers
                 var message = await response.Content.ReadAsStringAsync();
                 ModelState.AddModelError("All", message);
                 return View(item);
+            }
+        }
+
+        [HttpDelete]
+        [Route("[controller]/products/{itemid}")]
+        public async Task<IActionResult> ProductDelete(int itemid)
+        {
+            var response = await api.Delete(ApiEndpoints.DropshipProductDelete(itemid));
+
+            if(response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Products");
+            }
+            else
+            {
+                return RedirectToAction("Products");
             }
         }
 

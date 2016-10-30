@@ -10,6 +10,8 @@ namespace AliseeksFE.Injectables.Dropship
     {
         public string PriceAdjustment(DropshipListingRules rules)
         {
+            return rules.Price.ToString();
+            /*
             if(rules.FixedPricePercentage.HasValue)
             {
                 return (rules.FixedPricePercentage.Value * 100).ToString() + "%";
@@ -25,13 +27,13 @@ namespace AliseeksFE.Injectables.Dropship
             if(rules.FixedPrice.HasValue)
             {
                 return rules.FixedPrice.ToString();
-            }
-
-            return "None";
+            } */
         }
 
         public string StockAdjustment(DropshipListingRules rules)
         {
+            return rules.Stock.ToString();
+/*
             if(rules.FixedStockAdjustment.HasValue)
             {
                 var unit = (rules.FixedStockAdjustment.Value > 0) ? "+" : "";
@@ -43,8 +45,7 @@ namespace AliseeksFE.Injectables.Dropship
             {
                 return rules.FixedStock.ToString();
             }
-
-            return "None";
+             */
         }
     }
 }

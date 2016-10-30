@@ -9,6 +9,8 @@ using AliseeksFE.Utility;
 using Newtonsoft.Json;
 using AliseeksFE.Models.Shopify;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.AspNetCore.Http;
+using System.Net.Http;
 
 namespace AliseeksFE.Services.Dropshipping
 {
@@ -21,12 +23,14 @@ namespace AliseeksFE.Services.Dropshipping
             this.api = api;
         }
 
-        public async Task AddProduct(SingleItemRequest item)
+        public async Task<HttpResponseMessage> AddProduct(SingleItemRequest item)
         {
             var json = JsonConvert.SerializeObject(item);
             var jsonContent = new JsonContent(json);
 
             var response = await api.Post(ApiEndpoints.DropshipAddProduct, jsonContent);
+
+            return response;
         }
 
         public async Task UpdateProduct(DropshipItemModel model)
