@@ -24,7 +24,7 @@ namespace AliseeksFE.Services.Dropshipping
         public DropshipService(IApiService api, IOptions<ShopifyOptions> shopifyConfig)
         {
             this.api = api;
-            this.shopifyConfig = shopifyConfig;
+            this.shopifyConfig = shopifyConfig.Value;
         }
 
         public async Task<HttpResponseMessage> AddProduct(SingleItemRequest item)
