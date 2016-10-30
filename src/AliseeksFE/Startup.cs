@@ -65,7 +65,8 @@ namespace AliseeksFE
             services.Configure<JwtOptions>(Configuration.GetSection("JwtOptions"));
             services.Configure<ApiOptions>(Configuration.GetSection("ApiOptions"));
             services.Configure<RavenOptions>(Configuration.GetSection("RavenOptions"));
-
+            services.Configure<ShopifyOptions>(Configuration.GetSection("ShopifyOptions"));
+            
             configureDependencyInjection(services);
         }
 
