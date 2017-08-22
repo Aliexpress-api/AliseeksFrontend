@@ -15,25 +15,12 @@
     </div>
 </div>
 
-@if (!User.Identity.IsAuthenticated)
-{ 
-<div class="row annoucements-wrapper-mobile hidden-md hidden-lg">
-    <div class="annoucements">
-        <i class="fa fa-coffee" aria-hidden="true"></i><br />
-        Make an <a href="/register">account</a> now to be the first to use the latest features.
-    </div>
-</div>
-}
-
 <div class="searchbar-wrapper">
     @Html.Partial("Partials/SearchBar", new SearchCriteria())
 </div>
 
-@if (!User.Identity.IsAuthenticated)
-{
     <div class="row annoucements-wrapper hidden-sm hidden-xs">
         <div class="annoucements">
-            <i class="fa fa-coffee" aria-hidden="true"></i><br />Make an <a href="/register">account</a> now to be the first to use the latest features.
+            <i class="fa fa-coffee" aria-hidden="true"></i><br />Amazon FBA? Need some UPC codes? Visit our friends over at <a href="https://www.justupc.com">JustUpc</a> and get barcodes today!
         </div>
     </div>
-}
